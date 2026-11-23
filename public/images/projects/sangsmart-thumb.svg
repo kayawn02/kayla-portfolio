@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sangBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00015D"/>
+      <stop offset="50%" stop-color="#050C33"/>
+      <stop offset="100%" stop-color="#070C24"/>
+    </linearGradient>
+    <linearGradient id="sangGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#49CBE5"/>
+      <stop offset="100%" stop-color="#CBF0F8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#sangBg)"/>
+
+  <!-- Subtle circles & network -->
+  <circle cx="400" cy="250" r="220" stroke="rgba(73, 203, 229, 0.15)" stroke-width="1" fill="none"/>
+  <circle cx="400" cy="250" r="140" stroke="rgba(73, 203, 229, 0.2)" stroke-width="1" stroke-dasharray="6 6" fill="none"/>
+
+  <!-- Three Connected Ecosystem Nodes -->
+  <!-- Center Node -->
+  <g transform="translate(320, 180)">
+    <rect x="0" y="0" width="160" height="140" rx="20" fill="#0C1338" stroke="#49CBE5" stroke-width="2"/>
+    <text x="80" y="50" text-anchor="middle" fill="#49CBE5" font-family="'Space Grotesk', sans-serif" font-size="20" font-weight="bold">SangSmart</text>
+    <text x="80" y="75" text-anchor="middle" fill="#CBF0F8" font-family="'Space Grotesk', sans-serif" font-size="12" letter-spacing="1">ONE FOR ALL</text>
+    <rect x="25" y="95" width="110" height="26" rx="13" fill="#0177B5"/>
+    <text x="80" y="112" text-anchor="middle" fill="#FFFFFF" font-family="'Space Grotesk', sans-serif" font-size="10" font-weight="600">Unified Ecosystem</text>
+  </g>
+
+  <!-- Node 1: Market -->
+  <g transform="translate(100, 100)">
+    <rect x="0" y="0" width="150" height="90" rx="14" fill="rgba(12, 19, 56, 0.9)" stroke="rgba(73, 203, 229, 0.3)"/>
+    <text x="20" y="32" fill="#FFFFFF" font-family="'Space Grotesk'" font-size="13" font-weight="600">Fair Marketplace</text>
+    <text x="20" y="52" fill="#49CBE5" font-family="'Space Grotesk'" font-size="11">Shallot: Rp 32k/kg</text>
+    <text x="20" y="70" fill="#22C55E" font-family="'Space Grotesk'" font-size="10">+12% Farmer Margin</text>
+  </g>
+  <line x1="250" y1="150" x2="320" y2="200" stroke="#49CBE5" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+  <!-- Node 2: Equipment Rental -->
+  <g transform="translate(550, 100)">
+    <rect x="0" y="0" width="150" height="90" rx="14" fill="rgba(12, 19, 56, 0.9)" stroke="rgba(73, 203, 229, 0.3)"/>
+    <text x="20" y="32" fill="#FFFFFF" font-family="'Space Grotesk'" font-size="13" font-weight="600">Shared Equipment</text>
+    <text x="20" y="52" fill="#49CBE5" font-family="'Space Grotesk'" font-size="11">Tractor &amp; Sprayers</text>
+    <text x="20" y="70" fill="#CBF0F8" font-family="'Space Grotesk'" font-size="10">Escrow Protected</text>
+  </g>
+  <line x1="550" y1="150" x2="480" y2="200" stroke="#49CBE5" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+  <!-- Node 3: Cold Storage -->
+  <g transform="translate(325, 360)">
+    <rect x="0" y="0" width="150" height="80" rx="14" fill="rgba(12, 19, 56, 0.9)" stroke="rgba(73, 203, 229, 0.3)"/>
+    <text x="75" y="32" text-anchor="middle" fill="#FFFFFF" font-family="'Space Grotesk'" font-size="13" font-weight="600">Cold Storage Pool</text>
+    <text x="75" y="55" text-anchor="middle" fill="#49CBE5" font-family="'Space Grotesk'" font-size="11">Realtime Humidity 85%</text>
+  </g>
+  <line x1="400" y1="320" x2="400" y2="360" stroke="#49CBE5" stroke-width="1.5" stroke-dasharray="4 4"/>
+</svg>

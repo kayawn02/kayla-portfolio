@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: #070507;
+    color: #f1f5f9;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Minimal Dark Red Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #070507;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2b1117;
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #dc2626;
+  }
+}
+
+/* Background Shooting Stars / Meteors */
+.meteor-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.meteor-streak {
+  position: absolute;
+  width: 140px;
+  height: 2px;
+  transform: rotate(45deg);
+  background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.25) 35%, rgba(255, 255, 255, 0.95));
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+  opacity: 0;
+  animation: meteor-fall linear infinite;
+}
+
+@keyframes meteor-fall {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(45deg);
+  }
+  3% {
+    opacity: 0.9;
+  }
+  12% {
+    opacity: 0.7;
+  }
+  22%, 100% {
+    opacity: 0;
+    transform: translate(80vw, 80vh) rotate(45deg);
+  }
+}
+
+/* True Ultra-Modern Glassmorphism Cards */
+.card-glass {
+  background: rgba(18, 12, 17, 0.48);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), 
+              0 12px 32px -8px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  position: relative;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-glass:hover {
+  background: rgba(26, 16, 24, 0.62);
+  border-color: rgba(220, 38, 38, 0.45);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.12),
+              0 16px 36px -10px rgba(220, 38, 38, 0.28);
+}
+
+/* Minimalist Tech Stack Glassmorphism Tile (Identical to Alfari Reference) */
+.tech-glass-tile {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05),
+              0 8px 24px -6px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease,
+              background 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.tech-glass-tile:hover {
+  transform: translateY(-6px) scale(1.02);
+  background: rgba(255, 255, 255, 0.065);
+  border-color: rgba(220, 38, 38, 0.45);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1),
+              0 14px 28px -6px rgba(220, 38, 38, 0.25);
+}
+
+/* Interactive Cursor Animation on Every Card (Touch & Hover Physics) */
+.card-interactive {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.35s ease, 
+              box-shadow 0.35s ease,
+              background 0.35s ease;
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
+}
+
+.card-interactive::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.04) 40%,
+    rgba(220, 38, 38, 0.18) 50%,
+    rgba(255, 255, 255, 0.04) 60%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  pointer-events: none;
+  transition: left 0.75s ease-in-out;
+  z-index: 20;
+}
+
+.card-interactive:hover {
+  transform: translateY(-7px) scale(1.015);
+  border-color: rgba(220, 38, 38, 0.6);
+  box-shadow: 0 16px 36px -10px rgba(220, 38, 38, 0.32), 
+              0 0 1px 1px rgba(220, 38, 38, 0.45), 
+              inset 0 1px 2px rgba(255, 255, 255, 0.12);
+}
+
+.card-interactive:hover::before {
+  left: 200%;
+}
+
+.nav-glass {
+  background: rgba(10, 7, 10, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Ambient Background Radial Glows */
+.ambient-glow {
+  background: 
+    radial-gradient(at 15% 15%, rgba(185, 28, 28, 0.09) 0px, transparent 40%),
+    radial-gradient(at 85% 45%, rgba(153, 27, 27, 0.07) 0px, transparent 35%),
+    radial-gradient(at 40% 85%, rgba(185, 28, 28, 0.08) 0px, transparent 40%);
+}
+
+/* Smooth Page Transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .meteor-streak {
+    display: none !important;
+  }
+}

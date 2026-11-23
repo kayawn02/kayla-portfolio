@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="wpBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#02081E"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#wpBg)"/>
+  
+  <!-- Modern App Browser mockup -->
+  <g transform="translate(100, 60)">
+    <rect x="0" y="0" width="600" height="380" rx="16" fill="#0C1338" stroke="rgba(73, 203, 229, 0.25)" stroke-width="1.5"/>
+    <!-- Browser bar -->
+    <rect x="0" y="0" width="600" height="40" rx="16" fill="#111E3D"/>
+    <circle cx="25" cy="20" r="5" fill="#EF4444"/>
+    <circle cx="42" cy="20" r="5" fill="#EAB308"/>
+    <circle cx="59" cy="20" r="5" fill="#22C55E"/>
+    <rect x="180" y="10" width="240" height="20" rx="6" fill="#070C24"/>
+    <text x="300" y="24" text-anchor="middle" fill="#94A3B8" font-family="'Space Grotesk'" font-size="11">wonpoint3.tech-competition.id</text>
+
+    <!-- Content: Hero Title -->
+    <text x="40" y="85" fill="#49CBE5" font-family="'Space Grotesk'" font-size="13" font-weight="bold" letter-spacing="2">NATIONAL STUDENT COMPETITION</text>
+    <text x="40" y="125" fill="#FFFFFF" font-family="'Space Grotesk'" font-size="28" font-weight="700">Won Point Project 3.0</text>
+    <text x="40" y="150" fill="#94A3B8" font-family="'Space Grotesk'" font-size="13">Digital submission portal, jury dashboard &amp; live leaderboard.</text>
+
+    <!-- Cards Row -->
+    <g transform="translate(40, 180)">
+      <rect x="0" y="0" width="160" height="150" rx="12" fill="#070C24" stroke="rgba(73, 203, 229, 0.15)"/>
+      <text x="20" y="35" fill="#49CBE5" font-size="12" font-family="'Space Grotesk'">Stage 02</text>
+      <text x="20" y="60" fill="#FFFFFF" font-size="16" font-weight="bold" font-family="'Space Grotesk'">Proposal Review</text>
+      <rect x="20" y="100" width="120" height="28" rx="6" fill="#0177B5"/>
+      <text x="80" y="118" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="600" font-family="'Space Grotesk'">Submitted ✓</text>
+    </g>
+
+    <g transform="translate(220, 180)">
+      <rect x="0" y="0" width="160" height="150" rx="12" fill="#070C24" stroke="rgba(73, 203, 229, 0.15)"/>
+      <text x="20" y="35" fill="#EAB308" font-size="12" font-family="'Space Grotesk'">Countdown</text>
+      <text x="20" y="65" fill="#FFFFFF" font-size="24" font-weight="bold" font-family="'Space Grotesk'">04 : 12 : 30</text>
+      <text x="20" y="115" fill="#94A3B8" font-size="11" font-family="sans-serif">Days : Hrs : Mins</text>
+    </g>
+
+    <g transform="translate(400, 180)">
+      <rect x="0" y="0" width="160" height="150" rx="12" fill="#070C24" stroke="rgba(73, 203, 229, 0.15)"/>
+      <text x="20" y="35" fill="#22C55E" font-size="12" font-family="'Space Grotesk'">Live Leaderboard</text>
+      <text x="20" y="60" fill="#FFFFFF" font-size="14" font-weight="600" font-family="'Space Grotesk'">#1 Tim Nusantara</text>
+      <text x="20" y="85" fill="#94A3B8" font-size="13" font-family="'Space Grotesk'">#2 AgroVision AI</text>
+      <text x="20" y="110" fill="#94A3B8" font-size="13" font-family="'Space Grotesk'">#3 SmartGrid Pro</text>
+    </g>
+  </g>
+</svg>

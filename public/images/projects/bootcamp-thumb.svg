@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#030519"/>
+      <stop offset="60%" stop-color="#0C1338"/>
+      <stop offset="100%" stop-color="#00015D"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bcGrad)"/>
+
+  <!-- Collaborative Figma-like canvas mockup -->
+  <g transform="translate(100, 60)">
+    <rect x="0" y="0" width="600" height="380" rx="16" fill="#070C24" stroke="rgba(73, 203, 229, 0.25)" stroke-width="1.5"/>
+
+    <!-- Canvas Header -->
+    <rect x="0" y="0" width="600" height="45" rx="16" fill="#0C1338"/>
+    <text x="25" y="28" fill="#49CBE5" font-family="'Space Grotesk'" font-size="14" font-weight="bold">UI/UX Design Sprint 2024</text>
+    <text x="240" y="28" fill="#94A3B8" font-family="'Space Grotesk'" font-size="12">Module 04: Component Design Systems</text>
+
+    <!-- Mentee Cursors -->
+    <g transform="translate(140, 120)">
+      <polygon points="0,0 14,14 7,14 4,20 0,18" fill="#49CBE5"/>
+      <rect x="14" y="14" width="75" height="20" rx="4" fill="#0177B5"/>
+      <text x="51" y="28" text-anchor="middle" fill="#FFFFFF" font-size="10" font-family="sans-serif">Kayla (Mentor)</text>
+    </g>
+
+    <g transform="translate(420, 200)">
+      <polygon points="0,0 14,14 7,14 4,20 0,18" fill="#F43F5E"/>
+      <rect x="14" y="14" width="60" height="20" rx="4" fill="#BE123C"/>
+      <text x="44" y="28" text-anchor="middle" fill="#FFFFFF" font-size="10" font-family="sans-serif">Student A</text>
+    </g>
+
+    <!-- UI Mockup frames on canvas -->
+    <!-- Frame 1 -->
+    <g transform="translate(40, 80)">
+      <rect x="0" y="0" width="160" height="260" rx="12" fill="#030519" stroke="rgba(73, 203, 229, 0.3)"/>
+      <text x="20" y="30" fill="#FFFFFF" font-size="12" font-family="'Space Grotesk'" font-weight="600">Mobile Onboarding</text>
+      <circle cx="80" cy="90" r="30" fill="#111E3D"/>
+      <rect x="25" y="140" width="110" height="10" rx="5" fill="#49CBE5"/>
+      <rect x="25" y="160" width="80" height="8" rx="4" fill="#64748B"/>
+      <rect x="25" y="200" width="110" height="30" rx="8" fill="#0177B5"/>
+      <text x="80" y="220" text-anchor="middle" fill="#FFFFFF" font-size="10" font-family="sans-serif">Get Started</text>
+    </g>
+
+    <!-- Frame 2: Design Tokens & Buttons -->
+    <g transform="translate(230, 80)">
+      <rect x="0" y="0" width="330" height="260" rx="12" fill="#030519" stroke="rgba(73, 203, 229, 0.3)"/>
+      <text x="25" y="30" fill="#CBF0F8" font-size="13" font-family="'Space Grotesk'" font-weight="600">Atomic Component Library</text>
+      
+      <!-- Component variants -->
+      <rect x="25" y="55" width="130" height="36" rx="8" fill="#49CBE5"/>
+      <text x="90" y="77" text-anchor="middle" fill="#00015D" font-size="11" font-weight="bold" font-family="sans-serif">Primary Button</text>
+
+      <rect x="175" y="55" width="130" height="36" rx="8" fill="none" stroke="#49CBE5" stroke-width="1.5"/>
+      <text x="240" y="77" text-anchor="middle" fill="#49CBE5" font-size="11" font-weight="bold" font-family="sans-serif">Outline Button</text>
+
+      <!-- Color swatches -->
+      <g transform="translate(25, 115)">
+        <rect x="0" y="0" width="40" height="30" rx="6" fill="#00015D"/>
+        <rect x="50" y="0" width="40" height="30" rx="6" fill="#0177B5"/>
+        <rect x="100" y="0" width="40" height="30" rx="6" fill="#49CBE5"/>
+        <rect x="150" y="0" width="40" height="30" rx="6" fill="#CBF0F8"/>
+      </g>
+
+      <!-- Feedback note -->
+      <rect x="25" y="170" width="280" height="60" rx="8" fill="#111E3D" stroke="rgba(73, 203, 229, 0.2)"/>
+      <text x="40" y="195" fill="#22C55E" font-size="11" font-family="sans-serif">✓ Mentee Review: Excellent contrast ratio (AAA)</text>
+      <text x="40" y="215" fill="#94A3B8" font-size="10" font-family="sans-serif">40+ Students Mentored · 8 Capstone Prototypes</text>
+    </g>
+  </g>
+</svg>
