@@ -201,7 +201,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
             </motion.div>
           )}
 
-          {/* ===================== CERTIFICATES TAB (ALL 7 REAL CERTIFICATES) ===================== */}
+          {/* ===================== CERTIFICATES TAB (CLEAN, MODERN, NO EMOJIS) ===================== */}
           {activeTab === 'Certificates' && (
             <motion.div
               key="certificates"
@@ -218,49 +218,59 @@ export default function PortfolioShowcase({ onSelectProject }) {
                     initial={{ opacity: 0, y: 30, scale: 0.95 }}
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
                     viewport={{ once: false, amount: 0.15 }}
-                    transition={{ type: 'spring', stiffness: 110, damping: 16, delay: (idx % 3) * 0.08 }}
-                    whileHover={{ y: -6 }}
+                    transition={{ type: 'spring', stiffness: 120, damping: 16, delay: (idx % 3) * 0.08 }}
+                    whileHover={{ y: -8, scale: 1.015 }}
                     onClick={() => setSelectedCert(cert)}
-                    className="card-glass card-interactive rounded-2xl overflow-hidden border border-white/5 hover:border-red-600/50 flex flex-col group cursor-pointer"
+                    className="group relative rounded-2xl overflow-hidden border border-white/10 hover:border-red-500/50 bg-gradient-to-b from-[#140c13]/90 via-[#0d070c]/90 to-black backdrop-blur-xl flex flex-col cursor-pointer transition-all duration-300 shadow-[0_12px_32px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_rgba(220,38,38,0.25)] select-none"
                   >
-                    {/* Certificate Thumbnail with Hover Eye Overlay */}
-                    <div className="relative h-52 w-full bg-black/60 overflow-hidden border-b border-white/5 flex items-center justify-center p-2">
+                    {/* Top Edge Animated Shimmer Beam */}
+                    <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-red-500/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20" />
+
+                    {/* Certificate Thumbnail Frame */}
+                    <div className="relative h-56 w-full bg-[#0a0509] overflow-hidden flex items-center justify-center p-3 border-b border-white/5">
                       <img
                         src={cert.thumbnail}
                         alt={cert.title}
-                        className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105 rounded"
+                        className="max-h-full max-w-full object-contain rounded-lg transition-transform duration-500 group-hover:scale-105 filter drop-shadow-md"
+                        loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-[2px]">
-                        <span className="px-3.5 py-1.5 rounded-full bg-red-600 hover:bg-red-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow-lg">
+                      {/* Soft Ambient Overlay on Hover */}
+                      <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                        <span className="px-4 py-1.5 rounded-full bg-red-600/90 text-white text-xs font-semibold flex items-center gap-1.5 shadow-lg scale-95 group-hover:scale-100 transition-transform">
                           <Eye size={14} />
-                          <span>Perbesar Sertifikat</span>
+                          <span>Lihat Dokumen Asli</span>
                         </span>
                       </div>
-                      <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md text-[10px] font-bold bg-black/80 text-amber-300 border border-amber-500/30 backdrop-blur-md shadow-sm">
-                        {cert.badge}
-                      </span>
+
+                      {/* Clean Minimalist Category & Year Badges (NO EMOJIS) */}
+                      <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+                        <span className="px-2.5 py-1 rounded-md text-[10px] font-mono font-bold tracking-wide uppercase bg-black/85 text-neutral-200 border border-white/15 backdrop-blur-md shadow-sm">
+                          {cert.badge}
+                        </span>
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono text-neutral-400 bg-black/75 border border-white/10 backdrop-blur-md">
+                          {cert.year}
+                        </span>
+                      </div>
                     </div>
 
-                    {/* Certificate Meta */}
+                    {/* Clean Minimalist Footer Info (No Text Clutter) */}
                     <div className="p-5 flex-1 flex flex-col justify-between gap-3">
                       <div>
-                        <div className="flex items-center gap-2 mb-1.5">
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-red-400">
-                            {cert.category}
-                          </span>
-                          <span className="text-neutral-600">&bull;</span>
-                          <span className="text-[11px] text-neutral-400">{cert.year}</span>
-                        </div>
-                        <h4 className="text-base font-bold text-white group-hover:text-red-400 transition-colors line-clamp-2 leading-snug">
+                        <h4 className="text-base font-bold text-white group-hover:text-red-400 transition-colors line-clamp-1 leading-snug">
                           {cert.title}
                         </h4>
-                        <p className="text-xs text-neutral-300 mt-1 line-clamp-1 font-medium">{cert.organizer}</p>
+                        <p className="text-xs text-neutral-400 mt-1 line-clamp-1 font-medium">
+                          {cert.event || cert.organizer}
+                        </p>
                       </div>
 
-                      <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs">
-                        <span className="text-neutral-400 font-mono text-[11px] truncate max-w-[170px]">{cert.regNumber}</span>
+                      <div className="pt-2.5 border-t border-white/5 flex items-center justify-between text-xs">
+                        <span className="text-[11px] text-neutral-500 font-mono">
+                          {cert.category}
+                        </span>
                         <span className="text-red-400 font-medium group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0">
-                          Lihat Scan &rarr;
+                          <span>Perbesar</span>
+                          <span>&rarr;</span>
                         </span>
                       </div>
                     </div>
@@ -270,7 +280,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
             </motion.div>
           )}
 
-          {/* ===================== ACHIEVEMENTS TAB ===================== */}
+          {/* ===================== ACHIEVEMENTS TAB (ANTIMAINSTREAM BENTO SHOWCASE) ===================== */}
           {activeTab === 'Achievements' && (
             <motion.div
               key="achievements"
@@ -278,44 +288,84 @@ export default function PortfolioShowcase({ onSelectProject }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.35 }}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+              className="grid md:grid-cols-3 gap-6"
             >
               {achievements.map((item, idx) => (
                 <motion.div
                   key={item.id}
-                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  initial={{ opacity: 0, y: 35, scale: 0.94 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: false, amount: 0.15 }}
-                  transition={{ type: 'spring', stiffness: 110, damping: 16, delay: (idx % 3) * 0.08 }}
-                  whileHover={{ y: -6 }}
-                  onClick={() => setSelectedCert(item)}
-                  className="card-glass card-interactive p-6 rounded-2xl relative overflow-hidden border border-white/5 hover:border-red-600/50 cursor-pointer group flex flex-col justify-between"
+                  transition={{ type: 'spring', stiffness: 120, damping: 16, delay: idx * 0.1 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  onClick={() => {
+                    const target = certificates.find(c => c.id === item.certId) || item;
+                    setSelectedCert(target);
+                  }}
+                  className="group relative rounded-2xl p-6 sm:p-7 overflow-hidden border border-white/10 hover:border-red-500/50 bg-gradient-to-b from-[#160d15]/95 via-[#0e080e]/95 to-[#070507] backdrop-blur-xl cursor-pointer select-none flex flex-col justify-between shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_20px_45px_rgba(220,38,38,0.3)] transition-all duration-300"
                 >
+                  {/* Ambient Top Glow according to achievement theme */}
+                  <div
+                    className="absolute -top-16 -right-16 w-36 h-36 rounded-full opacity-20 group-hover:opacity-40 blur-2xl transition-opacity duration-300 pointer-events-none"
+                    style={{ backgroundColor: item.accentColor }}
+                  />
+
+                  {/* Top Edge Beam */}
+                  <div
+                    className="absolute top-0 left-0 right-0 h-[2px] opacity-40 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{ background: `linear-gradient(90deg, transparent, ${item.accentColor}, transparent)` }}
+                  />
+
+                  {/* Header: Rank + Scope */}
                   <div>
-                    <div className="flex items-start gap-4 mb-3">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-950 to-red-900/40 border border-red-700/30 flex items-center justify-center text-red-400 shrink-0 group-hover:scale-110 transition-transform">
-                        <Trophy size={24} />
-                      </div>
-                      <div className="space-y-1 flex-1">
-                        <div className="flex items-center gap-2">
-                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-red-950/80 text-red-300 border border-red-700/40">
-                            {item.badge}
-                          </span>
-                          <span className="text-xs text-neutral-400">{item.year}</span>
-                        </div>
-                        <h4 className="text-base font-bold text-white group-hover:text-red-400 transition-colors leading-snug">
-                          {item.title}
-                        </h4>
-                      </div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span
+                        className="text-xs font-mono font-bold px-2.5 py-1 rounded-md tracking-wider uppercase border"
+                        style={{
+                          color: item.accentColor,
+                          borderColor: `${item.accentColor}40`,
+                          backgroundColor: `${item.accentColor}15`
+                        }}
+                      >
+                        {item.rankBadge}
+                      </span>
+                      <span className="text-xs font-mono text-neutral-400">
+                        {item.year}
+                      </span>
                     </div>
 
-                    <p className="text-xs text-red-400/90 font-medium">{item.event}</p>
+                    {/* Big Rank Number Watermark / Accent */}
+                    <div className="flex items-baseline justify-between my-2">
+                      <span
+                        className="text-5xl font-black tracking-tight font-mono opacity-85 group-hover:opacity-100 transition-opacity"
+                        style={{ color: item.accentColor }}
+                      >
+                        {item.rank}
+                      </span>
+                      <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-widest px-2.5 py-0.5 rounded bg-white/[0.04] border border-white/10">
+                        {item.scope}
+                      </span>
+                    </div>
+
+                    {/* Title and Event */}
+                    <div className="space-y-1.5 mt-3">
+                      <h4 className="text-lg font-extrabold text-white group-hover:text-red-300 transition-colors leading-snug">
+                        {item.title}
+                      </h4>
+                      <p className="text-xs text-neutral-400 font-medium leading-relaxed">
+                        {item.event} &middot; {item.organizer}
+                      </p>
+                    </div>
                   </div>
 
-                  <div className="mt-5 pt-3 border-t border-white/5 flex items-center justify-between text-xs text-neutral-400">
-                    <span className="truncate max-w-[180px]">{item.organizer}</span>
-                    <span className="text-red-400 font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                      Pratinjau &rarr;
+                  {/* Bottom Tag & Click Action */}
+                  <div className="mt-6 pt-3.5 border-t border-white/5 flex items-center justify-between text-xs">
+                    <span className="text-[11px] font-semibold text-neutral-300 bg-white/[0.04] border border-white/10 px-2.5 py-1 rounded-lg">
+                      {item.project}
+                    </span>
+                    <span className="text-red-400 font-medium group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0">
+                      <span>Dokumen Asli</span>
+                      <span>&rarr;</span>
                     </span>
                   </div>
                 </motion.div>

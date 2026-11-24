@@ -3,6 +3,76 @@ import { motion } from 'framer-motion';
 import { GraduationCap, Award, Code2, ArrowRight, Sparkles, Instagram } from 'lucide-react';
 import { personalInfo } from '../data/socials';
 
+function StatCard({ tag, value, suffix, title, desc, icon: Icon, delay, accentColor = 'rgba(220,38,38,0.2)' }) {
+  const cardRef = useRef(null);
+  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
+
+  return (
+    <motion.div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      initial={{ opacity: 0, y: 40, scale: 0.94 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: false, amount: 0.25 }}
+      transition={{ type: 'spring', stiffness: 110, damping: 16, delay }}
+      whileHover={{ y: -8, scale: 1.02 }}
+      className="relative rounded-2xl p-6 sm:p-7 overflow-hidden border border-white/10 bg-gradient-to-b from-[#160d14]/80 via-[#0e080e]/90 to-[#070507] backdrop-blur-xl shadow-[0_15px_35px_rgba(0,0,0,0.7)] group cursor-default select-none"
+    >
+      {/* Dynamic Cursor Spotlight Effect */}
+      <div
+        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background: `radial-gradient(220px circle at ${mousePos.x}px ${mousePos.y}px, ${accentColor}, transparent 70%)`
+        }}
+      />
+
+      {/* Top Edge Animated Shimmer Beam */}
+      <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-red-500/60 to-transparent opacity-40 group-hover:opacity-100 transition-opacity duration-500" />
+
+      {/* Card Header: Micro Tag + Icon */}
+      <div className="flex items-center justify-between mb-4 relative z-10">
+        <span className="text-[10px] font-mono tracking-widest uppercase text-red-400 font-semibold px-2 py-0.5 rounded bg-red-950/50 border border-red-800/30">
+          {tag}
+        </span>
+        <div className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-red-400 group-hover:text-white group-hover:scale-110 group-hover:bg-red-600 transition-all duration-300 shadow-sm">
+          <Icon size={18} />
+        </div>
+      </div>
+
+      {/* Large Bold Animated Display Value */}
+      <div className="relative z-10 flex items-baseline gap-1.5 my-1">
+        <span className="text-4xl sm:text-5xl font-black tracking-tight bg-gradient-to-br from-white via-neutral-100 to-red-400 bg-clip-text text-transparent group-hover:to-red-300 transition-all">
+          {value}
+        </span>
+        {suffix && (
+          <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-red-950/40 border border-red-700/30 text-red-300">
+            {suffix}
+          </span>
+        )}
+      </div>
+
+      {/* Label and Subtext */}
+      <div className="relative z-10 pt-2 border-t border-white/5 space-y-0.5">
+        <h3 className="text-sm font-bold text-white group-hover:text-red-300 transition-colors">
+          {title}
+        </h3>
+        <p className="text-xs text-neutral-400 font-medium">
+          {desc}
+        </p>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function About() {
   const stageRef = useRef(null);
   const [hoverPos, setHoverPos] = useState({ x: 50, y: 50 });
@@ -153,49 +223,40 @@ export default function About() {
 
         </div>
 
-        {/* 3-Column Statistics Grid (Clean, Responsive & Dynamic Scroll Animation) */}
+        {/* 3-Column Statistics Grid (Interactive Cursor Spotlight & Cyber Accents) */}
         <div className="grid sm:grid-cols-3 gap-5">
-          <motion.div
-            initial={{ opacity: 0, y: 35, scale: 0.92 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: false, amount: 0.25 }}
-            transition={{ type: 'spring', stiffness: 100, damping: 15, delay: 0.1 }}
-            className="card-glass card-interactive p-6 rounded-2xl relative overflow-hidden group cursor-default"
-          >
-            <div className="w-10 h-10 rounded-xl bg-red-950/40 border border-red-700/30 flex items-center justify-center text-red-400 mb-3 group-hover:scale-110 group-hover:border-red-500 transition-all duration-300">
-              <Code2 size={20} />
-            </div>
-            <p className="text-3xl font-extrabold text-white mb-0.5 group-hover:text-red-400 transition-colors">2</p>
-            <h3 className="text-sm font-semibold text-neutral-300">Projek Unggulan</h3>
-          </motion.div>
+          <StatCard
+            tag="01 // PROJECTS"
+            value="2"
+            suffix="Unggulan"
+            title="Projek Rekayasa"
+            desc="Mobile Flutter & IoT ESP32"
+            icon={Code2}
+            delay={0.1}
+            accentColor="rgba(220, 38, 38, 0.25)"
+          />
 
-          <motion.div
-            initial={{ opacity: 0, y: 35, scale: 0.92 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: false, amount: 0.25 }}
-            transition={{ type: 'spring', stiffness: 100, damping: 15, delay: 0.2 }}
-            className="card-glass card-interactive p-6 rounded-2xl relative overflow-hidden group cursor-default"
-          >
-            <div className="w-10 h-10 rounded-xl bg-red-950/40 border border-red-700/30 flex items-center justify-center text-red-400 mb-3 group-hover:scale-110 group-hover:border-red-500 transition-all duration-300">
-              <Award size={20} />
-            </div>
-            <p className="text-3xl font-extrabold text-white mb-0.5 group-hover:text-red-400 transition-colors">7</p>
-            <h3 className="text-sm font-semibold text-neutral-300">Sertifikat Resmi</h3>
-          </motion.div>
+          <StatCard
+            tag="02 // VERIFIED"
+            value="7"
+            suffix="Dokumen"
+            title="Sertifikat Resmi"
+            desc="Prestasi Lomba & Pelatihan Vokasi"
+            icon={Award}
+            delay={0.2}
+            accentColor="rgba(245, 158, 11, 0.25)"
+          />
 
-          <motion.div
-            initial={{ opacity: 0, y: 35, scale: 0.92 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: false, amount: 0.25 }}
-            transition={{ type: 'spring', stiffness: 100, damping: 15, delay: 0.3 }}
-            className="card-glass card-interactive p-6 rounded-2xl relative overflow-hidden group cursor-default"
-          >
-            <div className="w-10 h-10 rounded-xl bg-red-950/40 border border-red-700/30 flex items-center justify-center text-red-400 mb-3 group-hover:scale-110 group-hover:border-red-500 transition-all duration-300">
-              <GraduationCap size={20} />
-            </div>
-            <p className="text-3xl font-extrabold text-white mb-0.5 group-hover:text-red-400 transition-colors">2024</p>
-            <h3 className="text-sm font-semibold text-neutral-300">TRPL Polinela</h3>
-          </motion.div>
+          <StatCard
+            tag="03 // ACADEMIC"
+            value="2024"
+            suffix="Aktif"
+            title="TRPL Polinela"
+            desc="D4 Rekayasa Perangkat Lunak"
+            icon={GraduationCap}
+            delay={0.3}
+            accentColor="rgba(56, 189, 248, 0.25)"
+          />
         </div>
 
       </div>
