@@ -3,6 +3,26 @@ import { motion } from 'framer-motion';
 import { GraduationCap, Award, Code2, ArrowRight, Sparkles, Instagram } from 'lucide-react';
 import { personalInfo } from '../data/socials';
 
+function WordRevealText({ text, className = "" }) {
+  const words = text.split(" ");
+  return (
+    <p className={className}>
+      {words.map((word, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0.25, y: 3 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.8 }}
+          transition={{ duration: 0.25, delay: i * 0.012 }}
+          className="inline-block mr-1.5 transition-colors"
+        >
+          {word}
+        </motion.span>
+      ))}
+    </p>
+  );
+}
+
 function StatCard({ tag, value, suffix, title, desc, icon: Icon, delay, accentColor = 'rgba(220,38,38,0.2)' }) {
   const cardRef = useRef(null);
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
@@ -167,13 +187,15 @@ export default function About() {
               Hi, I'm <span className="text-red-500">Kayla Alia Atarani</span>
             </h2>
 
-            <p className="text-neutral-300 text-sm sm:text-base leading-relaxed">
-              Mahasiswa D4 Teknologi Rekayasa Perangkat Lunak di Politeknik Negeri Lampung dengan fokus perancangan antarmuka pengguna (UI/UX) dan pengembangan aplikasi mobile.
-            </p>
+            <WordRevealText
+              text="Mahasiswa D4 Teknologi Rekayasa Perangkat Lunak di Politeknik Negeri Lampung dengan fokus perancangan antarmuka pengguna (UI/UX) dan pengembangan aplikasi mobile."
+              className="text-neutral-300 text-sm sm:text-base leading-relaxed"
+            />
 
-            <p className="text-neutral-400 text-sm leading-relaxed">
-              Senang memadukan desain sistem di Figma, kode aplikasi Flutter, serta perangkat IoT ESP32 untuk membangun produk digital yang fungsional dan nyaman digunakan.
-            </p>
+            <WordRevealText
+              text="Senang memadukan desain sistem di Figma, kode aplikasi Flutter, serta perangkat IoT ESP32 untuk membangun produk digital yang fungsional dan nyaman digunakan."
+              className="text-neutral-400 text-sm leading-relaxed"
+            />
 
             {/* Instagram Profile Badge in About Section */}
             <motion.div
@@ -226,7 +248,7 @@ export default function About() {
         {/* 3-Column Statistics Grid (Interactive Cursor Spotlight & Cyber Accents) */}
         <div className="grid sm:grid-cols-3 gap-5">
           <StatCard
-            tag="01 // PROJECTS"
+            tag="01 · METRIK PROJEK"
             value="2"
             suffix="Unggulan"
             title="Projek Rekayasa"
@@ -237,7 +259,7 @@ export default function About() {
           />
 
           <StatCard
-            tag="02 // VERIFIED"
+            tag="02 · DOKUMEN PRESTASI"
             value="7"
             suffix="Dokumen"
             title="Sertifikat Resmi"
@@ -248,7 +270,7 @@ export default function About() {
           />
 
           <StatCard
-            tag="03 // ACADEMIC"
+            tag="03 · REKAYASA SISTEM"
             value="2024"
             suffix="Aktif"
             title="TRPL Polinela"

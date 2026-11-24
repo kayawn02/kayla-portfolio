@@ -106,7 +106,7 @@ export default function ProjectModal({ project, isOpen = true, onClose }) {
 
               {/* Overview / Ringkasan */}
               <div>
-                <h3 className="text-xs font-mono text-crimson-400 uppercase tracking-widest mb-2">// Ringkasan Proyek</h3>
+                <h3 className="text-xs font-mono text-crimson-400 uppercase tracking-widest mb-2">Ringkasan Proyek</h3>
                 <p className="text-sm text-neutral-300 leading-relaxed bg-[#140b17]/60 p-4 rounded-2xl border border-crimson-500/15">
                   {project.summary}
                 </p>
@@ -115,7 +115,7 @@ export default function ProjectModal({ project, isOpen = true, onClose }) {
               {/* Background & Goals */}
               {d?.latarBelakang && (
                 <div>
-                  <h3 className="text-xs font-mono text-crimson-400 uppercase tracking-widest mb-2">// Latar Belakang &amp; Masalah</h3>
+                  <h3 className="text-xs font-mono text-crimson-400 uppercase tracking-widest mb-2">Latar Belakang &amp; Masalah</h3>
                   <p className="text-sm text-neutral-300 leading-relaxed">
                     {d.latarBelakang}
                   </p>
@@ -124,7 +124,7 @@ export default function ProjectModal({ project, isOpen = true, onClose }) {
 
               {d?.tujuan && (
                 <div>
-                  <h3 className="text-xs font-mono text-crimson-400 uppercase tracking-widest mb-2">// Tujuan Proyek</h3>
+                  <h3 className="text-xs font-mono text-crimson-400 uppercase tracking-widest mb-2">Tujuan Proyek</h3>
                   <div className="space-y-2">
                     {d.tujuan.map((item, i) => (
                       <div key={i} className="flex items-start gap-2.5 text-sm text-neutral-300">
@@ -139,7 +139,7 @@ export default function ProjectModal({ project, isOpen = true, onClose }) {
               {/* My Role */}
               {d?.peranSaya && (
                 <div>
-                  <h3 className="text-xs font-mono text-crimson-400 uppercase tracking-widest mb-2">// Peran &amp; Tanggung Jawab</h3>
+                  <h3 className="text-xs font-mono text-crimson-400 uppercase tracking-widest mb-2">Peran &amp; Tanggung Jawab</h3>
                   <p className="text-sm text-neutral-300 leading-relaxed">
                     {d.peranSaya}
                   </p>
@@ -149,7 +149,7 @@ export default function ProjectModal({ project, isOpen = true, onClose }) {
               {/* Key Features */}
               {d?.fiturUtama && (
                 <div>
-                  <h3 className="text-xs font-mono text-crimson-400 uppercase tracking-widest mb-3">// Fitur Utama</h3>
+                  <h3 className="text-xs font-mono text-crimson-400 uppercase tracking-widest mb-3">Fitur Utama</h3>
                   <div className="space-y-3">
                     {d.fiturUtama.map((f, i) => (
                       <div key={i} className="p-4 rounded-2xl bg-[#140a16] border border-crimson-500/20">
@@ -164,7 +164,7 @@ export default function ProjectModal({ project, isOpen = true, onClose }) {
               {/* Contribution Points */}
               {project.points && (
                 <div>
-                  <h3 className="text-xs font-mono text-crimson-400 uppercase tracking-widest mb-2">// Kontribusi Utama</h3>
+                  <h3 className="text-xs font-mono text-crimson-400 uppercase tracking-widest mb-2">Kontribusi Utama</h3>
                   <div className="space-y-2">
                     {project.points.map((p, i) => (
                       <div key={i} className="flex items-start gap-2.5 text-sm text-neutral-300">
@@ -179,7 +179,7 @@ export default function ProjectModal({ project, isOpen = true, onClose }) {
               {/* Outcome */}
               {d?.hasilPencapaian && (
                 <div>
-                  <h3 className="text-xs font-mono text-crimson-400 uppercase tracking-widest mb-2">// Hasil &amp; Dampak</h3>
+                  <h3 className="text-xs font-mono text-crimson-400 uppercase tracking-widest mb-2">Hasil &amp; Dampak</h3>
                   <p className="text-sm text-neutral-300 leading-relaxed">
                     {d.hasilPencapaian}
                   </p>
@@ -188,7 +188,7 @@ export default function ProjectModal({ project, isOpen = true, onClose }) {
 
               {/* Tech Stack Chips with Official Vector Logos */}
               <div>
-                <h3 className="text-xs font-mono text-red-400 uppercase tracking-widest mb-3">// Alat &amp; Teknologi yang Digunakan</h3>
+                <h3 className="text-xs font-mono text-red-400 uppercase tracking-widest mb-3">Alat &amp; Teknologi yang Digunakan</h3>
                 <div className="flex flex-wrap gap-2.5">
                   {project.tools?.map((toolName) => {
                     const IconComponent = toolLogoMap[toolName];
