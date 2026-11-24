@@ -3,6 +3,87 @@ import { motion } from 'framer-motion';
 import { GraduationCap, Award, Code2, ArrowRight, Sparkles, Instagram, Flame, CheckCircle2 } from 'lucide-react';
 import { personalInfo } from '../data/socials';
 
+// Minimalist & Unique 3D Magnetic Stat Tile (Clean, Modern, Simple, Zero AI Slop)
+function StatCard3D({ icon: Icon, number, suffix, title, subtitle, accentColor = '#38bdf8' }) {
+  const [tilt, setTilt] = useState({ x: 0, y: 0, active: false, mouseX: 0, mouseY: 0 });
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    const y = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+    setTilt({
+      x: x * 10,
+      y: -y * 10,
+      active: true,
+      mouseX: e.clientX - rect.left,
+      mouseY: e.clientY - rect.top
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0, active: false, mouseX: 0, mouseY: 0 });
+  };
+
+  return (
+    <motion.div
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      animate={{
+        rotateY: tilt.active ? tilt.x : 0,
+        rotateX: tilt.active ? tilt.y : 0,
+        scale: tilt.active ? 1.02 : 1,
+      }}
+      transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+      style={{ perspective: 800, transformStyle: 'preserve-3d' }}
+      className="relative rounded-2xl p-6 sm:p-7 bg-[#0b1728]/80 border border-[#4A74A7]/30 hover:border-[#38bdf8]/60 transition-colors backdrop-blur-xl shadow-lg group select-none overflow-hidden flex flex-col justify-between"
+    >
+      {/* Specular Spotlight Glow following cursor */}
+      {tilt.active && (
+        <div
+          className="absolute pointer-events-none rounded-full blur-xl opacity-60"
+          style={{
+            width: '160px',
+            height: '160px',
+            left: `${tilt.mouseX}px`,
+            top: `${tilt.mouseY}px`,
+            transform: 'translate(-50%, -50%)',
+            background: `radial-gradient(circle, ${accentColor}40 0%, transparent 70%)`,
+          }}
+        />
+      )}
+
+      {/* Top Laser Shimmer */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#38bdf8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+      {/* Content in 3D perspective layer */}
+      <div style={{ transform: 'translateZ(15px)' }} className="space-y-4 relative z-10">
+        <div className="w-12 h-12 rounded-xl bg-[#142A44]/90 border border-[#4A74A7]/40 flex items-center justify-center text-[#38bdf8] shadow-md group-hover:scale-105 transition-transform">
+          <Icon size={22} />
+        </div>
+
+        <div>
+          <div className="flex items-baseline gap-1">
+            <span className="text-4xl sm:text-5xl font-black font-heading text-white tracking-tight">
+              {number}
+            </span>
+            {suffix && (
+              <span className="text-xl sm:text-2xl font-bold font-heading text-[#38bdf8]">
+                {suffix}
+              </span>
+            )}
+          </div>
+          <h4 className="text-base font-bold font-heading text-[#DCEAF7] pt-1">
+            {title}
+          </h4>
+          <p className="text-xs text-neutral-400 font-sans mt-0.5">
+            {subtitle}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function About() {
   const stageRef = useRef(null);
   const [hoverPos, setHoverPos] = useState({ x: 50, y: 50 });
@@ -165,169 +246,31 @@ export default function About() {
 
         </div>
 
-        {/* ===================== COSMIC REACTOR TELEMETRY PRISMS (ANTIMAINTREAM & ULTRA MODERN) ===================== */}
-        <div className="grid sm:grid-cols-3 gap-6 pt-6">
-          
-          {/* Stat 1: 2 Projek */}
-          <motion.div
-            initial={{ opacity: 0, y: 25, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.05 }}
-            transition={{ type: 'spring', stiffness: 140, damping: 18 }}
-            whileHover={{ y: -8, scale: 1.03 }}
-            className="relative rounded-3xl p-6 sm:p-7 bg-gradient-to-b from-[#142A44]/85 via-[#0e1d32]/95 to-[#081426] border border-[#4A74A7]/35 hover:border-[#38bdf8] transition-all duration-500 backdrop-blur-2xl shadow-[0_15px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(74,116,167,0.15)] hover:shadow-[0_20px_50px_rgba(56,189,248,0.25)] group select-none overflow-hidden flex flex-col justify-between"
-          >
-            {/* Animated Laser Border Beam */}
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#38bdf8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="absolute -top-12 -right-12 w-28 h-28 bg-[#38bdf8]/10 rounded-full blur-2xl group-hover:bg-[#38bdf8]/20 transition-colors pointer-events-none" />
-
-            {/* Top Row: Sonar Radar Gyroscope + Micro Tag */}
-            <div className="flex items-center justify-between mb-6">
-              <div className="relative w-14 h-14 flex items-center justify-center">
-                {/* Expanding Radar Sonar Waves */}
-                <div className="absolute inset-0 rounded-full border border-[#38bdf8]/30 animate-ping opacity-30" style={{ animationDuration: '3s' }} />
-                {/* Rotating Dashed Satellite Orbit */}
-                <div className="absolute -inset-1 rounded-full border border-dashed border-[#4A74A7]/50 group-hover:border-[#38bdf8] animate-[spin_8s_linear_infinite]" />
-                
-                {/* Core Glowing Orb */}
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#142A44] to-[#4A74A7] flex items-center justify-center text-[#DCEAF7] shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                  <Code2 size={18} className="text-[#38bdf8]" />
-                </div>
-              </div>
-
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#081426]/90 border border-[#4A74A7]/30 text-[10px] font-heading font-semibold text-[#38bdf8] shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8] animate-pulse" />
-                <span>AKTIF</span>
-              </div>
-            </div>
-
-            {/* Center: Hero Counter with Starlight Gradient */}
-            <div className="space-y-1">
-              <div className="flex items-baseline gap-2">
-                <span className="text-4xl sm:text-5xl font-black font-heading text-transparent bg-clip-text bg-gradient-to-br from-white via-[#DCEAF7] to-[#38bdf8] tracking-tight">
-                  2
-                </span>
-                <span className="text-sm font-heading font-bold text-[#38bdf8] uppercase tracking-wider">
-                  Projek
-                </span>
-              </div>
-              <h4 className="text-base font-bold font-heading text-[#DCEAF7] pt-1">
-                Projek Unggulan
-              </h4>
-              <p className="text-xs text-neutral-300 font-sans">
-                Mobile Flutter &amp; Sistem IoT ESP32
-              </p>
-            </div>
-
-            {/* Bottom Cyber Progress Line */}
-            <div className="mt-5 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-neutral-400">
-              <span>TRPL · Polinela</span>
-              <span className="text-[#38bdf8] font-bold">100% Selesai</span>
-            </div>
-          </motion.div>
-
-          {/* Stat 2: 7 Sertifikat */}
-          <motion.div
-            initial={{ opacity: 0, y: 25, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.05 }}
-            transition={{ type: 'spring', stiffness: 140, damping: 18, delay: 0.1 }}
-            whileHover={{ y: -8, scale: 1.03 }}
-            className="relative rounded-3xl p-6 sm:p-7 bg-gradient-to-b from-[#142A44]/85 via-[#0e1d32]/95 to-[#081426] border border-[#4A74A7]/35 hover:border-[#4A74A7] transition-all duration-500 backdrop-blur-2xl shadow-[0_15px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(74,116,167,0.15)] hover:shadow-[0_20px_50px_rgba(74,116,167,0.3)] group select-none overflow-hidden flex flex-col justify-between"
-          >
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#4A74A7] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="absolute -top-12 -right-12 w-28 h-28 bg-[#4A74A7]/10 rounded-full blur-2xl group-hover:bg-[#4A74A7]/20 transition-colors pointer-events-none" />
-
-            <div className="flex items-center justify-between mb-6">
-              <div className="relative w-14 h-14 flex items-center justify-center">
-                <div className="absolute inset-0 rounded-full border border-[#4A74A7]/30 animate-ping opacity-30" style={{ animationDuration: '3.2s' }} />
-                <div className="absolute -inset-1 rounded-full border border-dashed border-[#4A74A7]/50 group-hover:border-[#38bdf8] animate-[spin_8s_linear_infinite]" />
-                
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#142A44] to-[#4A74A7] flex items-center justify-center text-[#DCEAF7] shadow-[0_0_15px_rgba(74,116,167,0.5)] group-hover:scale-110 transition-transform">
-                  <Award size={18} className="text-[#DCEAF7]" />
-                </div>
-              </div>
-
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#081426]/90 border border-[#4A74A7]/30 text-[10px] font-heading font-semibold text-[#DCEAF7] shadow-sm">
-                <Sparkles size={11} className="text-[#38bdf8]" />
-                <span>TERVALIDASI</span>
-              </div>
-            </div>
-
-            <div className="space-y-1">
-              <div className="flex items-baseline gap-2">
-                <span className="text-4xl sm:text-5xl font-black font-heading text-transparent bg-clip-text bg-gradient-to-br from-white via-[#DCEAF7] to-[#4A74A7] tracking-tight">
-                  7
-                </span>
-                <span className="text-sm font-heading font-bold text-[#4A74A7] uppercase tracking-wider">
-                  Sertifikat
-                </span>
-              </div>
-              <h4 className="text-base font-bold font-heading text-[#DCEAF7] pt-1">
-                Sertifikat Resmi
-              </h4>
-              <p className="text-xs text-neutral-300 font-sans">
-                Prestasi Lomba &amp; Pelatihan Vokasi
-              </p>
-            </div>
-
-            <div className="mt-5 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-neutral-400">
-              <span>Tingkat Nasional &amp; Daerah</span>
-              <span className="text-[#38bdf8] font-bold">Terverifikasi</span>
-            </div>
-          </motion.div>
-
-          {/* Stat 3: 2024 TRPL */}
-          <motion.div
-            initial={{ opacity: 0, y: 25, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.05 }}
-            transition={{ type: 'spring', stiffness: 140, damping: 18, delay: 0.2 }}
-            whileHover={{ y: -8, scale: 1.03 }}
-            className="relative rounded-3xl p-6 sm:p-7 bg-gradient-to-b from-[#142A44]/85 via-[#0e1d32]/95 to-[#081426] border border-[#4A74A7]/35 hover:border-sky-400 transition-all duration-500 backdrop-blur-2xl shadow-[0_15px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(74,116,167,0.15)] hover:shadow-[0_20px_50px_rgba(56,189,248,0.25)] group select-none overflow-hidden flex flex-col justify-between"
-          >
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-sky-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="absolute -top-12 -right-12 w-28 h-28 bg-sky-400/10 rounded-full blur-2xl group-hover:bg-sky-400/20 transition-colors pointer-events-none" />
-
-            <div className="flex items-center justify-between mb-6">
-              <div className="relative w-14 h-14 flex items-center justify-center">
-                <div className="absolute inset-0 rounded-full border border-sky-400/30 animate-ping opacity-30" style={{ animationDuration: '3.4s' }} />
-                <div className="absolute -inset-1 rounded-full border border-dashed border-[#4A74A7]/50 group-hover:border-sky-400 animate-[spin_8s_linear_infinite]" />
-                
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#142A44] to-sky-600/80 flex items-center justify-center text-white shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                  <GraduationCap size={18} className="text-sky-300" />
-                </div>
-              </div>
-
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#081426]/90 border border-[#4A74A7]/30 text-[10px] font-heading font-semibold text-sky-300 shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
-                <span>D4 VOKASI</span>
-              </div>
-            </div>
-
-            <div className="space-y-1">
-              <div className="flex items-baseline gap-2">
-                <span className="text-4xl sm:text-5xl font-black font-heading text-transparent bg-clip-text bg-gradient-to-br from-white via-[#DCEAF7] to-sky-400 tracking-tight">
-                  2024
-                </span>
-                <span className="text-sm font-heading font-bold text-sky-400 uppercase tracking-wider">
-                  TRPL
-                </span>
-              </div>
-              <h4 className="text-base font-bold font-heading text-[#DCEAF7] pt-1">
-                Polinela Lampung
-              </h4>
-              <p className="text-xs text-neutral-300 font-sans">
-                D4 Rekayasa Perangkat Lunak
-              </p>
-            </div>
-
-            <div className="mt-5 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-neutral-400">
-              <span>Angkatan 2024</span>
-              <span className="text-sky-300 font-bold">Mahasiswa Aktif</span>
-            </div>
-          </motion.div>
-
+        {/* ===================== MINIMALIST & INTERACTIVE 3D STAT TILES ===================== */}
+        <div className="grid sm:grid-cols-3 gap-5 pt-6">
+          <StatCard3D
+            icon={Code2}
+            number="2"
+            suffix="+"
+            title="Projek Rekayasa"
+            subtitle="Mobile Flutter & IoT Cerdas"
+            accentColor="#38bdf8"
+          />
+          <StatCard3D
+            icon={Award}
+            number="7"
+            suffix="+"
+            title="Sertifikat Resmi"
+            subtitle="Prestasi Lomba & Pelatihan"
+            accentColor="#4A74A7"
+          />
+          <StatCard3D
+            icon={GraduationCap}
+            number="2024"
+            title="D4 TRPL Polinela"
+            subtitle="Rekayasa Perangkat Lunak"
+            accentColor="#38bdf8"
+          />
         </div>
 
       </div>

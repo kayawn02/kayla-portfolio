@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, Sparkles, GraduationCap, ChevronLeft, ChevronRight, Award, Compass, ArrowRight } from 'lucide-react';
+import { Users, Palette, Sparkles, GraduationCap, ChevronLeft, ChevronRight, Award, Compass, ArrowRight } from 'lucide-react';
 import { experiences } from '../data/experience';
 import { playNavClickSound, playCardHoverSound } from '../utils/sound';
 
 export default function Experience() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const icons = [Users, Sparkles, GraduationCap];
+  const icons = [Users, Palette, Sparkles, GraduationCap];
 
   const currentExp = experiences[activeIndex] || experiences[0];
   const CurrentIcon = icons[activeIndex % icons.length];
@@ -105,7 +105,7 @@ export default function Experience() {
                       {exp.period.split(' ')[0]}
                     </span>
                     <p className="text-[10px] text-neutral-400 font-sans hidden sm:block">
-                      {idx === 0 ? 'Media HMJ TI' : idx === 1 ? 'Instruktur UI/UX' : 'TRPL Polinela'}
+                      {exp.navLabel}
                     </p>
                   </div>
                 </button>
@@ -153,11 +153,6 @@ export default function Experience() {
                     <span className="text-3xl sm:text-4xl font-black font-heading text-white tracking-tight">
                       {currentExp.period}
                     </span>
-                    <div className="mt-1">
-                      <span className="inline-block px-3 py-1 rounded-full text-[10px] font-heading font-semibold tracking-wider uppercase bg-[#142A44] border border-[#4A74A7]/40 text-[#38bdf8]">
-                        {currentExp.statusBadge}
-                      </span>
-                    </div>
                   </div>
                 </div>
 

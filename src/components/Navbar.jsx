@@ -57,7 +57,7 @@ export default function Navbar({ onNavigate }) {
               : 'bg-[#081426]/60 backdrop-blur-md border border-[#DCEAF7]/10'
           }`}
         >
-          {/* Logo with clean subtle status dot */}
+          {/* Logo */}
           <a
             href="#hero"
             onClick={handleNavClick}
@@ -70,7 +70,6 @@ export default function Navbar({ onNavigate }) {
               <span className="font-bold text-sm tracking-tight text-white font-heading">
                 Kayla<span className="text-[#4A74A7]">.dev</span>
               </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_rgba(56,189,248,0.8)]" title="Available for work" />
             </div>
           </a>
 

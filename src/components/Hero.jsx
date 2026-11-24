@@ -50,23 +50,6 @@ export default function Hero() {
           {/* Left Column: Heading, Typewriter, Bio, CTAs (7 cols) */}
           <div className="lg:col-span-7 space-y-6 text-left">
             
-            {/* Status Pill Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: [0, -3, 0] }}
-              transition={{
-                opacity: { duration: 0.5 },
-                y: { repeat: Infinity, duration: 2.8, ease: 'easeInOut' }
-              }}
-              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#142A44]/60 border border-[#4A74A7]/40 text-xs font-medium text-[#DCEAF7] shadow-sm"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4A74A7] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#4A74A7]" />
-              </span>
-              <span>{personalInfo.statusBadge}</span>
-            </motion.div>
-
             {/* Main Title */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}

@@ -13,6 +13,77 @@ import {
 import { designCategories, logos, socialMediaPosts } from '../data/designs';
 import { playNavClickSound, playCardHoverSound } from '../utils/sound';
 
+// 3D Center Artwork Card with Interactive Cursor Parallax Tilt & Specular Sheen
+function CenterCard3D({ post, onZoom }) {
+  const [tilt, setTilt] = useState({ x: 0, y: 0, active: false, mouseX: 0, mouseY: 0 });
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    const y = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+    setTilt({
+      x: x * 8,
+      y: -y * 8,
+      active: true,
+      mouseX: e.clientX - rect.left,
+      mouseY: e.clientY - rect.top,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0, active: false, mouseX: 0, mouseY: 0 });
+  };
+
+  return (
+    <motion.div
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      animate={{
+        rotateY: tilt.active ? tilt.x : 0,
+        rotateX: tilt.active ? tilt.y : 0,
+        scale: tilt.active ? 1.02 : 1,
+      }}
+      transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+      style={{
+        transformStyle: 'preserve-3d',
+      }}
+      className="relative w-full aspect-[4/5] sm:aspect-square max-w-[460px] max-h-[520px] rounded-2xl bg-[#060e1c] border-2 border-[#38bdf8]/50 shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_35px_rgba(56,189,248,0.25)] overflow-hidden flex items-center justify-center p-4 sm:p-6 cursor-zoom-in group select-none"
+      onClick={onZoom}
+    >
+      {/* Specular Dynamic Sheen */}
+      {tilt.active && (
+        <div
+          className="absolute pointer-events-none rounded-full blur-2xl opacity-50 z-20"
+          style={{
+            width: '200px',
+            height: '200px',
+            left: `${tilt.mouseX}px`,
+            top: `${tilt.mouseY}px`,
+            transform: 'translate(-50%, -50%)',
+            background: 'radial-gradient(circle, rgba(56, 189, 248, 0.45) 0%, transparent 70%)',
+          }}
+        />
+      )}
+
+      {/* Top Laser Border Edge */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#38bdf8] to-transparent z-20" />
+
+      {/* 3D Image Layer */}
+      <motion.img
+        src={post.image}
+        alt="Karya Desain Grafis"
+        style={{ transform: 'translateZ(25px)' }}
+        className="max-w-full max-h-full object-contain filter drop-shadow-2xl transition-transform duration-300 group-hover:scale-105"
+      />
+
+      {/* Zoom Indicator Icon on Hover */}
+      <div className="absolute bottom-3 right-3 p-2 rounded-xl bg-[#081426]/90 border border-[#38bdf8]/40 text-[#38bdf8] opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-md shadow-lg pointer-events-none z-30">
+        <Maximize2 size={16} />
+      </div>
+    </motion.div>
+  );
+}
+
 export default function GraphicDesignShowcase() {
   const [activeCategory, setActiveCategory] = useState('Sosial Media');
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
@@ -21,6 +92,10 @@ export default function GraphicDesignShowcase() {
 
   const totalSlides = socialMediaPosts.length;
   const currentPost = socialMediaPosts[currentSlideIndex] || socialMediaPosts[0];
+  const prevSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
+  const nextSlideIndex = (currentSlideIndex + 1) % totalSlides;
+  const prevPost = socialMediaPosts[prevSlideIndex] || socialMediaPosts[0];
+  const nextPost = socialMediaPosts[nextSlideIndex] || socialMediaPosts[0];
 
   const handlePrevSlide = () => {
     playNavClickSound();
@@ -88,8 +163,8 @@ export default function GraphicDesignShowcase() {
       </div>
 
       {/* ========================================================
-          MODE 1: PURE VISUAL EDIT SLIDER (ZERO TEXT / ZERO KETERANGAN)
-          100% Focused on Kayla's Artwork as requested by user
+          MODE 1: 3D HORIZON COVERFLOW GALLERY (ZERO TEXT / ZERO KETERANGAN)
+          100% Focused on Kayla's Visual Artwork with 3D Depth
          ======================================================== */}
       {activeCategory === 'Sosial Media' && (
         <motion.div
@@ -100,62 +175,105 @@ export default function GraphicDesignShowcase() {
           transition={{ duration: 0.35 }}
           className="space-y-5"
         >
-          {/* Main Visual Slide Stage (Centered & Expansive) */}
-          <div className="relative w-full max-w-4xl mx-auto rounded-3xl border border-[#4A74A7]/30 bg-gradient-to-b from-[#142A44]/60 via-[#0e1d32]/80 to-[#081426]/95 backdrop-blur-2xl p-4 sm:p-6 shadow-2xl overflow-hidden flex flex-col items-center">
+          {/* Main 3D Coverflow Container */}
+          <div className="relative w-full max-w-5xl mx-auto rounded-3xl border border-[#4A74A7]/30 bg-gradient-to-b from-[#142A44]/50 via-[#0a1526]/80 to-[#081426]/95 backdrop-blur-2xl p-4 sm:p-7 shadow-2xl overflow-hidden flex flex-col items-center">
             
             {/* Ambient Background Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-[#4A74A7]/15 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#4A74A7]/15 rounded-full blur-[120px] pointer-events-none" />
 
-            {/* Slide Frame */}
-            <div className="relative w-full aspect-square sm:aspect-[16/11] max-h-[580px] rounded-2xl overflow-hidden bg-[#050c18] border border-[#4A74A7]/30 shadow-2xl flex items-center justify-center p-3 sm:p-6 group select-none">
-              
-              {/* Active Image with Smooth Dissolve & Scale Transition */}
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={currentPost.id}
-                  src={currentPost.image}
-                  alt="Hasil karya desain grafis"
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.3, ease: 'easeOut' }}
-                  className="max-w-full max-h-full object-contain filter drop-shadow-2xl cursor-zoom-in"
-                  onClick={() => setLightboxImage(currentPost.image)}
+            {/* Top Bar: Slide Index Counter + Zoom */}
+            <div className="w-full flex items-center justify-between px-2 mb-3 relative z-20">
+              <span className="px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-[#081426]/85 border border-[#4A74A7]/40 text-[#DCEAF7] backdrop-blur-md shadow-sm">
+                {String(currentSlideIndex + 1).padStart(2, '0')} / {String(totalSlides).padStart(2, '0')}
+              </span>
+              <button
+                onClick={() => setLightboxImage(currentPost.image)}
+                className="p-2.5 rounded-full bg-[#081426]/85 border border-[#4A74A7]/40 text-neutral-300 hover:text-white hover:border-[#38bdf8] backdrop-blur-md transition-all hover:scale-110 active:scale-95 shadow-md"
+                title="Perbesar gambar"
+                aria-label="Maximize View"
+              >
+                <Maximize2 size={15} />
+              </button>
+            </div>
+
+            {/* 3D Perspective Gallery Area */}
+            <div
+              className="relative w-full flex items-center justify-center min-h-[380px] sm:min-h-[520px] py-2 overflow-hidden"
+              style={{ perspective: 1200 }}
+            >
+              {/* Left 3D Angled Neighbor Card (Previous) */}
+              <motion.div
+                onClick={handlePrevSlide}
+                whileHover={{ scale: 0.86, opacity: 0.75 }}
+                className="hidden md:flex absolute left-4 lg:left-10 top-1/2 -translate-y-1/2 w-[260px] lg:w-[320px] aspect-[4/5] sm:aspect-square rounded-2xl bg-[#060e1c]/90 border border-[#4A74A7]/30 shadow-2xl overflow-hidden items-center justify-center p-3 cursor-pointer z-10 select-none"
+                style={{
+                  transformOrigin: 'right center',
+                  transform: 'translateY(-50%) rotateY(28deg) translateZ(-100px)',
+                  opacity: 0.45,
+                }}
+                title="Klik untuk ke karya sebelumnya"
+              >
+                <img
+                  src={prevPost.image}
+                  alt=""
+                  className="max-w-full max-h-full object-contain filter drop-shadow-md pointer-events-none"
                 />
-              </AnimatePresence>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#081426]/60 pointer-events-none" />
+              </motion.div>
 
-              {/* Minimal Top Counter & Fullscreen Controls */}
-              <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none z-20">
-                <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#081426]/85 border border-[#4A74A7]/40 text-[#DCEAF7] backdrop-blur-md shadow-md">
-                  {String(currentSlideIndex + 1).padStart(2, '0')} / {String(totalSlides).padStart(2, '0')}
-                </span>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setLightboxImage(currentPost.image);
-                  }}
-                  className="p-2.5 rounded-full bg-[#081426]/85 border border-[#4A74A7]/40 text-neutral-300 hover:text-white hover:border-[#38bdf8] backdrop-blur-md pointer-events-auto transition-all hover:scale-110 active:scale-95 shadow-md"
-                  title="Perbesar gambar"
-                  aria-label="Maximize View"
-                >
-                  <Maximize2 size={15} />
-                </button>
+              {/* Center Active 3D Card with Cursor Parallax Tilt */}
+              <div className="relative z-30 flex items-center justify-center w-full max-w-[460px]">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentPost.id}
+                    initial={{ opacity: 0, scale: 0.92, y: 12 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.92, y: -12 }}
+                    transition={{ type: 'spring', stiffness: 280, damping: 25 }}
+                    className="w-full flex justify-center"
+                  >
+                    <CenterCard3D
+                      post={currentPost}
+                      onZoom={() => setLightboxImage(currentPost.image)}
+                    />
+                  </motion.div>
+                </AnimatePresence>
               </div>
 
-              {/* Prev Button */}
+              {/* Right 3D Angled Neighbor Card (Next) */}
+              <motion.div
+                onClick={handleNextSlide}
+                whileHover={{ scale: 0.86, opacity: 0.75 }}
+                className="hidden md:flex absolute right-4 lg:right-10 top-1/2 -translate-y-1/2 w-[260px] lg:w-[320px] aspect-[4/5] sm:aspect-square rounded-2xl bg-[#060e1c]/90 border border-[#4A74A7]/30 shadow-2xl overflow-hidden items-center justify-center p-3 cursor-pointer z-10 select-none"
+                style={{
+                  transformOrigin: 'left center',
+                  transform: 'translateY(-50%) rotateY(-28deg) translateZ(-100px)',
+                  opacity: 0.45,
+                }}
+                title="Klik untuk ke karya berikutnya"
+              >
+                <img
+                  src={nextPost.image}
+                  alt=""
+                  className="max-w-full max-h-full object-contain filter drop-shadow-md pointer-events-none"
+                />
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#081426]/60 pointer-events-none" />
+              </motion.div>
+
+              {/* Floating Prev Button */}
               <button
                 onClick={handlePrevSlide}
-                className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-[#081426]/90 hover:bg-[#142A44] border border-[#4A74A7]/40 hover:border-[#38bdf8] text-white flex items-center justify-center shadow-2xl backdrop-blur-md transition-all hover:scale-110 active:scale-95 z-20"
+                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#081426]/90 hover:bg-[#142A44] border border-[#4A74A7]/40 hover:border-[#38bdf8] text-white flex items-center justify-center shadow-2xl backdrop-blur-md transition-all hover:scale-110 active:scale-95 z-40"
                 title="Slide sebelumnya"
                 aria-label="Previous Slide"
               >
                 <ChevronLeft size={22} />
               </button>
 
-              {/* Next Button */}
+              {/* Floating Next Button */}
               <button
                 onClick={handleNextSlide}
-                className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-[#081426]/90 hover:bg-[#142A44] border border-[#4A74A7]/40 hover:border-[#38bdf8] text-white flex items-center justify-center shadow-2xl backdrop-blur-md transition-all hover:scale-110 active:scale-95 z-20"
+                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#081426]/90 hover:bg-[#142A44] border border-[#4A74A7]/40 hover:border-[#38bdf8] text-white flex items-center justify-center shadow-2xl backdrop-blur-md transition-all hover:scale-110 active:scale-95 z-40"
                 title="Slide berikutnya"
                 aria-label="Next Slide"
               >
@@ -164,7 +282,7 @@ export default function GraphicDesignShowcase() {
             </div>
 
             {/* Bottom Horizontal Thumbnails Rail (Quick Jump to any of the 15 edits) */}
-            <div className="w-full mt-4 pt-4 border-t border-[#4A74A7]/15">
+            <div className="w-full mt-4 pt-4 border-t border-[#4A74A7]/20 relative z-20">
               <div className="flex gap-2.5 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-[#4A74A7]/40 px-1">
                 {socialMediaPosts.map((post, idx) => {
                   const isSelected = idx === currentSlideIndex;
@@ -174,7 +292,7 @@ export default function GraphicDesignShowcase() {
                       onClick={() => handleSelectSlide(idx)}
                       className={`relative flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border transition-all duration-300 p-1 bg-[#050c18] ${
                         isSelected
-                          ? 'border-[#38bdf8] ring-2 ring-[#38bdf8]/50 scale-105 shadow-[0_0_15px_rgba(56,189,248,0.4)]'
+                          ? 'border-[#38bdf8] ring-2 ring-[#38bdf8]/60 scale-105 shadow-[0_0_15px_rgba(56,189,248,0.4)]'
                           : 'border-[#4A74A7]/25 hover:border-[#4A74A7]/70 opacity-60 hover:opacity-100'
                       }`}
                       title={`Karya ${idx + 1}`}
