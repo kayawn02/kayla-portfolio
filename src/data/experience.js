@@ -2,37 +2,40 @@ export const experiences = [
   {
     id: "hmj-ti",
     period: "2026",
+    yearGhost: "2026",
+    statusBadge: "ORGANISASI MAHASISWA",
+    pulseColor: "#ef4444",
     role: "Wakil Departemen Media dan Informasi 1",
-    organization: "Himpunan Mahasiswa Jurusan Teknologi Informasi (HMJ TI)",
+    organization: "Himpunan Mahasiswa Jurusan Teknologi Informasi",
     institution: "Politeknik Negeri Lampung",
-    type: "Organisasi Mahasiswa",
-    points: [
-      "Mengkoordinasikan perancangan media komunikasi visual, publikasi digital, dan dokumentasi resmi kegiatan HMJ TI Polinela."
-    ],
-    tags: ["Media & Informasi", "Desain Visual", "Publikasi"]
+    summary: "Memimpin perancangan identitas komunikasi visual, publikasi digital kreatif, dan dokumentasi resmi organisasi.",
+    tags: ["Media & Informasi", "Desain Visual", "Branding Organisasi"],
+    accentColor: "rgba(220, 38, 38, 0.25)"
   },
   {
     id: "uiux-bootcamp",
-    period: "2026",
-    role: "Pemateri / Instruktur",
-    organization: "UI/UX Design Bootcamp",
+    period: "2025",
+    yearGhost: "2025",
+    statusBadge: "PELATIHAN & EDUKASI",
+    pulseColor: "#f59e0b",
+    role: "Pemateri / Instruktur UI/UX",
+    organization: "Bootcamp UI/UX Design",
     institution: "Politeknik Negeri Lampung",
-    type: "Pelatihan & Pengabdian",
-    points: [
-      "Membimbing siswa SMK dalam pembelajaran dasar UI/UX design dan perancangan prototipe interaktif di Figma."
-    ],
-    tags: ["Mentoring", "UI/UX Design", "Figma Prototyping"]
+    summary: "Membimbing siswa dalam penyusunan user flow, information architecture, wireframing, dan prototipe interaktif di Figma.",
+    tags: ["Mentoring", "UI/UX Design", "Figma Prototyping"],
+    accentColor: "rgba(245, 158, 11, 0.25)"
   },
   {
     id: "polinela-study",
     period: "2024 — Sekarang",
-    role: "Mahasiswa D4 Teknologi Rekayasa Perangkat Lunak",
+    yearGhost: "2024",
+    statusBadge: "STUDI AKADEMIK",
+    pulseColor: "#38bdf8",
+    role: "D4 Rekayasa Perangkat Lunak",
     organization: "Jurusan Teknologi Informasi",
     institution: "Politeknik Negeri Lampung",
-    type: "Pendidikan Formal",
-    points: [
-      "Fokus pada rekayasa perangkat lunak, perancangan antarmuka (UI/UX), mobile Flutter, dan sistem berbasis IoT."
-    ],
-    tags: ["D4 TRPL", "Mobile App", "UI/UX", "IoT"]
+    summary: "Fokus mendalami rekayasa sistem perangkat lunak, arsitektur antarmuka pengguna (UI/UX), aplikasi mobile Flutter, dan sistem IoT.",
+    tags: ["D4 TRPL", "Mobile Flutter", "IoT ESP32"],
+    accentColor: "rgba(56, 189, 248, 0.25)"
   }
 ];

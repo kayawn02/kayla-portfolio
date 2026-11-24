@@ -163,7 +163,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                     <div>
                       {proj.award && (
                         <p className="text-[11px] font-semibold text-amber-400/90 flex items-center gap-1.5 mb-1.5">
-                          <span>🏆</span>
+                          <Award size={13} className="text-amber-400 shrink-0" />
                           <span className="truncate">{proj.award}</span>
                         </p>
                       )}

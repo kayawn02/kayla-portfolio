@@ -50,11 +50,11 @@ function StatCard({ tag, value, suffix, title, desc, icon: Icon, delay, accentCo
 
       {/* Large Bold Animated Display Value */}
       <div className="relative z-10 flex items-baseline gap-1.5 my-1">
-        <span className="text-4xl sm:text-5xl font-black tracking-tight bg-gradient-to-br from-white via-neutral-100 to-red-400 bg-clip-text text-transparent group-hover:to-red-300 transition-all">
+        <span className="text-4xl sm:text-5xl font-black font-display tracking-tight bg-gradient-to-br from-white via-neutral-100 to-red-400 bg-clip-text text-transparent group-hover:to-red-300 transition-all">
           {value}
         </span>
         {suffix && (
-          <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-red-950/40 border border-red-700/30 text-red-300">
+          <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded-full bg-red-950/40 border border-red-700/30 text-red-300">
             {suffix}
           </span>
         )}
@@ -148,7 +148,7 @@ export default function About() {
             {/* Hint Badge */}
             <div className="flex items-center gap-2 mt-4 px-3.5 py-1.5 rounded-full bg-red-950/40 border border-red-700/30 text-[11px] text-neutral-300 shadow-sm transition-transform duration-300 hover:scale-105">
               <Sparkles size={12} className="text-red-400 animate-pulse" />
-              <span>Arahkan kursor ke foto untuk Spider-Man Miles Morales effect 🕷️</span>
+              <span>Arahkan kursor ke foto untuk melihat efek Spider-Man Miles Morales</span>
             </div>
           </motion.div>
 

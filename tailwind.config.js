@@ -7,7 +7,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        display: ['"Space Grotesk"', '"Plus Jakarta Sans"', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
       },
       colors: {
         dark: {
