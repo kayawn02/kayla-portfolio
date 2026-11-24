@@ -7,8 +7,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        display: ['"Space Grotesk"', '"Plus Jakarta Sans"', 'sans-serif'],
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        heading: ['Poppins', 'Inter', 'sans-serif'],
+        display: ['Poppins', 'Inter', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       colors: {

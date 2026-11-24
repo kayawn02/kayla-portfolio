@@ -11,8 +11,12 @@
   body {
     background-color: #070507;
     color: #f1f5f9;
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', 'Inter', sans-serif;
   }
 
   /* Minimal Dark Red Scrollbar */

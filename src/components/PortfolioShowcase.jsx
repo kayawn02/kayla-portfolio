@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Award,
@@ -58,12 +58,30 @@ const toolLogoMap = {
   'VS Code': VSCodeLogo,
 };
 
+// Clean Tools Stack (Pure Visual-First, Simple & Modern, No Text Clutter)
+const myTechTools = [
+  { name: 'Figma', Logo: FigmaLogo, glow: 'rgba(162, 89, 255, 0.45)', border: 'hover:border-purple-500/50' },
+  { name: 'Canva', Logo: CanvaLogo, glow: 'rgba(125, 42, 232, 0.45)', border: 'hover:border-purple-400/50' },
+  { name: 'Flutter', Logo: FlutterLogo, glow: 'rgba(2, 117, 194, 0.45)', border: 'hover:border-sky-500/50' },
+  { name: 'Dart', Logo: DartLogo, glow: 'rgba(0, 180, 171, 0.45)', border: 'hover:border-teal-500/50' },
+  { name: 'ESP32', Logo: Esp32Logo, glow: 'rgba(239, 68, 68, 0.45)', border: 'hover:border-red-500/50' },
+  { name: 'Arduino', Logo: ArduinoLogo, glow: 'rgba(0, 151, 157, 0.45)', border: 'hover:border-teal-500/50' },
+  { name: 'HTML5', Logo: Html5Logo, glow: 'rgba(241, 101, 41, 0.45)', border: 'hover:border-orange-500/50' },
+  { name: 'CSS3', Logo: Css3Logo, glow: 'rgba(41, 101, 241, 0.45)', border: 'hover:border-blue-500/50' },
+  { name: 'Tailwind CSS', Logo: TailwindLogo, glow: 'rgba(56, 189, 248, 0.45)', border: 'hover:border-sky-400/50' },
+  { name: 'WordPress', Logo: WordPressLogo, glow: 'rgba(33, 117, 155, 0.45)', border: 'hover:border-blue-600/50' },
+  { name: 'Firebase', Logo: FirebaseLogo, glow: 'rgba(245, 124, 0, 0.45)', border: 'hover:border-amber-500/50' },
+  { name: 'Git', Logo: GitLogo, glow: 'rgba(240, 80, 50, 0.45)', border: 'hover:border-red-500/50' },
+  { name: 'GitHub', Logo: GitHubLogo, glow: 'rgba(255, 255, 255, 0.35)', border: 'hover:border-white/50' },
+  { name: 'VS Code', Logo: VSCodeLogo, glow: 'rgba(0, 122, 204, 0.45)', border: 'hover:border-blue-500/50' },
+];
+
 const tabsConfig = [
   { id: 'Projects', label: 'Projects', icon: Code2 },
-  { id: 'Designs', label: 'UI/UX Designs', icon: Palette },
+  { id: 'Designs', label: 'Graphic Design', icon: Palette },
   { id: 'Certificates', label: 'Certificates', icon: Award },
   { id: 'Achievements', label: 'Achievements', icon: Trophy },
-  { id: 'Tech Stack', label: 'Tech Arsenal', icon: Cpu },
+  { id: 'Tech Stack', label: 'Tech Stack', icon: Cpu },
 ];
 
 const certCategories = [
@@ -99,18 +117,18 @@ export default function PortfolioShowcase({ onSelectProject }) {
         
         {/* Section Header */}
         <div className="text-center mb-10">
-          <p className="text-xs font-semibold tracking-wider text-red-500 uppercase mb-2">
+          <p className="text-xs font-mono font-semibold tracking-wider text-red-500 uppercase mb-2">
             Portofolio &amp; Karya
           </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Karya Rekayasa, Desain &amp; Prestasi
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-heading">
+            Projek, Desain &amp; Prestasi
           </h2>
-          <p className="text-neutral-400 text-sm mt-1.5 max-w-md mx-auto">
-            Eksplorasi kode aplikasi, perancangan antarmuka visual, dan rekam jejak prestasi resmi.
+          <p className="text-neutral-400 text-sm mt-1.5 max-w-md mx-auto font-sans">
+            Karya aplikasi nyata, karya grafis &amp; pamflet, dokumen prestasi resmi, dan tools teknologi.
           </p>
         </div>
 
-        {/* Tab Selector Capsule (Identical layout to Alfari reference with subtab icons) */}
+        {/* Tab Selector Capsule (Clean Minimalist Glass Pill) */}
         <div className="flex justify-center mb-12">
           <div className="inline-flex p-1.5 rounded-2xl sm:rounded-full bg-[#120a13]/80 border border-white/10 shadow-lg backdrop-blur-md flex-wrap justify-center gap-1">
             {tabsConfig.map((tab) => {
@@ -120,7 +138,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                 <button
                   key={tab.id}
                   onClick={() => handleTabChange(tab.id)}
-                  className={`relative flex items-center gap-2 px-4 sm:px-5 py-2 rounded-xl sm:rounded-full text-xs font-medium transition-all duration-200 ${
+                  className={`relative flex items-center gap-2 px-4 sm:px-5 py-2 rounded-xl sm:rounded-full text-xs font-medium font-heading transition-all duration-200 ${
                     isActive ? 'text-white font-semibold shadow-md' : 'text-neutral-400 hover:text-white hover:bg-white/[0.04]'
                   }`}
                 >
@@ -184,17 +202,17 @@ export default function PortfolioShowcase({ onSelectProject }) {
                     <div className="p-6 sm:p-7 space-y-4">
                       <div>
                         {proj.award && (
-                          <p className="text-[11px] font-semibold text-amber-400/90 flex items-center gap-1.5 mb-1.5">
+                          <p className="text-[11px] font-semibold text-amber-400/90 flex items-center gap-1.5 mb-1.5 font-sans">
                             <Award size={13} className="text-amber-400 shrink-0" />
                             <span className="truncate">{proj.award}</span>
                           </p>
                         )}
-                        <h3 className="text-xl font-bold text-white group-hover:text-red-400 transition-colors">
+                        <h3 className="text-xl font-bold text-white group-hover:text-red-400 transition-colors font-heading">
                           {proj.title}
                         </h3>
                       </div>
 
-                      <p className="text-neutral-300 text-xs sm:text-sm line-clamp-2 leading-relaxed">
+                      <p className="text-neutral-300 text-xs sm:text-sm line-clamp-2 leading-relaxed font-sans">
                         {proj.summary}
                       </p>
 
@@ -232,7 +250,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                     </span>
                     <button
                       onClick={() => onSelectProject(proj)}
-                      className="px-4 py-2 rounded-xl bg-red-600/90 hover:bg-red-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow-md transition-all hover:scale-105"
+                      className="px-4 py-2 rounded-xl bg-red-600/90 hover:bg-red-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow-md transition-all hover:scale-105 font-heading"
                     >
                       <span>Lihat Detail</span>
                       <ArrowUpRight size={14} />
@@ -243,7 +261,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
             </motion.div>
           )}
 
-          {/* ===================== DESIGNS TAB (NEW UI/UX SHOWCASE) ===================== */}
+          {/* ===================== GRAPHIC DESIGN TAB (POSTER, PAMFLET & VISUAL WORKS) ===================== */}
           {activeTab === 'Designs' && (
             <motion.div
               key="designs"
@@ -299,9 +317,9 @@ export default function PortfolioShowcase({ onSelectProject }) {
                           loading="lazy"
                         />
                         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                          <span className="px-4 py-1.5 rounded-full bg-red-600 text-white text-xs font-semibold flex items-center gap-1.5 shadow-lg scale-95 group-hover:scale-100 transition-transform">
+                          <span className="px-4 py-1.5 rounded-full bg-red-600 text-white text-xs font-semibold flex items-center gap-1.5 shadow-lg scale-95 group-hover:scale-100 transition-transform font-heading">
                             <Eye size={14} />
-                            <span>Buka Galeri Desain</span>
+                            <span>Buka Preview Karya</span>
                           </span>
                         </div>
                         <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
@@ -315,17 +333,17 @@ export default function PortfolioShowcase({ onSelectProject }) {
                       </div>
 
                       {/* Content */}
-                      <div className="p-5 space-y-3">
+                      <div className="p-5 space-y-2.5">
                         {des.award && (
-                          <p className="text-[11px] font-semibold text-amber-400/90 flex items-center gap-1.5">
+                          <p className="text-[11px] font-semibold text-amber-400/90 flex items-center gap-1.5 font-sans">
                             <Sparkles size={12} className="text-amber-400 shrink-0" />
                             <span className="truncate">{des.award}</span>
                           </p>
                         )}
-                        <h4 className="text-base font-bold text-white group-hover:text-red-400 transition-colors line-clamp-1">
+                        <h4 className="text-base font-bold text-white group-hover:text-red-400 transition-colors line-clamp-1 font-heading">
                           {des.title}
                         </h4>
-                        <p className="text-xs text-neutral-400 line-clamp-2 leading-relaxed">
+                        <p className="text-xs text-neutral-400 line-clamp-2 leading-relaxed font-sans">
                           {des.summary}
                         </p>
 
@@ -346,7 +364,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                       <span className="text-[11px] text-neutral-400 font-mono">
                         Tool: <strong className="text-white">{des.tool}</strong>
                       </span>
-                      <span className="text-red-400 font-medium group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                      <span className="text-red-400 font-medium group-hover:translate-x-1 transition-transform flex items-center gap-1 font-heading">
                         <span>Lihat Detail</span>
                         <ArrowRight size={13} />
                       </span>
@@ -357,7 +375,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
             </motion.div>
           )}
 
-          {/* ===================== CERTIFICATES TAB (EYE-CATCHING & PRESTIGE) ===================== */}
+          {/* ===================== CERTIFICATES TAB ===================== */}
           {activeTab === 'Certificates' && (
             <motion.div
               key="certificates"
@@ -435,7 +453,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                             loading="lazy"
                           />
                           <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                            <span className="px-4 py-1.5 rounded-full bg-red-600/90 text-white text-xs font-semibold flex items-center gap-1.5 shadow-lg scale-95 group-hover:scale-100 transition-transform">
+                            <span className="px-4 py-1.5 rounded-full bg-red-600/90 text-white text-xs font-semibold flex items-center gap-1.5 shadow-lg scale-95 group-hover:scale-100 transition-transform font-heading">
                               <Eye size={14} />
                               <span>Lihat Dokumen Asli</span>
                             </span>
@@ -460,10 +478,10 @@ export default function PortfolioShowcase({ onSelectProject }) {
 
                         {/* Information Body */}
                         <div className="p-5 space-y-2">
-                          <h4 className="text-base font-bold text-white group-hover:text-red-400 transition-colors line-clamp-1 leading-snug">
+                          <h4 className="text-base font-bold text-white group-hover:text-red-400 transition-colors line-clamp-1 leading-snug font-heading">
                             {cert.title}
                           </h4>
-                          <p className="text-xs text-neutral-400 line-clamp-1 font-medium">
+                          <p className="text-xs text-neutral-400 line-clamp-1 font-medium font-sans">
                             {cert.event || cert.organizer}
                           </p>
                           <div className="flex items-center gap-1.5 text-[11px] text-neutral-500 font-mono pt-1">
@@ -478,7 +496,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                         <span className="text-[11px] text-neutral-500 font-mono">
                           {cert.category}
                         </span>
-                        <span className="text-red-400 font-medium group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0">
+                        <span className="text-red-400 font-medium group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0 font-heading">
                           <span>Perbesar</span>
                           <span>&rarr;</span>
                         </span>
@@ -490,7 +508,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
             </motion.div>
           )}
 
-          {/* ===================== ACHIEVEMENTS TAB ===================== */}
+          {/* ===================== ACHIEVEMENTS TAB (TROPHY PODIUM / HONOR SHOWCASE) ===================== */}
           {activeTab === 'Achievements' && (
             <motion.div
               key="achievements"
@@ -500,79 +518,111 @@ export default function PortfolioShowcase({ onSelectProject }) {
               transition={{ duration: 0.35 }}
               className="grid md:grid-cols-3 gap-6"
             >
-              {achievements.map((item, idx) => (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, y: 35, scale: 0.94 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: false, amount: 0.15 }}
-                  transition={{ type: 'spring', stiffness: 120, damping: 16, delay: idx * 0.1 }}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  onClick={() => {
-                    const target = certificates.find((c) => c.id === item.certId) || item;
-                    setSelectedCert(target);
-                  }}
-                  className="group relative rounded-2xl p-6 sm:p-7 overflow-hidden border border-white/10 hover:border-red-500/50 bg-gradient-to-b from-[#160d15]/95 via-[#0e080e]/95 to-[#070507] backdrop-blur-xl cursor-pointer select-none flex flex-col justify-between shadow-2xl transition-all duration-300"
-                >
-                  <div
-                    className="absolute -top-16 -right-16 w-36 h-36 rounded-full opacity-20 group-hover:opacity-40 blur-2xl transition-opacity duration-300 pointer-events-none"
-                    style={{ backgroundColor: item.accentColor }}
-                  />
+              {achievements.map((item, idx) => {
+                const targetCert = certificates.find((c) => c.id === item.certId) || item;
+                const isFirst = item.rank === '01';
 
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <span
-                        className="text-xs font-mono font-bold px-2.5 py-1 rounded-md tracking-wider uppercase border"
-                        style={{
-                          color: item.accentColor,
-                          borderColor: `${item.accentColor}40`,
-                          backgroundColor: `${item.accentColor}15`
-                        }}
-                      >
-                        {item.rankBadge}
-                      </span>
-                      <span className="text-xs font-mono text-neutral-400">
-                        {item.year}
-                      </span>
+                return (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 35, scale: 0.94 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: false, amount: 0.15 }}
+                    transition={{ type: 'spring', stiffness: 120, damping: 16, delay: idx * 0.1 }}
+                    whileHover={{ y: -8, scale: 1.02 }}
+                    onClick={() => setSelectedCert(targetCert)}
+                    className={`group relative rounded-3xl p-6 sm:p-7 overflow-hidden backdrop-blur-xl cursor-pointer select-none flex flex-col justify-between transition-all duration-300 shadow-2xl ${
+                      isFirst
+                        ? 'border-2 border-amber-500/50 hover:border-amber-400 bg-gradient-to-b from-[#1e1310]/95 via-[#120a0b]/95 to-black shadow-[0_20px_50px_rgba(245,158,11,0.2)]'
+                        : 'border border-white/10 hover:border-red-500/50 bg-gradient-to-b from-[#160d15]/95 via-[#0e080e]/95 to-[#070507]'
+                    }`}
+                  >
+                    {/* Top Radiant Beam */}
+                    <div
+                      className="absolute top-0 left-0 right-0 h-[2px] opacity-40 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{ background: `linear-gradient(90deg, transparent, ${item.accentColor}, transparent)` }}
+                    />
+
+                    {/* Top Ambient Glow */}
+                    <div
+                      className="absolute -top-16 -right-16 w-36 h-36 rounded-full opacity-25 group-hover:opacity-45 blur-2xl transition-opacity duration-300 pointer-events-none"
+                      style={{ backgroundColor: item.accentColor }}
+                    />
+
+                    <div>
+                      {/* Header Badge */}
+                      <div className="flex items-center justify-between mb-4">
+                        <span
+                          className="text-xs font-mono font-bold px-3 py-1 rounded-full tracking-wider uppercase border"
+                          style={{
+                            color: item.accentColor,
+                            borderColor: `${item.accentColor}40`,
+                            backgroundColor: `${item.accentColor}15`
+                          }}
+                        >
+                          {item.rankBadge}
+                        </span>
+                        <span className="text-xs font-mono text-neutral-400">
+                          {item.year}
+                        </span>
+                      </div>
+
+                      {/* Embedded Visual Certificate Preview Box */}
+                      <div className="relative h-40 w-full rounded-2xl bg-black/60 border border-white/10 overflow-hidden flex items-center justify-center p-2 my-3 group-hover:border-white/20 transition-all">
+                        <img
+                          src={targetCert.thumbnail}
+                          alt={item.title}
+                          className="max-h-full max-w-full object-contain rounded-lg filter drop-shadow-md group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <span className="px-3 py-1 rounded-full bg-red-600 text-white text-[11px] font-semibold flex items-center gap-1 font-heading">
+                            <Eye size={12} />
+                            <span>Lihat Sertifikat</span>
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Rank & Scope */}
+                      <div className="flex items-baseline justify-between mt-3 mb-1">
+                        <span
+                          className="text-4xl sm:text-5xl font-black tracking-tight font-heading"
+                          style={{ color: item.accentColor }}
+                        >
+                          {item.rank === '01' ? '#1' : item.rank === '03' ? '#3' : 'OC'}
+                        </span>
+                        <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-widest px-2.5 py-0.5 rounded bg-white/[0.04] border border-white/10">
+                          {item.scope}
+                        </span>
+                      </div>
+
+                      {/* Title & Organization */}
+                      <div className="space-y-1 mt-2">
+                        <h4 className="text-base sm:text-lg font-bold text-white group-hover:text-red-300 transition-colors leading-snug font-heading">
+                          {item.title}
+                        </h4>
+                        <p className="text-xs text-neutral-400 font-medium leading-relaxed font-sans">
+                          {item.event} &middot; {item.organizer}
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="flex items-baseline justify-between my-2">
-                      <span
-                        className="text-5xl font-black tracking-tight font-mono opacity-85 group-hover:opacity-100 transition-opacity"
-                        style={{ color: item.accentColor }}
-                      >
-                        {item.rank}
+                    {/* Bottom Project Tag & Button */}
+                    <div className="mt-5 pt-3.5 border-t border-white/5 flex items-center justify-between text-xs">
+                      <span className="text-[11px] font-semibold text-neutral-300 bg-white/[0.04] border border-white/10 px-2.5 py-1 rounded-lg">
+                        {item.project}
                       </span>
-                      <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-widest px-2.5 py-0.5 rounded bg-white/[0.04] border border-white/10">
-                        {item.scope}
+                      <span className="text-red-400 font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0 font-heading">
+                        <span>Dokumen Asli</span>
+                        <span>&rarr;</span>
                       </span>
                     </div>
-
-                    <div className="space-y-1.5 mt-3">
-                      <h4 className="text-lg font-extrabold text-white group-hover:text-red-300 transition-colors leading-snug">
-                        {item.title}
-                      </h4>
-                      <p className="text-xs text-neutral-400 font-medium leading-relaxed">
-                        {item.event} &middot; {item.organizer}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 pt-3.5 border-t border-white/5 flex items-center justify-between text-xs">
-                    <span className="text-[11px] font-semibold text-neutral-300 bg-white/[0.04] border border-white/10 px-2.5 py-1 rounded-lg">
-                      {item.project}
-                    </span>
-                    <span className="text-red-400 font-medium group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0">
-                      <span>Dokumen Asli</span>
-                      <span>&rarr;</span>
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                );
+              })}
             </motion.div>
           )}
 
-          {/* ===================== TECH ARSENAL (ASYMMETRICAL BENTO + DUAL TICKER - INSPIRED BY ARMAN.MY.ID) ===================== */}
+          {/* ===================== TECH STACK (PURE VISUAL TOOLS + CONTINUOUS RUNNING TICKER) ===================== */}
           {activeTab === 'Tech Stack' && (
             <motion.div
               key="techarsenal"
@@ -582,218 +632,45 @@ export default function PortfolioShowcase({ onSelectProject }) {
               transition={{ duration: 0.35 }}
               className="space-y-10"
             >
-              {/* Tier 1: Asymmetrical Craft Bento Cluster (4 Major Pillars) */}
-              <div className="grid md:grid-cols-12 gap-6">
-                
-                {/* Pillar 1: UI/UX & Design Systems (7 Cols) */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false }}
-                  transition={{ duration: 0.4 }}
-                  whileHover={{ y: -6 }}
-                  className="md:col-span-7 rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-[#180d19]/90 via-[#100711]/90 to-black border border-purple-900/30 hover:border-purple-500/50 shadow-2xl relative overflow-hidden group"
-                >
-                  <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-purple-600/10 blur-3xl pointer-events-none group-hover:bg-purple-600/20 transition-all duration-500" />
-                  
-                  <div className="flex items-center justify-between mb-6 relative z-10">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-purple-400 animate-ping" />
-                      <span className="text-xs font-mono font-bold tracking-widest text-purple-300 uppercase">
-                        Primary Craft &middot; UI/UX Design
+              {/* Clean Minimalist Grid of Used Tools (No Text Clutter, Sleek Glassmorphism) */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
+                {myTechTools.map((tool, idx) => {
+                  const ToolLogo = tool.Logo;
+                  return (
+                    <motion.div
+                      key={tool.name}
+                      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                      viewport={{ once: false }}
+                      transition={{ delay: idx * 0.04 }}
+                      whileHover={{ y: -6, scale: 1.04 }}
+                      className={`p-5 rounded-2xl bg-gradient-to-b from-[#140b15]/90 to-[#0a050a]/90 border border-white/10 ${tool.border} flex flex-col items-center justify-center gap-3 backdrop-blur-xl shadow-lg transition-all duration-300 group cursor-default select-none relative overflow-hidden`}
+                    >
+                      {/* Ambient hover glow */}
+                      <div
+                        className="absolute inset-0 opacity-0 group-hover:opacity-15 blur-xl transition-opacity duration-300 pointer-events-none"
+                        style={{ backgroundColor: tool.glow }}
+                      />
+
+                      <div className="w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 drop-shadow-md relative z-10">
+                        <ToolLogo className="w-full h-full object-contain" />
+                      </div>
+                      <span className="text-xs font-semibold text-neutral-300 group-hover:text-white transition-colors font-heading relative z-10">
+                        {tool.name}
                       </span>
-                    </div>
-                    <span className="text-xs font-mono text-neutral-400 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10">
-                      Figma Specialist
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 my-6 relative z-10">
-                    <div className="w-20 h-20 rounded-2xl bg-black/60 border border-purple-500/30 flex items-center justify-center p-3.5 shadow-xl group-hover:scale-110 transition-transform duration-300">
-                      <FigmaLogo className="w-full h-full object-contain" />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-extrabold text-white">
-                        Figma &amp; Design Systems
-                      </h3>
-                      <p className="text-xs sm:text-sm text-neutral-300 mt-1 leading-relaxed">
-                        Perancangan antarmuka intuitif, alur pengguna terstruktur, wireframing, dan prototipe interaktif siap produksi.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2 pt-2 border-t border-white/5 relative z-10">
-                    {['Design Systems', 'Auto Layout', 'Interactive Prototype', 'User Flow', 'Information Architecture'].map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-3 py-1 rounded-lg text-xs font-mono bg-purple-950/40 border border-purple-700/30 text-purple-200"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-
-                {/* Pillar 2: Cross-Platform Mobile Dev (5 Cols) */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false }}
-                  transition={{ duration: 0.4, delay: 0.1 }}
-                  whileHover={{ y: -6 }}
-                  className="md:col-span-5 rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-[#0c1322]/90 via-[#070b14]/90 to-black border border-sky-900/30 hover:border-sky-500/50 shadow-2xl relative overflow-hidden group"
-                >
-                  <div className="absolute top-0 right-0 w-60 h-60 rounded-full bg-sky-500/10 blur-3xl pointer-events-none group-hover:bg-sky-500/20 transition-all duration-500" />
-                  
-                  <div className="flex items-center justify-between mb-6 relative z-10">
-                    <span className="text-xs font-mono font-bold tracking-widest text-sky-300 uppercase">
-                      Mobile Engineering
-                    </span>
-                    <span className="text-xs font-mono text-neutral-400 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10">
-                      Cross-Platform
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-4 my-6 relative z-10">
-                    <div className="w-16 h-16 rounded-2xl bg-black/60 border border-sky-500/30 flex items-center justify-center p-3 shadow-xl group-hover:scale-110 transition-transform duration-300">
-                      <FlutterLogo className="w-full h-full object-contain" />
-                    </div>
-                    <div className="w-16 h-16 rounded-2xl bg-black/60 border border-sky-500/30 flex items-center justify-center p-3 shadow-xl group-hover:scale-110 transition-transform duration-300">
-                      <DartLogo className="w-full h-full object-contain" />
-                    </div>
-                  </div>
-
-                  <h3 className="text-xl font-bold text-white relative z-10">
-                    Flutter &amp; Dart
-                  </h3>
-                  <p className="text-xs text-neutral-300 mt-1 mb-4 relative z-10 leading-relaxed">
-                    Aplikasi mobile multi-platform responsif terintegrasi backend dan telemetri perangkat IoT.
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 pt-2 border-t border-white/5 relative z-10">
-                    {['State Management', 'Widget Architecture', 'API Integration'].map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2.5 py-1 rounded-lg text-xs font-mono bg-sky-950/40 border border-sky-700/30 text-sky-200"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-
-                {/* Pillar 3: Hardware, Firmware & IoT (5 Cols) */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false }}
-                  transition={{ duration: 0.4, delay: 0.15 }}
-                  whileHover={{ y: -6 }}
-                  className="md:col-span-5 rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-[#1a0f0d]/90 via-[#100705]/90 to-black border border-red-900/30 hover:border-red-500/50 shadow-2xl relative overflow-hidden group"
-                >
-                  <div className="absolute top-0 right-0 w-60 h-60 rounded-full bg-red-600/10 blur-3xl pointer-events-none group-hover:bg-red-600/20 transition-all duration-500" />
-                  
-                  <div className="flex items-center justify-between mb-6 relative z-10">
-                    <span className="text-xs font-mono font-bold tracking-widest text-red-400 uppercase">
-                      Physical Computing
-                    </span>
-                    <span className="text-xs font-mono text-neutral-400 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10">
-                      Smart Hardware
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-4 my-6 relative z-10">
-                    <div className="w-16 h-16 rounded-2xl bg-black/60 border border-red-500/30 flex items-center justify-center p-2.5 shadow-xl group-hover:scale-110 transition-transform duration-300">
-                      <Esp32Logo className="w-full h-full object-contain" />
-                    </div>
-                    <div className="w-16 h-16 rounded-2xl bg-black/60 border border-teal-500/30 flex items-center justify-center p-2.5 shadow-xl group-hover:scale-110 transition-transform duration-300">
-                      <ArduinoLogo className="w-full h-full object-contain" />
-                    </div>
-                  </div>
-
-                  <h3 className="text-xl font-bold text-white relative z-10">
-                    ESP32 &amp; IoT Architecture
-                  </h3>
-                  <p className="text-xs text-neutral-300 mt-1 mb-4 relative z-10 leading-relaxed">
-                    Mikrokontroler, telemetri sensor lingkungan, dan kendali aktuator relay otomatis.
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 pt-2 border-t border-white/5 relative z-10">
-                    {['Sensor Telemetry', 'Relay Actuation', 'Firebase RTDB'].map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2.5 py-1 rounded-lg text-xs font-mono bg-red-950/40 border border-red-700/30 text-red-200"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-
-                {/* Pillar 4: Modern Web & Semantic Layout (7 Cols) */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false }}
-                  transition={{ duration: 0.4, delay: 0.2 }}
-                  whileHover={{ y: -6 }}
-                  className="md:col-span-7 rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-[#18130c]/90 via-[#0e0b07]/90 to-black border border-amber-900/30 hover:border-amber-500/50 shadow-2xl relative overflow-hidden group"
-                >
-                  <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-amber-600/10 blur-3xl pointer-events-none group-hover:bg-amber-600/20 transition-all duration-500" />
-                  
-                  <div className="flex items-center justify-between mb-6 relative z-10">
-                    <span className="text-xs font-mono font-bold tracking-widest text-amber-300 uppercase">
-                      Web Development
-                    </span>
-                    <span className="text-xs font-mono text-neutral-400 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10">
-                      Standards &amp; Responsive
-                    </span>
-                  </div>
-
-                  <div className="flex flex-wrap items-center gap-4 my-6 relative z-10">
-                    <div className="w-14 h-14 rounded-2xl bg-black/60 border border-orange-500/30 flex items-center justify-center p-2.5 shadow-xl group-hover:scale-110 transition-transform duration-300">
-                      <Html5Logo className="w-full h-full object-contain" />
-                    </div>
-                    <div className="w-14 h-14 rounded-2xl bg-black/60 border border-blue-500/30 flex items-center justify-center p-2.5 shadow-xl group-hover:scale-110 transition-transform duration-300">
-                      <Css3Logo className="w-full h-full object-contain" />
-                    </div>
-                    <div className="w-14 h-14 rounded-2xl bg-black/60 border border-sky-500/30 flex items-center justify-center p-2.5 shadow-xl group-hover:scale-110 transition-transform duration-300">
-                      <TailwindLogo className="w-full h-full object-contain" />
-                    </div>
-                    <div className="w-14 h-14 rounded-2xl bg-black/60 border border-slate-500/30 flex items-center justify-center p-2.5 shadow-xl group-hover:scale-110 transition-transform duration-300">
-                      <WordPressLogo className="w-full h-full object-contain" />
-                    </div>
-                  </div>
-
-                  <h3 className="text-xl font-bold text-white relative z-10">
-                    HTML5, CSS3, Tailwind &amp; WordPress CMS
-                  </h3>
-                  <p className="text-xs sm:text-sm text-neutral-300 mt-1 mb-4 relative z-10 leading-relaxed">
-                    Pengembangan antarmuka website berbasis komponen utilitas, tata letak adaptif modern, dan manajemen konten.
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 pt-2 border-t border-white/5 relative z-10">
-                    {['Semantic HTML', 'CSS3 Layouts', 'Tailwind CSS', 'WordPress CMS', 'Responsive Design'].map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-3 py-1 rounded-lg text-xs font-mono bg-amber-950/40 border border-amber-700/30 text-amber-200"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-
+                    </motion.div>
+                  );
+                })}
               </div>
 
-              {/* Tier 2: Dual Infinite Running Marquee (Supporting Arsenal - Inspired by arman.my.id) */}
-              <div className="p-6 sm:p-8 rounded-3xl bg-black/40 border border-white/10 space-y-4">
-                <div className="flex items-center justify-between mb-2">
+              {/* Dual Infinite Running Marquee Ticker at the Bottom (Preserved as Requested) */}
+              <div className="p-6 sm:p-7 rounded-3xl bg-black/40 border border-white/10 space-y-4">
+                <div className="flex items-center justify-between">
                   <span className="text-xs font-mono font-bold tracking-wider text-neutral-400 uppercase">
-                    Supporting Toolchain &amp; Workflow
+                    Continuous Ecosystem &amp; Workflow
                   </span>
                   <span className="text-[11px] font-mono text-neutral-500">
-                    Continuous Ecosystem
+                    Live Ticker
                   </span>
                 </div>
 
@@ -805,21 +682,21 @@ export default function PortfolioShowcase({ onSelectProject }) {
                     className="flex shrink-0 items-center gap-3 py-1"
                   >
                     {[
-                      { name: 'Git', Logo: GitLogo, color: '#f05032' },
-                      { name: 'GitHub', Logo: GitHubLogo, color: '#ffffff' },
-                      { name: 'Canva Pro', Logo: CanvaLogo, color: '#7d2ae8' },
-                      { name: 'VS Code', Logo: VSCodeLogo, color: '#007acc' },
-                      { name: 'Firebase RTDB', Logo: FirebaseLogo, color: '#f57c00' },
-                      { name: 'Tailwind CSS', Logo: TailwindLogo, color: '#38bdf8' },
-                      { name: 'WordPress CMS', Logo: WordPressLogo, color: '#21759b' },
+                      { name: 'Git', Logo: GitLogo },
+                      { name: 'GitHub', Logo: GitHubLogo },
+                      { name: 'Canva Pro', Logo: CanvaLogo },
+                      { name: 'VS Code', Logo: VSCodeLogo },
+                      { name: 'Firebase RTDB', Logo: FirebaseLogo },
+                      { name: 'Tailwind CSS', Logo: TailwindLogo },
+                      { name: 'WordPress CMS', Logo: WordPressLogo },
                       // Duplicate for seamless infinite loop
-                      { name: 'Git', Logo: GitLogo, color: '#f05032' },
-                      { name: 'GitHub', Logo: GitHubLogo, color: '#ffffff' },
-                      { name: 'Canva Pro', Logo: CanvaLogo, color: '#7d2ae8' },
-                      { name: 'VS Code', Logo: VSCodeLogo, color: '#007acc' },
-                      { name: 'Firebase RTDB', Logo: FirebaseLogo, color: '#f57c00' },
-                      { name: 'Tailwind CSS', Logo: TailwindLogo, color: '#38bdf8' },
-                      { name: 'WordPress CMS', Logo: WordPressLogo, color: '#21759b' },
+                      { name: 'Git', Logo: GitLogo },
+                      { name: 'GitHub', Logo: GitHubLogo },
+                      { name: 'Canva Pro', Logo: CanvaLogo },
+                      { name: 'VS Code', Logo: VSCodeLogo },
+                      { name: 'Firebase RTDB', Logo: FirebaseLogo },
+                      { name: 'Tailwind CSS', Logo: TailwindLogo },
+                      { name: 'WordPress CMS', Logo: WordPressLogo },
                     ].map((item, i) => {
                       const IconComp = item.Logo;
                       return (
@@ -845,23 +722,23 @@ export default function PortfolioShowcase({ onSelectProject }) {
                     className="flex shrink-0 items-center gap-3 py-1"
                   >
                     {[
-                      'Atomic Design System',
-                      'High-Fidelity Wireframes',
+                      'Pamflet & Poster Design',
+                      'Instagram Feed Carousel',
+                      'Design Systems & Tokens',
                       'Clickable Prototyping',
                       'Hardware Actuation',
                       'Sensor Telemetry',
                       'Clean Architecture',
                       'Responsive Viewports',
-                      'User Journey Mapping',
                       // Duplicate for seamless loop
-                      'Atomic Design System',
-                      'High-Fidelity Wireframes',
+                      'Pamflet & Poster Design',
+                      'Instagram Feed Carousel',
+                      'Design Systems & Tokens',
                       'Clickable Prototyping',
                       'Hardware Actuation',
                       'Sensor Telemetry',
                       'Clean Architecture',
                       'Responsive Viewports',
-                      'User Journey Mapping',
                     ].map((skill, i) => (
                       <div
                         key={i}
@@ -903,10 +780,10 @@ export default function PortfolioShowcase({ onSelectProject }) {
                     <span className="px-2.5 py-1 rounded-md text-[10px] font-mono font-bold bg-red-950 text-red-300 border border-red-800/40 uppercase tracking-wider">
                       {selectedCert.badge} &bull; {selectedCert.category}
                     </span>
-                    <h3 className="text-base sm:text-lg font-bold text-white mt-1.5">
+                    <h3 className="text-base sm:text-lg font-bold text-white mt-1.5 font-heading">
                       {selectedCert.title}
                     </h3>
-                    <p className="text-xs text-neutral-400 mt-0.5">{selectedCert.organizer} &bull; {selectedCert.date || selectedCert.year}</p>
+                    <p className="text-xs text-neutral-400 mt-0.5 font-sans">{selectedCert.organizer} &bull; {selectedCert.date || selectedCert.year}</p>
                   </div>
                   <button
                     onClick={() => setSelectedCert(null)}
@@ -927,7 +804,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
 
                 {/* Modal Footer with Actions */}
                 <div className="p-4 sm:px-6 sm:py-3.5 border-t border-white/10 bg-[#0d060a] flex flex-wrap items-center justify-between gap-3">
-                  <div className="text-xs text-neutral-400 space-y-0.5">
+                  <div className="text-xs text-neutral-400 space-y-0.5 font-sans">
                     <p>No. Registrasi: <span className="font-mono text-neutral-200">{selectedCert.regNumber || 'TERVERIFIKASI'}</span></p>
                     {selectedCert.theme && <p className="text-[11px] text-neutral-500 italic">Tema: "{selectedCert.theme}"</p>}
                   </div>
@@ -937,14 +814,14 @@ export default function PortfolioShowcase({ onSelectProject }) {
                       download
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-semibold shadow-md transition-all hover:scale-105"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-semibold shadow-md transition-all hover:scale-105 font-heading"
                     >
                       <Download size={14} />
                       <span>Unduh Dokumen Asli</span>
                     </a>
                     <button
                       onClick={() => setSelectedCert(null)}
-                      className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-neutral-300 text-xs font-semibold transition-colors"
+                      className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-neutral-300 text-xs font-semibold transition-colors font-heading"
                     >
                       Tutup
                     </button>
