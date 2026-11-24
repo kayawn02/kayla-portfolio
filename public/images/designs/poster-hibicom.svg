@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgHibi" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19"/>
+      <stop offset="50%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="accentHibi" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bgHibi)"/>
+
+  <!-- Geometric Decorative Lines -->
+  <circle cx="700" cy="100" r="180" fill="rgba(239, 68, 68, 0.05)" filter="blur(40px)"/>
+  <circle cx="100" cy="500" r="220" fill="rgba(99, 102, 241, 0.08)" filter="blur(40px)"/>
+
+  <!-- Poster Stand / Canvas Container -->
+  <g transform="translate(180, 40)">
+    <!-- Poster Shadow -->
+    <rect x="0" y="0" width="440" height="520" rx="16" fill="#090d16" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
+    
+    <!-- Top Header Banner of Poster -->
+    <rect x="0" y="0" width="440" height="110" rx="16" fill="url(#accentHibi)"/>
+    <rect x="0" y="90" width="440" height="20" fill="url(#accentHibi)"/>
+    
+    <text x="30" y="45" fill="#ffffff" font-family="'Poppins', sans-serif" font-size="11" font-weight="700" letter-spacing="3">POSTER ILMIAH NASIONAL</text>
+    <text x="30" y="80" fill="#ffffff" font-family="'Poppins', sans-serif" font-size="24" font-weight="900" letter-spacing="-0.5">HIBICOM 2025</text>
+    <text x="410" y="50" text-anchor="end" fill="rgba(255,255,255,0.8)" font-family="'Inter', sans-serif" font-size="11" font-weight="600">EDISI SAINS &amp; KESEHATAN</text>
+
+    <!-- Poster Content Grid -->
+    <g transform="translate(30, 135)">
+      <!-- Section 1: Infografis Box -->
+      <rect x="0" y="0" width="180" height="150" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(239,68,68,0.3)" stroke-width="1.5"/>
+      <circle cx="30" cy="30" r="14" fill="#ef4444" opacity="0.2"/>
+      <circle cx="30" cy="30" r="6" fill="#ef4444"/>
+      <text x="55" y="35" fill="#ffffff" font-family="'Poppins', sans-serif" font-size="12" font-weight="700">Analisis Data</text>
+      <rect x="20" y="60" width="140" height="8" rx="4" fill="rgba(255,255,255,0.2)"/>
+      <rect x="20" y="76" width="110" height="8" rx="4" fill="rgba(255,255,255,0.1)"/>
+      <rect x="20" y="92" width="130" height="8" rx="4" fill="rgba(255,255,255,0.1)"/>
+      <rect x="20" y="115" width="85" height="18" rx="4" fill="rgba(239,68,68,0.2)"/>
+      <text x="62" y="128" text-anchor="middle" fill="#fca5a5" font-family="'Poppins', sans-serif" font-size="9" font-weight="700">98.4% AKURASI</text>
+
+      <!-- Section 2: Visual Chart -->
+      <rect x="200" y="0" width="180" height="150" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(249,115,22,0.3)" stroke-width="1.5"/>
+      <text x="220" y="35" fill="#ffffff" font-family="'Poppins', sans-serif" font-size="12" font-weight="700">Komposisi Vektor</text>
+      <!-- Mini Bar Chart -->
+      <rect x="220" y="100" width="20" height="30" rx="3" fill="#f97316"/>
+      <rect x="250" y="80" width="20" height="50" rx="3" fill="#ef4444"/>
+      <rect x="280" y="65" width="20" height="65" rx="3" fill="#fbbf24"/>
+      <rect x="310" y="50" width="20" height="80" rx="3" fill="#38bdf8"/>
+      <rect x="340" y="70" width="20" height="60" rx="3" fill="#a855f7"/>
+
+      <!-- Bottom Infographic Section -->
+      <g transform="translate(0, 170)">
+        <rect x="0" y="0" width="380" height="120" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.08)"/>
+        <text x="20" y="32" fill="#ffffff" font-family="'Poppins', sans-serif" font-size="13" font-weight="700">Visual Hierarki &amp; Tipografi Edukasi</text>
+        <text x="20" y="58" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="11">Desain tata letak modular dengan rasio kontras warna tinggi,</text>
+        <text x="20" y="78" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="11">ilustrasi vektor proporsional, serta tata letak cetak standar A1.</text>
+
+        <!-- Badge -->
+        <rect x="20" y="92" width="150" height="18" rx="4" fill="rgba(255,255,255,0.06)"/>
+        <text x="26" y="104" fill="#cbd5e1" font-family="'Poppins', sans-serif" font-size="9" font-weight="600">CANVA &amp; FIGMA PRODUCTION</text>
+      </g>
+
+      <!-- Footer Bar -->
+      <g transform="translate(0, 310)">
+        <line x1="0" y1="0" x2="380" y2="0" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <text x="0" y="24" fill="#64748b" font-family="'Poppins', sans-serif" font-size="10" font-weight="600">Kayla Alia Atarani &bull; Desain Poster Ilmiah</text>
+        <text x="380" y="24" text-anchor="end" fill="#ef4444" font-family="'Poppins', sans-serif" font-size="10" font-weight="700">POLINELA 2025</text>
+      </g>
+    </g>
+  </g>
+</svg>

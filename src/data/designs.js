@@ -19,7 +19,7 @@ export const designs = [
     accentColor: "#ef4444",
     screensCount: "Pamflet & Poster Cetak",
     highlights: ["Hierarki Tipografi", "Ilustrasi Vektor Edukasi", "Komposisi Kontras", "Layout Cetak 300 DPI"],
-    image: "/images/certificates/sertifikat-hibicom-peserta.png",
+    image: "/images/designs/poster-hibicom.svg",
     figmaUrl: null,
     details: {
       client: "HIBICOM Nasional • Univ. Muhammadiyah Klaten",
@@ -40,7 +40,7 @@ export const designs = [
     accentColor: "#f59e0b",
     screensCount: "30+ Konten Visual",
     highlights: ["Feed Grid Instagram", "Desain Carousel Edukasi", "Template Pengumuman Resmi", "Color Grading & Filter"],
-    image: "/images/certificates/sertifikat-panitia-hmj.png",
+    image: "/images/designs/feed-hmjti.svg",
     figmaUrl: null,
     details: {
       client: "Himpunan Mahasiswa Jurusan Teknologi Informasi Polinela",
@@ -61,7 +61,7 @@ export const designs = [
     accentColor: "#ec4899",
     screensCount: "15+ Aset Promosi",
     highlights: ["Flyer Digital Pendaftaran", "Pamflet Jadwal Kegiatan", "Key Visual Event", "Banner Cetak & Digital"],
-    image: "/images/certificates/sertifikat-10.png",
+    image: "/images/projects/innovation4force-thumb.svg",
     figmaUrl: null,
     details: {
       client: "Innovation 4Force • Politeknik Negeri Lampung",
@@ -82,7 +82,7 @@ export const designs = [
     accentColor: "#ef4444",
     screensCount: "24+ Layout Layar",
     highlights: ["Desain Logo & Ikon", "Komponen Antarmuka", "Prototipe Interaktif", "Desain Ergonomis Lapangan"],
-    image: "/images/certificates/sertifikat-lomba-uiux-itera.png",
+    image: "/images/projects/sangsmart-thumb.svg",
     figmaUrl: "https://figma.com",
     details: {
       client: "Point Project 3.0 • Himpunan Mahasiswa Informatika ITERA",
@@ -103,7 +103,7 @@ export const designs = [
     accentColor: "#38bdf8",
     screensCount: "16+ Layout Layar",
     highlights: ["Visualisasi Indikator Sensor", "Desain Panel Kontrol", "Skema Warna Real-time", "Dark Mode Tampilan"],
-    image: "/images/certificates/sertifikat-aitec-2026.png",
+    image: "/images/projects/fertiflow-thumb.svg",
     figmaUrl: "https://figma.com",
     details: {
       client: "AITEC VIII Nasional • BAKORMA & Polinela",
@@ -124,7 +124,7 @@ export const designs = [
     accentColor: "#a855f7",
     screensCount: "Koleksi Identitas",
     highlights: ["Desain ID Card & Lanyard", "Eksplorasi Tipografi", "Banner Header Kegiatan", "Vector Graphic Elements"],
-    image: "/images/certificates/sertifikat-bootcamp-uiux-hima-astech.png",
+    image: "/images/id-card-front.png",
     figmaUrl: null,
     details: {
       client: "Projek Personal & Kegiatan Kemahasiswaan Polinela",

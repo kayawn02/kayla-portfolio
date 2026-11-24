@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgFeed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a050d"/>
+      <stop offset="50%" stop-color="#140714"/>
+      <stop offset="100%" stop-color="#1c0b1f"/>
+    </linearGradient>
+    <linearGradient id="instaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="50%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bgFeed)"/>
+
+  <!-- Background Ambient Lights -->
+  <circle cx="200" cy="150" r="160" fill="rgba(245, 158, 11, 0.08)" filter="blur(50px)"/>
+  <circle cx="600" cy="450" r="180" fill="rgba(236, 72, 153, 0.08)" filter="blur(50px)"/>
+
+  <!-- Instagram Feed Grid Carousel Simulation -->
+  <g transform="translate(140, 60)">
+    <!-- Main Center Post (Square 1:1) -->
+    <g transform="translate(110, 0)">
+      <rect x="0" y="0" width="300" height="300" rx="16" fill="#110a17" stroke="url(#instaGrad)" stroke-width="2"/>
+      
+      <!-- Post Top Header -->
+      <circle cx="30" cy="30" r="14" fill="#3b0764"/>
+      <text x="30" y="34" text-anchor="middle" fill="#f472b6" font-family="'Poppins', sans-serif" font-size="11" font-weight="900">TI</text>
+      <text x="55" y="28" fill="#ffffff" font-family="'Poppins', sans-serif" font-size="11" font-weight="700">hmjti_polinela</text>
+      <text x="55" y="42" fill="#9ca3af" font-family="'Inter', sans-serif" font-size="9">Departemen Media &amp; Informasi</text>
+
+      <!-- Center Visual Artwork in Post -->
+      <g transform="translate(25, 60)">
+        <rect x="0" y="0" width="250" height="170" rx="10" fill="url(#instaGrad)" opacity="0.15"/>
+        <rect x="0" y="0" width="250" height="170" rx="10" fill="none" stroke="rgba(255,255,255,0.15)" stroke-dasharray="4 4"/>
+        
+        <text x="125" y="55" text-anchor="middle" fill="#fbcfe8" font-family="'Poppins', sans-serif" font-size="9" font-weight="700" letter-spacing="3">OFFICIAL ANNOUNCEMENT</text>
+        <text x="125" y="90" text-anchor="middle" fill="#ffffff" font-family="'Poppins', sans-serif" font-size="20" font-weight="900">TEKNOLOGI</text>
+        <text x="125" y="115" text-anchor="middle" fill="#f43f5e" font-family="'Poppins', sans-serif" font-size="20" font-weight="900">INFORMASI 2026</text>
+        <text x="125" y="145" text-anchor="middle" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="10">Kreativitas Tanpa Batas Mahasiswa TRPL</text>
+      </g>
+
+      <!-- Instagram Interaction Icons -->
+      <g transform="translate(25, 255)">
+        <circle cx="10" cy="12" r="6" fill="#f43f5e"/>
+        <circle cx="32" cy="12" r="6" fill="#cbd5e1" opacity="0.4"/>
+        <circle cx="54" cy="12" r="6" fill="#cbd5e1" opacity="0.4"/>
+        <text x="250" y="16" text-anchor="end" fill="#cbd5e1" font-family="'Poppins', sans-serif" font-size="10" font-weight="600">1 / 5</text>
+      </g>
+    </g>
+
+    <!-- Left Peek Post (Carousel Slide 0) -->
+    <g transform="translate(-20, 30)" opacity="0.4">
+      <rect x="0" y="0" width="100" height="240" rx="12" fill="#0d0612" stroke="rgba(255,255,255,0.1)"/>
+    </g>
+
+    <!-- Right Peek Post (Carousel Slide 2) -->
+    <g transform="translate(440, 30)" opacity="0.4">
+      <rect x="0" y="0" width="100" height="240" rx="12" fill="#0d0612" stroke="rgba(255,255,255,0.1)"/>
+    </g>
+
+    <!-- Bottom Showcase Info Card -->
+    <g transform="translate(60, 330)">
+      <rect x="0" y="0" width="400" height="120" rx="14" fill="#0d0511" stroke="rgba(244,63,94,0.3)" stroke-width="1.5"/>
+      <text x="25" y="32" fill="#ffffff" font-family="'Poppins', sans-serif" font-size="13" font-weight="700">Identitas Visual &amp; Sistem Feed Carousel</text>
+      <text x="25" y="58" fill="#9ca3af" font-family="'Inter', sans-serif" font-size="11">Desain publikasi berulang (modular carousel), color branding khas HMJ TI,</text>
+      <text x="25" y="78" fill="#9ca3af" font-family="'Inter', sans-serif" font-size="11">dan panduan layout poster digital media informasi kampus.</text>
+      
+      <rect x="25" y="92" width="130" height="18" rx="4" fill="rgba(236,72,153,0.15)"/>
+      <text x="32" y="104" fill="#f472b6" font-family="'Poppins', sans-serif" font-size="9" font-weight="700">WAKIL KADEP MEDINFO 1</text>
+    </g>
+  </g>
+</svg>

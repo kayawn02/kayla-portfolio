@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Award,
@@ -58,7 +58,7 @@ const toolLogoMap = {
   'VS Code': VSCodeLogo,
 };
 
-// Clean Tools Stack (Pure Visual-First, Simple & Modern, No Text Clutter)
+// Clean Tools Stack (Visual-First, Simple, Modern)
 const myTechTools = [
   { name: 'Figma', Logo: FigmaLogo, glow: 'rgba(162, 89, 255, 0.45)', border: 'hover:border-purple-500/50' },
   { name: 'Canva', Logo: CanvaLogo, glow: 'rgba(125, 42, 232, 0.45)', border: 'hover:border-purple-400/50' },
@@ -117,7 +117,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
         
         {/* Section Header */}
         <div className="text-center mb-10">
-          <p className="text-xs font-mono font-semibold tracking-wider text-red-500 uppercase mb-2">
+          <p className="text-xs font-heading font-semibold tracking-wider text-red-500 uppercase mb-2">
             Portofolio &amp; Karya
           </p>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-heading">
@@ -160,7 +160,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
         {/* Tab Content Display */}
         <AnimatePresence mode="wait">
           
-          {/* ===================== PROJECTS TAB ===================== */}
+          {/* ===================== PROJECTS TAB (DYNAMIC 3D TILT & EYE-CATCHING MINIMALIST) ===================== */}
           {activeTab === 'Projects' && (
             <motion.div
               key="projects"
@@ -173,54 +173,68 @@ export default function PortfolioShowcase({ onSelectProject }) {
               {projects.map((proj, idx) => (
                 <motion.div
                   key={proj.id}
-                  initial={{ opacity: 0, y: 35, scale: 0.95 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.96 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: false, amount: 0.15 }}
                   transition={{ type: 'spring', stiffness: 120, damping: 16, delay: idx * 0.1 }}
-                  whileHover={{ y: -6 }}
-                  className="rounded-2xl border border-white/10 hover:border-red-500/50 bg-[#120a13]/80 backdrop-blur-md overflow-hidden flex flex-col justify-between transition-all duration-300 shadow-xl group"
+                  whileHover={{ y: -8, scale: 1.015 }}
+                  onClick={() => onSelectProject(proj)}
+                  className="rounded-3xl border border-white/10 hover:border-red-500/50 bg-gradient-to-b from-[#140b15]/95 to-[#090509]/95 backdrop-blur-xl overflow-hidden flex flex-col justify-between transition-all duration-300 shadow-2xl group cursor-pointer select-none relative"
                 >
+                  {/* Top Edge Animated Shimmer Beam */}
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20" />
+
                   <div>
-                    {/* Thumbnail Frame */}
-                    <div className="relative h-56 sm:h-64 w-full bg-[#0a0509] overflow-hidden flex items-center justify-center border-b border-white/5">
+                    {/* Visual Mockup Frame with Interactive Hover Zoom */}
+                    <div className="relative h-60 sm:h-64 w-full bg-[#080408] overflow-hidden flex items-center justify-center border-b border-white/5 p-4">
                       <img
                         src={proj.thumbnail}
                         alt={proj.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-full object-contain filter drop-shadow-xl transition-transform duration-500 group-hover:scale-105"
                       />
-                      <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
-                        <span className="px-3 py-1 rounded-full text-[11px] font-mono font-bold tracking-wide uppercase bg-black/80 text-white border border-white/10 backdrop-blur-md">
+                      
+                      {/* Floating Glass Badges in Image Header */}
+                      <div className="absolute top-3.5 left-4 right-4 flex items-center justify-between pointer-events-none">
+                        <span className="px-3 py-1 rounded-full text-xs font-heading font-semibold uppercase bg-black/80 text-white border border-white/15 backdrop-blur-md shadow-md">
                           {proj.category}
                         </span>
-                        <span className="px-2.5 py-1 rounded-full text-xs font-mono text-neutral-300 bg-black/80 border border-white/10 backdrop-blur-md">
+                        <span className="px-2.5 py-1 rounded-full text-xs font-heading font-semibold text-neutral-300 bg-black/80 border border-white/15 backdrop-blur-md">
                           {proj.year}
+                        </span>
+                      </div>
+
+                      {/* Hover Overlay Hint */}
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                        <span className="px-4 py-2 rounded-full bg-red-600 text-white text-xs font-heading font-semibold flex items-center gap-2 shadow-xl scale-95 group-hover:scale-100 transition-transform">
+                          <Eye size={14} />
+                          <span>Eksplorasi Detail Projek</span>
                         </span>
                       </div>
                     </div>
 
-                    {/* Content Body */}
-                    <div className="p-6 sm:p-7 space-y-4">
-                      <div>
-                        {proj.award && (
-                          <p className="text-[11px] font-semibold text-amber-400/90 flex items-center gap-1.5 mb-1.5 font-sans">
-                            <Award size={13} className="text-amber-400 shrink-0" />
-                            <span className="truncate">{proj.award}</span>
-                          </p>
-                        )}
-                        <h3 className="text-xl font-bold text-white group-hover:text-red-400 transition-colors font-heading">
-                          {proj.title}
-                        </h3>
-                      </div>
+                    {/* Content Body: Clean, Bold, No Text Clutter */}
+                    <div className="p-6 sm:p-7 space-y-3.5">
+                      {proj.award && (
+                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-950/40 border border-amber-600/30 text-amber-300 text-xs font-heading font-medium">
+                          <Award size={13} className="text-amber-400 shrink-0" />
+                          <span className="truncate">{proj.award}</span>
+                        </div>
+                      )}
 
-                      <p className="text-neutral-300 text-xs sm:text-sm line-clamp-2 leading-relaxed font-sans">
+                      <h3 className="text-2xl font-extrabold text-white group-hover:text-red-400 transition-colors font-heading leading-snug">
+                        {proj.id === 'fertiflow' ? 'FertiFlow — Smart Irrigation System' : 'SangSmart — Agriculture Platform'}
+                      </h3>
+
+                      {/* Concise 1-Line Tagline */}
+                      <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed font-sans line-clamp-2">
                         {proj.summary}
                       </p>
 
-                      {/* Tools Used (Logos Only) */}
-                      <div>
-                        <p className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 mb-2">
-                          Tools &amp; Stack:
-                        </p>
+                      {/* Tools Used (Clean Logo Icons Only) */}
+                      <div className="pt-1 flex items-center gap-2">
+                        <span className="text-[11px] font-heading font-medium text-neutral-400 mr-1">
+                          Tools:
+                        </span>
                         <div className="flex flex-wrap gap-2">
                           {proj.tools?.map((toolName) => {
                             const IconComponent = toolLogoMap[toolName];
@@ -228,7 +242,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                               <div
                                 key={toolName}
                                 title={toolName}
-                                className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/10 flex items-center justify-center p-1.5 hover:border-red-500/40 hover:scale-110 transition-all shadow-sm"
+                                className="w-8 h-8 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center p-1.5 group-hover:border-red-500/40 group-hover:scale-110 transition-all shadow-sm"
                               >
                                 {IconComponent ? (
                                   <IconComponent className="w-full h-full object-contain" />
@@ -244,17 +258,14 @@ export default function PortfolioShowcase({ onSelectProject }) {
                   </div>
 
                   {/* Card Action */}
-                  <div className="p-6 sm:p-7 pt-0 border-t border-white/5 flex items-center justify-between">
-                    <span className="text-xs text-neutral-400 font-mono">
-                      Peran: <strong className="text-neutral-200">{proj.role}</strong>
+                  <div className="p-6 sm:p-7 pt-0 border-t border-white/5 flex items-center justify-between text-xs">
+                    <span className="text-neutral-400 font-heading">
+                      Peran: <strong className="text-white">{proj.role}</strong>
                     </span>
-                    <button
-                      onClick={() => onSelectProject(proj)}
-                      className="px-4 py-2 rounded-xl bg-red-600/90 hover:bg-red-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow-md transition-all hover:scale-105 font-heading"
-                    >
-                      <span>Lihat Detail</span>
-                      <ArrowUpRight size={14} />
-                    </button>
+                    <span className="inline-flex items-center gap-1.5 text-red-400 font-heading font-semibold group-hover:translate-x-1 transition-transform">
+                      <span>Detail Lengkap</span>
+                      <ArrowRight size={14} />
+                    </span>
                   </div>
                 </motion.div>
               ))}
@@ -271,7 +282,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
               transition={{ duration: 0.35 }}
               className="space-y-8"
             >
-              {/* Category Filter Pills */}
+              {/* Category Filter Pills (Aligned with Heading Font - Poppins) */}
               <div className="flex flex-wrap justify-center gap-2">
                 {designCategories.map((cat) => {
                   const isSelected = activeDesignCategory === cat;
@@ -282,10 +293,10 @@ export default function PortfolioShowcase({ onSelectProject }) {
                         playNavClickSound();
                         setActiveDesignCategory(cat);
                       }}
-                      className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all duration-200 ${
+                      className={`px-4 py-2 rounded-full text-xs font-heading font-medium transition-all duration-200 ${
                         isSelected
                           ? 'bg-red-600 text-white font-semibold shadow-md'
-                          : 'bg-white/[0.03] border border-white/10 text-neutral-400 hover:text-white hover:bg-white/[0.08]'
+                          : 'bg-white/[0.03] border border-white/10 text-neutral-300 hover:text-white hover:bg-white/[0.08]'
                       }`}
                     >
                       {cat}
@@ -323,10 +334,10 @@ export default function PortfolioShowcase({ onSelectProject }) {
                           </span>
                         </div>
                         <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
-                          <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-black/85 text-red-300 border border-red-700/30 backdrop-blur-md">
+                          <span className="px-2.5 py-0.5 rounded text-[10px] font-heading font-semibold uppercase bg-black/85 text-red-300 border border-red-700/30 backdrop-blur-md">
                             {des.category}
                           </span>
-                          <span className="px-2 py-0.5 rounded text-[10px] font-mono text-neutral-400 bg-black/75 border border-white/10 backdrop-blur-md">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-heading font-medium text-neutral-400 bg-black/75 border border-white/10 backdrop-blur-md">
                             {des.screensCount}
                           </span>
                         </div>
@@ -351,7 +362,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                           {des.highlights.slice(0, 3).map((h, i) => (
                             <span
                               key={i}
-                              className="px-2 py-0.5 rounded text-[10px] font-mono bg-white/[0.03] border border-white/10 text-neutral-300"
+                              className="px-2 py-0.5 rounded text-[10px] font-heading font-medium bg-white/[0.03] border border-white/10 text-neutral-300"
                             >
                               {h}
                             </span>
@@ -361,10 +372,10 @@ export default function PortfolioShowcase({ onSelectProject }) {
                     </div>
 
                     <div className="p-5 pt-3 border-t border-white/5 flex items-center justify-between text-xs">
-                      <span className="text-[11px] text-neutral-400 font-mono">
+                      <span className="text-[11px] text-neutral-400 font-heading">
                         Tool: <strong className="text-white">{des.tool}</strong>
                       </span>
-                      <span className="text-red-400 font-medium group-hover:translate-x-1 transition-transform flex items-center gap-1 font-heading">
+                      <span className="text-red-400 font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-1 font-heading">
                         <span>Lihat Detail</span>
                         <ArrowRight size={13} />
                       </span>
@@ -385,7 +396,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
               transition={{ duration: 0.35 }}
               className="space-y-8"
             >
-              {/* Category Filter Pills */}
+              {/* Category Filter Pills (Aligned with Heading Font - Poppins) */}
               <div className="flex flex-wrap justify-center gap-2">
                 {certCategories.map((cat) => {
                   const isSelected = activeCertCategory === cat;
@@ -396,10 +407,10 @@ export default function PortfolioShowcase({ onSelectProject }) {
                         playNavClickSound();
                         setActiveCertCategory(cat);
                       }}
-                      className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all duration-200 ${
+                      className={`px-4 py-2 rounded-full text-xs font-heading font-medium transition-all duration-200 ${
                         isSelected
                           ? 'bg-red-600 text-white font-semibold shadow-md'
-                          : 'bg-white/[0.03] border border-white/10 text-neutral-400 hover:text-white hover:bg-white/[0.08]'
+                          : 'bg-white/[0.03] border border-white/10 text-neutral-300 hover:text-white hover:bg-white/[0.08]'
                       }`}
                     >
                       {cat}
@@ -438,7 +449,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
 
                       {/* Top Prestige Gold Watermark for Juara 1 & 3 */}
                       {isTopAward && (
-                        <div className="absolute top-2 right-2 text-7xl font-mono font-black text-amber-500/[0.05] pointer-events-none select-none">
+                        <div className="absolute top-2 right-2 text-7xl font-heading font-black text-amber-500/[0.05] pointer-events-none select-none">
                           {cert.year}
                         </div>
                       )}
@@ -459,10 +470,10 @@ export default function PortfolioShowcase({ onSelectProject }) {
                             </span>
                           </div>
 
-                          {/* Minimalist Clean Badges (NO EMOJIS) */}
+                          {/* Minimalist Clean Badges */}
                           <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
                             <span
-                              className={`px-2.5 py-1 rounded-md text-[10px] font-mono font-bold tracking-wide uppercase border backdrop-blur-md shadow-sm ${
+                              className={`px-2.5 py-1 rounded-md text-[10px] font-heading font-semibold tracking-wide uppercase border backdrop-blur-md shadow-sm ${
                                 isTopAward
                                   ? 'bg-amber-950/80 text-amber-300 border-amber-500/40'
                                   : 'bg-black/85 text-neutral-200 border-white/15'
@@ -470,7 +481,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                             >
                               {cert.badge}
                             </span>
-                            <span className="px-2 py-0.5 rounded text-[10px] font-mono text-neutral-400 bg-black/75 border border-white/10 backdrop-blur-md">
+                            <span className="px-2 py-0.5 rounded text-[10px] font-heading font-medium text-neutral-400 bg-black/75 border border-white/10 backdrop-blur-md">
                               {cert.year}
                             </span>
                           </div>
@@ -484,7 +495,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                           <p className="text-xs text-neutral-400 line-clamp-1 font-medium font-sans">
                             {cert.event || cert.organizer}
                           </p>
-                          <div className="flex items-center gap-1.5 text-[11px] text-neutral-500 font-mono pt-1">
+                          <div className="flex items-center gap-1.5 text-[11px] text-neutral-400 font-heading pt-1">
                             <ShieldCheck size={13} className="text-emerald-400 shrink-0" />
                             <span className="truncate">{cert.level}</span>
                           </div>
@@ -493,10 +504,10 @@ export default function PortfolioShowcase({ onSelectProject }) {
 
                       {/* Card Footer Action */}
                       <div className="p-5 pt-3 border-t border-white/5 flex items-center justify-between text-xs">
-                        <span className="text-[11px] text-neutral-500 font-mono">
+                        <span className="text-[11px] text-neutral-500 font-heading">
                           {cert.category}
                         </span>
-                        <span className="text-red-400 font-medium group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0 font-heading">
+                        <span className="text-red-400 font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0 font-heading">
                           <span>Perbesar</span>
                           <span>&rarr;</span>
                         </span>
@@ -553,7 +564,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                       {/* Header Badge */}
                       <div className="flex items-center justify-between mb-4">
                         <span
-                          className="text-xs font-mono font-bold px-3 py-1 rounded-full tracking-wider uppercase border"
+                          className="text-xs font-heading font-semibold px-3 py-1 rounded-full tracking-wider uppercase border"
                           style={{
                             color: item.accentColor,
                             borderColor: `${item.accentColor}40`,
@@ -562,7 +573,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                         >
                           {item.rankBadge}
                         </span>
-                        <span className="text-xs font-mono text-neutral-400">
+                        <span className="text-xs font-heading font-medium text-neutral-400">
                           {item.year}
                         </span>
                       </div>
@@ -590,7 +601,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                         >
                           {item.rank === '01' ? '#1' : item.rank === '03' ? '#3' : 'OC'}
                         </span>
-                        <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-widest px-2.5 py-0.5 rounded bg-white/[0.04] border border-white/10">
+                        <span className="text-[11px] font-heading font-semibold text-neutral-400 uppercase tracking-widest px-2.5 py-0.5 rounded bg-white/[0.04] border border-white/10">
                           {item.scope}
                         </span>
                       </div>
@@ -608,7 +619,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
 
                     {/* Bottom Project Tag & Button */}
                     <div className="mt-5 pt-3.5 border-t border-white/5 flex items-center justify-between text-xs">
-                      <span className="text-[11px] font-semibold text-neutral-300 bg-white/[0.04] border border-white/10 px-2.5 py-1 rounded-lg">
+                      <span className="text-[11px] font-semibold text-neutral-300 bg-white/[0.04] border border-white/10 px-2.5 py-1 rounded-lg font-heading">
                         {item.project}
                       </span>
                       <span className="text-red-400 font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0 font-heading">
@@ -666,10 +677,10 @@ export default function PortfolioShowcase({ onSelectProject }) {
               {/* Dual Infinite Running Marquee Ticker at the Bottom (Preserved as Requested) */}
               <div className="p-6 sm:p-7 rounded-3xl bg-black/40 border border-white/10 space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-bold tracking-wider text-neutral-400 uppercase">
+                  <span className="text-xs font-heading font-semibold tracking-wider text-neutral-400 uppercase">
                     Continuous Ecosystem &amp; Workflow
                   </span>
-                  <span className="text-[11px] font-mono text-neutral-500">
+                  <span className="text-[11px] font-heading font-medium text-neutral-500">
                     Live Ticker
                   </span>
                 </div>
@@ -682,17 +693,23 @@ export default function PortfolioShowcase({ onSelectProject }) {
                     className="flex shrink-0 items-center gap-3 py-1"
                   >
                     {[
+                      { name: 'Flutter', Logo: FlutterLogo },
+                      { name: 'CSS3', Logo: Css3Logo },
+                      { name: 'Figma', Logo: FigmaLogo },
+                      { name: 'Canva Pro', Logo: CanvaLogo },
                       { name: 'Git', Logo: GitLogo },
                       { name: 'GitHub', Logo: GitHubLogo },
-                      { name: 'Canva Pro', Logo: CanvaLogo },
                       { name: 'VS Code', Logo: VSCodeLogo },
                       { name: 'Firebase RTDB', Logo: FirebaseLogo },
                       { name: 'Tailwind CSS', Logo: TailwindLogo },
                       { name: 'WordPress CMS', Logo: WordPressLogo },
                       // Duplicate for seamless infinite loop
+                      { name: 'Flutter', Logo: FlutterLogo },
+                      { name: 'CSS3', Logo: Css3Logo },
+                      { name: 'Figma', Logo: FigmaLogo },
+                      { name: 'Canva Pro', Logo: CanvaLogo },
                       { name: 'Git', Logo: GitLogo },
                       { name: 'GitHub', Logo: GitHubLogo },
-                      { name: 'Canva Pro', Logo: CanvaLogo },
                       { name: 'VS Code', Logo: VSCodeLogo },
                       { name: 'Firebase RTDB', Logo: FirebaseLogo },
                       { name: 'Tailwind CSS', Logo: TailwindLogo },
@@ -705,7 +722,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                           className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-white/[0.03] border border-white/10 hover:border-red-500/40 hover:bg-white/[0.08] transition-all cursor-default select-none group"
                         >
                           <IconComp className="w-4 h-4 object-contain group-hover:scale-110 transition-transform" />
-                          <span className="text-xs font-mono font-medium text-neutral-300 group-hover:text-white transition-colors">
+                          <span className="text-xs font-heading font-medium text-neutral-300 group-hover:text-white transition-colors">
                             {item.name}
                           </span>
                         </div>
@@ -742,7 +759,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                     ].map((skill, i) => (
                       <div
                         key={i}
-                        className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-red-950/20 border border-red-800/30 text-neutral-300 text-xs font-mono select-none"
+                        className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-red-950/20 border border-red-800/30 text-neutral-300 text-xs font-heading font-medium select-none"
                       >
                         <Zap size={11} className="text-red-400" />
                         <span>{skill}</span>
@@ -777,7 +794,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                 {/* Modal Header */}
                 <div className="p-4 sm:px-6 sm:py-4 border-b border-white/10 flex items-center justify-between bg-black/40">
                   <div>
-                    <span className="px-2.5 py-1 rounded-md text-[10px] font-mono font-bold bg-red-950 text-red-300 border border-red-800/40 uppercase tracking-wider">
+                    <span className="px-2.5 py-1 rounded-md text-[10px] font-heading font-semibold bg-red-950 text-red-300 border border-red-800/40 uppercase tracking-wider">
                       {selectedCert.badge} &bull; {selectedCert.category}
                     </span>
                     <h3 className="text-base sm:text-lg font-bold text-white mt-1.5 font-heading">
@@ -805,7 +822,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                 {/* Modal Footer with Actions */}
                 <div className="p-4 sm:px-6 sm:py-3.5 border-t border-white/10 bg-[#0d060a] flex flex-wrap items-center justify-between gap-3">
                   <div className="text-xs text-neutral-400 space-y-0.5 font-sans">
-                    <p>No. Registrasi: <span className="font-mono text-neutral-200">{selectedCert.regNumber || 'TERVERIFIKASI'}</span></p>
+                    <p>No. Registrasi: <span className="font-heading font-semibold text-neutral-200">{selectedCert.regNumber || 'TERVERIFIKASI'}</span></p>
                     {selectedCert.theme && <p className="text-[11px] text-neutral-500 italic">Tema: "{selectedCert.theme}"</p>}
                   </div>
                   <div className="flex items-center gap-3">
