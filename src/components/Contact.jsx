@@ -41,13 +41,13 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="mb-14"
         >
-          <p className="text-xs font-semibold tracking-wider text-red-500 uppercase mb-2">
+          <p className="text-xs font-semibold tracking-wider text-[#4A74A7] uppercase mb-2">
             Kontak
           </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#DCEAF7] tracking-tight">
             Hubungi Saya
           </h2>
-          <p className="text-neutral-400 text-sm mt-1.5 max-w-md">
+          <p className="text-neutral-300 text-sm mt-1.5 max-w-md">
             Terbuka untuk peluang magang, kolaborasi UI/UX, dan pengembangan mobile Flutter.
           </p>
         </motion.div>
@@ -80,7 +80,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="Nama lengkap"
-                  className="w-full bg-[#0d070b] border border-white/10 focus:border-red-600 rounded-xl px-4 py-3 text-sm text-white placeholder:text-neutral-600 focus:outline-none transition-colors"
+                  className="w-full bg-[#081426] border border-[#4A74A7]/30 focus:border-[#4A74A7] rounded-xl px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:outline-none transition-colors"
                 />
               </div>
 
@@ -95,7 +95,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="email@contoh.com"
-                  className="w-full bg-[#0d070b] border border-white/10 focus:border-red-600 rounded-xl px-4 py-3 text-sm text-white placeholder:text-neutral-600 focus:outline-none transition-colors"
+                  className="w-full bg-[#081426] border border-[#4A74A7]/30 focus:border-[#4A74A7] rounded-xl px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:outline-none transition-colors"
                 />
               </div>
 
@@ -110,13 +110,13 @@ export default function Contact() {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Tulis pesan atau tawaran kolaborasi Anda di sini..."
-                  className="w-full bg-[#0d070b] border border-white/10 focus:border-red-600 rounded-xl px-4 py-3 text-sm text-white placeholder:text-neutral-600 focus:outline-none transition-colors resize-none"
+                  className="w-full bg-[#081426] border border-[#4A74A7]/30 focus:border-[#4A74A7] rounded-xl px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:outline-none transition-colors resize-none"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-semibold text-sm py-3 rounded-xl shadow-[0_0_15px_rgba(220,38,38,0.3)] hover:shadow-[0_0_25px_rgba(220,38,38,0.5)] transition-all"
+                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#142A44] to-[#4A74A7] hover:from-[#1b385a] hover:to-[#5a86bc] text-white font-semibold text-sm py-3 rounded-xl shadow-[0_0_15px_rgba(74,116,167,0.3)] hover:shadow-[0_0_25px_rgba(74,116,167,0.5)] transition-all"
               >
                 {submitted ? (
                   <>
@@ -146,7 +146,7 @@ export default function Contact() {
               href={personalInfo.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-5 rounded-2xl bg-gradient-to-br from-emerald-950/30 via-[#0a120e] to-[#070507] border border-emerald-500/30 hover:border-emerald-500/60 flex items-center justify-between group transition-all block card-interactive"
+              className="p-5 rounded-2xl bg-gradient-to-br from-emerald-950/30 via-[#0a120e] to-[#081426] border border-emerald-500/30 hover:border-emerald-500/60 flex items-center justify-between group transition-all block card-interactive"
             >
               <div className="flex items-center gap-3.5">
                 <div className="w-10 h-10 rounded-xl bg-emerald-600/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
@@ -163,7 +163,7 @@ export default function Contact() {
 
             {/* Social List */}
             <div className="card-glass card-interactive p-5 rounded-2xl space-y-2.5">
-              <p className="text-xs font-semibold text-neutral-300 mb-3">
+              <p className="text-xs font-semibold text-[#DCEAF7] mb-3">
                 Terhubung di Media Sosial &amp; Profil
               </p>
 
@@ -175,10 +175,10 @@ export default function Contact() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-3 rounded-xl bg-[#0d070b] border border-white/5 hover:border-red-600/40 hover:bg-[#160d13] transition-all group"
+                    className="flex items-center justify-between p-3 rounded-xl bg-[#081426]/70 border border-[#4A74A7]/20 hover:border-[#4A74A7] hover:bg-[#142A44]/40 transition-all group"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-red-950/40 border border-red-700/20 flex items-center justify-center text-red-400 group-hover:text-white transition-colors">
+                      <div className="w-8 h-8 rounded-lg bg-[#142A44]/80 border border-[#4A74A7]/30 flex items-center justify-center text-[#DCEAF7] group-hover:bg-[#4A74A7] group-hover:text-white transition-colors">
                         <Icon size={14} />
                       </div>
                       <div>

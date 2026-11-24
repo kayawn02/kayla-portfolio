@@ -1,136 +1,217 @@
+// Graphic Design Portfolio Data — Kayla Alia Atarani
+// Clean, 100% genuine assets, Galaxy Blue aesthetic, strictly 2 categories: "Sosial Media" & "Logo"
+
 export const designCategories = [
-  "Semua",
-  "Poster & Pamflet",
-  "Media Sosial & Feed",
-  "Logo & Visual Identity",
-  "Desain Antarmuka"
+  "Sosial Media",
+  "Logo"
 ];
 
-export const designs = [
+// Exactly 4 Circular / Round Logos as requested by the user
+export const logos = [
   {
-    id: "hibicom-poster",
-    title: "Poster Ilmiah Nasional — HIBICOM 2025",
-    category: "Poster & Pamflet",
-    tool: "Canva & Figma",
-    year: "2025",
-    award: "Karya Terverifikasi Lomba Poster Ilmiah Nasional",
-    role: "Visual & Content Designer",
-    summary: "Desain poster infografis edukasi kesehatan dengan tata letak visual terstruktur, tipografi tegas, dan ilustrasi vektor tematik.",
-    accentColor: "#ef4444",
-    screensCount: "Pamflet & Poster Cetak",
-    highlights: ["Hierarki Tipografi", "Ilustrasi Vektor Edukasi", "Komposisi Kontras", "Layout Cetak 300 DPI"],
-    image: "/images/designs/poster-hibicom.svg",
-    figmaUrl: null,
-    details: {
-      client: "HIBICOM Nasional • Univ. Muhammadiyah Klaten",
-      problem: "Penyampaian informasi penting seringkali monoton jika hanya berbentuk teks padat dan sulit menarik perhatian audiens.",
-      solution: "Merancang tata letak infografis dengan alur baca bertingkat, ikonografi jelas, dan warna kontras untuk memudahkan pemahaman pesan.",
-      deliverables: ["Desain Poster Digital & Cetak", "Materi Promosi Sosial", "Aset Grafis Vektor"]
-    }
-  },
-  {
-    id: "hmjti-instagram-feed",
-    title: "Publikasi Digital & Feed Instagram HMJ TI Polinela",
-    category: "Media Sosial & Feed",
-    tool: "Canva & Figma",
+    id: "logo-sankara",
+    title: "Kabinet Sankara",
+    badge: "HMJ TI Polinela",
+    organization: "HMJ TI Polinela",
     year: "2026",
-    award: "Karya Resmi Wakil Departemen Media dan Informasi 1",
-    role: "Wakil Kadep Medinfo 1",
-    summary: "Perancangan template feed carousel Instagram, pamflet pengumuman resmi, dan materi edukasi visual media sosial organisasi.",
-    accentColor: "#f59e0b",
-    screensCount: "30+ Konten Visual",
-    highlights: ["Feed Grid Instagram", "Desain Carousel Edukasi", "Template Pengumuman Resmi", "Color Grading & Filter"],
-    image: "/images/designs/feed-hmjti.svg",
-    figmaUrl: null,
-    details: {
-      client: "Himpunan Mahasiswa Jurusan Teknologi Informasi Polinela",
-      problem: "Format publikasi media sosial sebelumnya kurang seragam dan membutuhkan identitas visual yang lebih konsisten serta modern.",
-      solution: "Menyusun sistem template feed modular, standar ukuran grafis (1:1 & 4:5), serta tipografi judul dan isi yang selaras.",
-      deliverables: ["Template Feed Carousel Instagram", "Story Announcement Kits", "Cover Highlight & Banner", "Panduan Layout Visual"]
-    }
-  },
-  {
-    id: "innovation4force-pamflet",
-    title: "Pamflet & Media Kit — Innovation 4Force Event",
-    category: "Poster & Pamflet",
     tool: "Canva & Figma",
-    year: "2026",
-    award: "Official Promotional Kit • Event Internasional",
-    role: "Divisi Publikasi & Media",
-    summary: "Perancangan pamflet promosi, flyer pendaftaran lomba, dan aset visual kegiatan teknologi yang melibatkan delegasi mahasiswa 5 negara.",
-    accentColor: "#ec4899",
-    screensCount: "15+ Aset Promosi",
-    highlights: ["Flyer Digital Pendaftaran", "Pamflet Jadwal Kegiatan", "Key Visual Event", "Banner Cetak & Digital"],
-    image: "/images/projects/innovation4force-thumb.svg",
-    figmaUrl: null,
-    details: {
-      client: "Innovation 4Force • Politeknik Negeri Lampung",
-      problem: "Kegiatan berskala internasional membutuhkan materi promosi yang atraktif, informatif, dan mudah disebarkan di berbagai platform.",
-      solution: "Menggabungkan nuansa cyber-tech modern dengan aksen merah pendar dan tata letak informasi jadwal lomba yang ringkas dan padat.",
-      deliverables: ["Flyer Digital Pendaftaran Lomba", "Pamflet Informasi Delegasi", "Materi Promosi Broadcast WhatsApp", "Banner & Backdrop"]
-    }
+    image: "/images/designs/logo/kabinet-sankara.webp",
+    accentColor: "#4A74A7",
+    tagline: "Identitas Resmi Kepengurusan HMJ TI Polinela",
+    summary: "Simbol integritas, kolaborasi, dan dedikasi kepengurusan mahasiswa jurusan teknologi informasi."
   },
   {
-    id: "sangsmart-design",
-    title: "SangSmart — Desain Prototipe & Logo Aplikasi Pertanian",
-    category: "Desain Antarmuka",
-    tool: "Figma & Canva",
-    year: "2025",
-    award: "Juara 1 Point Project 3.0 ITERA",
-    role: "Lead Designer",
-    summary: "Desain identitas logo aplikasi, layout antarmuka mobile, dan visual alur transaksi hasil tani serta sewa alsintan bersama.",
-    accentColor: "#ef4444",
-    screensCount: "24+ Layout Layar",
-    highlights: ["Desain Logo & Ikon", "Komponen Antarmuka", "Prototipe Interaktif", "Desain Ergonomis Lapangan"],
-    image: "/images/projects/sangsmart-thumb.svg",
-    figmaUrl: "https://figma.com",
-    details: {
-      client: "Point Project 3.0 • Himpunan Mahasiswa Informatika ITERA",
-      problem: "Petani membutuhkan aplikasi yang memiliki visual ikon sederhana, tidak rumit, dan mudah dipahami dalam sekali pandang.",
-      solution: "Merancang logo dan elemen grafis yang intuitif, tombol berukuran ramah sentuhan, dan palet warna kontras tinggi.",
-      deliverables: ["Aset Logo & Iconography", "Wireframe & Desain Layar", "Design System Figma", "Prototipe Clickable"]
-    }
-  },
-  {
-    id: "fertiflow-design",
-    title: "FertiFlow — Desain Dashboard & Visual Telemetri IoT",
-    category: "Desain Antarmuka",
-    tool: "Figma & Canva",
+    id: "logo-techno-village",
+    title: "Techno Village 2026",
+    badge: "HMJ TI Polinela",
+    organization: "HMJ TI Polinela",
     year: "2026",
-    award: "Juara 3 AITEC VIII Nasional",
-    role: "Designer & Developer",
-    summary: "Desain visual dashboard monitoring sensor kelembapan tanah, panel kontrol pompa otomatis, dan visualisasi status tanaman cerdas.",
+    tool: "Figma & Illustrator",
+    image: "/images/designs/logo/logo-bulet-4.webp",
     accentColor: "#38bdf8",
-    screensCount: "16+ Layout Layar",
-    highlights: ["Visualisasi Indikator Sensor", "Desain Panel Kontrol", "Skema Warna Real-time", "Dark Mode Tampilan"],
-    image: "/images/projects/fertiflow-thumb.svg",
-    figmaUrl: "https://figma.com",
-    details: {
-      client: "AITEC VIII Nasional • BAKORMA & Polinela",
-      problem: "Data telemetri angka sensor seringkali membingungkan jika tidak divisualisasikan dengan indikator grafik yang jelas.",
-      solution: "Membuat visual indikator dial melingkar, kode warna status tanah, dan kartu kontrol aktuator yang bersih dan modern.",
-      deliverables: ["Visual Dashboard Telemetri", "Aset Ikon Aktuator", "Prototipe Alur Monitoring", "Grafis Presentasi Lomba"]
-    }
+    tagline: "Identitas Program Pengabdian & Inovasi Desa",
+    summary: "Simbol keselarasan teknologi informasi dan dedikasi mahasiswa bagi pemberdayaan masyarakat desa."
   },
   {
-    id: "branding-visual-assets",
-    title: "Desain Identitas Visual, Banner & Kartu Tanda Pengenal",
-    category: "Logo & Visual Identity",
-    tool: "Canva & Figma",
-    year: "2025",
-    award: "Koleksi Aset Kreatif & Identitas Visual",
-    role: "Visual Creator",
-    summary: "Eksplorasi desain logo, kartu identitas ID card dengan tali lanyard interaktif, banner kegiatan, dan elemen visual pendukung.",
-    accentColor: "#a855f7",
-    screensCount: "Koleksi Identitas",
-    highlights: ["Desain ID Card & Lanyard", "Eksplorasi Tipografi", "Banner Header Kegiatan", "Vector Graphic Elements"],
-    image: "/images/id-card-front.png",
-    figmaUrl: null,
-    details: {
-      client: "Projek Personal & Kegiatan Kemahasiswaan Polinela",
-      problem: "Kebutuhan materi identitas visual yang unik untuk menandai personalitas dan branding acara kampus.",
-      solution: "Memadukan elemen estetika futuristik dengan detail presisi pada kartu ID card dan banner digital.",
-      deliverables: ["Aset ID Card Front & Back", "Banner Digital", "Elemen Grafis Vektor"]
-    }
+    id: "logo-fertiflow",
+    title: "FertiFlow Brand Mark",
+    badge: "Smart Precision Agriculture IoT",
+    organization: "Projek IoT FertiFlow",
+    year: "2026",
+    tool: "Figma & Illustrator",
+    image: "/images/designs/logo/logo-4.webp",
+    accentColor: "#4A74A7",
+    tagline: "Simbol Ekosistem Irigasi & Otomasi Presisi Cerdas",
+    summary: "Identitas visual sistem rekayasa perangkat lunak dan mikrokontroler IoT pemenang Juara 3 Nasional AITEC."
+  },
+  {
+    id: "logo-i4f",
+    title: "Innovation 4Force",
+    badge: "International Expo",
+    organization: "Politeknik Negeri Lampung",
+    year: "2026",
+    tool: "Figma & Illustrator",
+    image: "/images/designs/logo/logo-i4f.webp",
+    accentColor: "#5a86bc",
+    tagline: "Logo Simposium Teknologi Antarbangsa",
+    summary: "Desain geometris dinamis yang mencerminkan kolaborasi inovasi mahasiswa 5 negara."
   }
 ];
+
+// Unified Social Media & Publication Showcase (All 15 works in ONE slideable collection)
+export const socialMediaPosts = [
+  {
+    id: "sm-01",
+    title: "Informasi & Alur Program HMJ TI",
+    category: "Carousel Slide 1/5",
+    type: "Instagram Carousel",
+    year: "2026",
+    tool: "Canva & Figma",
+    image: "/images/designs/media/carousel-1.webp",
+    summary: "Cover pembuka feed carousel edukasi program kerja mahasiswa HMJ TI dengan tata letak visual modern."
+  },
+  {
+    id: "sm-02",
+    title: "Detail Tahapan & Panduan Kegiatan",
+    category: "Carousel Slide 2/5",
+    type: "Instagram Carousel",
+    year: "2026",
+    tool: "Canva & Figma",
+    image: "/images/designs/media/carousel-2.webp",
+    summary: "Struktur informasi sistematis yang menjelaskan tahapan alur kegiatan secara jelas dan mudah dipahami."
+  },
+  {
+    id: "sm-03",
+    title: "Persyaratan & Kriteria Partisipasi",
+    category: "Carousel Slide 3/5",
+    type: "Instagram Carousel",
+    year: "2026",
+    tool: "Canva & Figma",
+    image: "/images/designs/media/carousel-3.webp",
+    summary: "Visualisasi poin-poin persyaratan administrasi dengan hierarki tipografi proporsional."
+  },
+  {
+    id: "sm-04",
+    title: "Jadwal & Agenda Pelaksanaan",
+    category: "Carousel Slide 4/5",
+    type: "Instagram Carousel",
+    year: "2026",
+    tool: "Canva & Figma",
+    image: "/images/designs/media/carousel-4.webp",
+    summary: "Penyusunan jadwal linimasa kegiatan mahasiswa dengan ikonografi pendukung yang rapi."
+  },
+  {
+    id: "sm-05",
+    title: "Call-to-Action & Informasi Narahubung",
+    category: "Carousel Slide 5/5",
+    type: "Instagram Carousel",
+    year: "2026",
+    tool: "Canva & Figma",
+    image: "/images/designs/media/carousel-5.webp",
+    summary: "Penutup slide carousel dengan tautan registrasi dan kontak resmi panitia organisasi."
+  },
+  {
+    id: "sm-06",
+    title: "Materi Sosialisasi Akademik HMJ TI",
+    category: "Feed Instagram",
+    type: "Instagram Single Post",
+    year: "2026",
+    tool: "Canva & Figma",
+    image: "/images/designs/media/feed-10.webp",
+    summary: "Desain feed Instagram untuk sosialisasi agenda akademik jurusan dengan kontras warna tajam."
+  },
+  {
+    id: "sm-07",
+    title: "Publikasi Resmi Kegiatan Mahasiswa",
+    category: "Feed Instagram",
+    type: "Instagram Single Post",
+    year: "2026",
+    tool: "Canva & Figma",
+    image: "/images/designs/media/feed-33.webp",
+    summary: "Konten visual promosi acara tahunan kepengurusan mahasiswa dengan tata letak dinamis."
+  },
+  {
+    id: "sm-08",
+    title: "Banner Kampanye Inovasi FertiFlow",
+    category: "Digital Banner",
+    type: "Landscape Banner",
+    year: "2026",
+    tool: "Canva & Figma",
+    image: "/images/designs/media/fertiflow-banner.webp",
+    summary: "Key visual promosi sistem irigasi presisi berbasis IoT untuk presentasi lomba dan publikasi digital."
+  },
+  {
+    id: "sm-09",
+    title: "Telemetri Kelembapan Tanah IoT",
+    category: "FertiFlow Series",
+    type: "Instagram Feed",
+    year: "2026",
+    tool: "Canva & Figma",
+    image: "/images/designs/media/fertiflow-11.webp",
+    summary: "Visualisasi infografis cara kerja sensor tanah dan pengiriman data telemetri real-time ke cloud."
+  },
+  {
+    id: "sm-10",
+    title: "Otomasi Katup Irigasi Presisi",
+    category: "FertiFlow Series",
+    type: "Instagram Feed",
+    year: "2026",
+    tool: "Canva & Figma",
+    image: "/images/designs/media/fertiflow-12.webp",
+    summary: "Desain edukatif mengenai aktuator pompa dan katup solenoid otomatis penghemat air irigasi."
+  },
+  {
+    id: "sm-11",
+    title: "Dashboard Antarmuka Pengguna Mobile",
+    category: "FertiFlow Series",
+    type: "Instagram Feed",
+    year: "2026",
+    tool: "Canva & Figma",
+    image: "/images/designs/media/fertiflow-13.webp",
+    summary: "Sorotan tampilan aplikasi Flutter untuk kontrol jarak jauh irigasi lahan pertanian cerdas."
+  },
+  {
+    id: "sm-12",
+    title: "Poster Apresiasi JTI Berprestasi",
+    category: "Poster Prestasi",
+    type: "Pamflet & Poster",
+    year: "2026",
+    tool: "Canva & Figma",
+    image: "/images/designs/media/jti-berprestasi.webp",
+    summary: "Poster penghargaan apresiasi mahasiswa Jurusan TI yang meraih gelar juara di ajang kompetisi nasional."
+  },
+  {
+    id: "sm-13",
+    title: "Peringatan Hari Besar Nasional",
+    category: "Poster Peringatan",
+    type: "Pamflet & Poster",
+    year: "2026",
+    tool: "Canva & Figma",
+    image: "/images/designs/media/hari-besar-sankara.webp",
+    summary: "Desain poster ucapan peringatan hari nasional resmi kepengurusan HMJ TI Polinela."
+  },
+  {
+    id: "sm-14",
+    title: "Pamflet Publikasi Menfess Mahasiswa Polinela",
+    category: "Pamflet Digital",
+    type: "Pamflet & Poster",
+    year: "2025",
+    tool: "Canva & Figma",
+    image: "/images/designs/media/pamflet-menfess-2.webp",
+    summary: "Media publikasi visual interaktif forum aspirasi dan komunikasi mahasiswa kampus."
+  },
+  {
+    id: "sm-15",
+    title: "Interaksi & Aspirasi Komunitas Mahasiswa",
+    category: "Pamflet Digital",
+    type: "Pamflet & Poster",
+    year: "2025",
+    tool: "Canva & Figma",
+    image: "/images/designs/media/pamflet-menfess-3.webp",
+    summary: "Media informasi visual keterlibatan aktif mahasiswa jurusan teknologi informasi."
+  }
+];
+
+// Backwards compatibility alias
+export const designCollections = socialMediaPosts;
+export const designs = socialMediaPosts;

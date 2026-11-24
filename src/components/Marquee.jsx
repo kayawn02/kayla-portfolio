@@ -20,7 +20,7 @@ export default function Marquee() {
   const doubled = [...items, ...items];
 
   return (
-    <div className="relative py-4 border-y border-red-900/25 bg-[#0b0609]/70 backdrop-blur-md overflow-hidden">
+    <div className="relative py-4 border-y border-[#4A74A7]/20 bg-[#081426]/80 backdrop-blur-md overflow-hidden font-heading">
       <motion.div
         className="flex gap-8 whitespace-nowrap"
         animate={{ x: ['0%', '-50%'] }}
@@ -31,8 +31,8 @@ export default function Marquee() {
             key={i}
             className="text-xs font-semibold tracking-wider text-neutral-300 flex items-center gap-8 uppercase"
           >
-            <span className="hover:text-red-400 transition-colors">{item}</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-red-600 shadow-[0_0_6px_rgba(220,38,38,0.7)]" />
+            <span className="hover:text-[#DCEAF7] transition-colors">{item}</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#4A74A7] shadow-[0_0_8px_rgba(74,116,167,0.8)]" />
           </span>
         ))}
       </motion.div>

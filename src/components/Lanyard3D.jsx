@@ -34,11 +34,11 @@ export default function Lanyard3D() {
     keyLight.castShadow = true;
     scene.add(keyLight);
 
-    const redRimLight = new THREE.PointLight(0xdc2626, 3.8, 12);
+    const redRimLight = new THREE.PointLight(0x4A74A7, 3.8, 12);
     redRimLight.position.set(-3, -1, 3);
     scene.add(redRimLight);
 
-    const bottomGlow = new THREE.PointLight(0x991b1b, 2.0, 8);
+    const bottomGlow = new THREE.PointLight(0x142A44, 2.5, 8);
     bottomGlow.position.set(0, -3, 2);
     scene.add(bottomGlow);
 
@@ -70,12 +70,12 @@ export default function Lanyard3D() {
 
     const cardGroup = new THREE.Group();
 
-    // Core Frame (Dark Crimson Metallic Bezel)
+    // Core Frame (Deep Galaxy Blue Metallic Bezel)
     const frameGeo = new THREE.BoxGeometry(cardW, cardH, cardThick);
     const frameMat = new THREE.MeshStandardMaterial({
-      color: 0x7f1d1d,
-      metalness: 0.8,
-      roughness: 0.25,
+      color: 0x142A44,
+      metalness: 0.85,
+      roughness: 0.2,
     });
     const frameMesh = new THREE.Mesh(frameGeo, frameMat);
     frameMesh.castShadow = true;
@@ -163,8 +163,9 @@ export default function Lanyard3D() {
 
     const strapMat = new THREE.MeshStandardMaterial({
       map: strapTexture,
+      color: 0x4A74A7,
       roughness: 0.55,
-      metalness: 0.2,
+      metalness: 0.25,
       side: THREE.DoubleSide,
     });
 
@@ -356,8 +357,8 @@ export default function Lanyard3D() {
       />
 
       {/* Floating Action Pill */}
-      <div className="absolute bottom-2 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#12080c]/85 backdrop-blur-md border border-red-500/30 text-[11px] text-neutral-300 pointer-events-none shadow-lg">
-        <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
+      <div className="absolute bottom-2 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#081426]/85 backdrop-blur-md border border-[#4A74A7]/40 text-[11px] text-[#DCEAF7] pointer-events-none shadow-lg font-heading">
+        <span className="w-2 h-2 rounded-full bg-[#4A74A7] animate-ping" />
         <span>Tarik / ayunkan ID Card 3D dengan mouse</span>
       </div>
     </div>

@@ -23,6 +23,8 @@ import { projects } from '../data/projects';
 import { certificates, achievements } from '../data/certificates';
 import { designs, designCategories } from '../data/designs';
 import DesignModal from './DesignModal';
+import ProjectModal from './ProjectModal';
+import GraphicDesignShowcase from './GraphicDesignShowcase';
 import { playNavClickSound } from '../utils/sound';
 import {
   FigmaLogo,
@@ -93,6 +95,7 @@ const certCategories = [
 
 export default function PortfolioShowcase({ onSelectProject }) {
   const [activeTab, setActiveTab] = useState('Projects');
+  const [modalProject, setModalProject] = useState(null);
   const [selectedCert, setSelectedCert] = useState(null);
   const [selectedDesign, setSelectedDesign] = useState(null);
   const [activeCertCategory, setActiveCertCategory] = useState('Semua');
@@ -117,7 +120,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
         
         {/* Section Header */}
         <div className="text-center mb-10">
-          <p className="text-xs font-heading font-semibold tracking-wider text-red-500 uppercase mb-2">
+          <p className="text-xs font-heading font-semibold tracking-wider text-[#4A74A7] uppercase mb-2">
             Portofolio &amp; Karya
           </p>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-heading">
@@ -130,7 +133,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
 
         {/* Tab Selector Capsule (Clean Minimalist Glass Pill) */}
         <div className="flex justify-center mb-12">
-          <div className="inline-flex p-1.5 rounded-2xl sm:rounded-full bg-[#120a13]/80 border border-white/10 shadow-lg backdrop-blur-md flex-wrap justify-center gap-1">
+          <div className="inline-flex p-1.5 rounded-2xl sm:rounded-full bg-[#081426]/80 border border-[#4A74A7]/30 shadow-lg backdrop-blur-md flex-wrap justify-center gap-1">
             {tabsConfig.map((tab) => {
               const isActive = activeTab === tab.id;
               const TabIcon = tab.icon;
@@ -145,7 +148,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                   {isActive && (
                     <motion.span
                       layoutId="portfolio-tab-pill"
-                      className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-700 rounded-xl sm:rounded-full shadow-[0_0_15px_rgba(220,38,38,0.4)]"
+                      className="absolute inset-0 bg-gradient-to-r from-[#142A44] to-[#4A74A7] rounded-xl sm:rounded-full shadow-[0_0_15px_rgba(74,116,167,0.45)] border border-[#4A74A7]"
                       transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                     />
                   )}
@@ -178,15 +181,15 @@ export default function PortfolioShowcase({ onSelectProject }) {
                   viewport={{ once: false, amount: 0.15 }}
                   transition={{ type: 'spring', stiffness: 120, damping: 16, delay: idx * 0.1 }}
                   whileHover={{ y: -8, scale: 1.015 }}
-                  onClick={() => onSelectProject(proj)}
-                  className="rounded-3xl border border-white/10 hover:border-red-500/50 bg-gradient-to-b from-[#140b15]/95 to-[#090509]/95 backdrop-blur-xl overflow-hidden flex flex-col justify-between transition-all duration-300 shadow-2xl group cursor-pointer select-none relative"
+                  onClick={() => setModalProject(proj)}
+                  className="rounded-3xl border border-[#4A74A7]/30 hover:border-[#38bdf8] bg-gradient-to-b from-[#142A44]/80 via-[#0e1d32]/90 to-[#081426]/95 backdrop-blur-xl overflow-hidden flex flex-col justify-between transition-all duration-300 shadow-2xl group cursor-pointer select-none relative"
                 >
                   {/* Top Edge Animated Shimmer Beam */}
-                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20" />
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#38bdf8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20" />
 
                   <div>
                     {/* Visual Mockup Frame with Interactive Hover Zoom */}
-                    <div className="relative h-60 sm:h-64 w-full bg-[#080408] overflow-hidden flex items-center justify-center border-b border-white/5 p-4">
+                    <div className="relative h-56 sm:h-60 w-full bg-[#050c18] overflow-hidden flex items-center justify-center border-b border-[#DCEAF7]/5 p-4">
                       <img
                         src={proj.thumbnail}
                         alt={proj.title}
@@ -195,39 +198,41 @@ export default function PortfolioShowcase({ onSelectProject }) {
                       
                       {/* Floating Glass Badges in Image Header */}
                       <div className="absolute top-3.5 left-4 right-4 flex items-center justify-between pointer-events-none">
-                        <span className="px-3 py-1 rounded-full text-xs font-heading font-semibold uppercase bg-black/80 text-white border border-white/15 backdrop-blur-md shadow-md">
+                        <span className="px-3 py-1 rounded-full text-xs font-heading font-semibold uppercase bg-[#081426]/90 text-[#DCEAF7] border border-[#4A74A7]/40 backdrop-blur-md shadow-md">
                           {proj.category}
                         </span>
-                        <span className="px-2.5 py-1 rounded-full text-xs font-heading font-semibold text-neutral-300 bg-black/80 border border-white/15 backdrop-blur-md">
+                        <span className="px-2.5 py-1 rounded-full text-xs font-heading font-semibold text-[#DCEAF7] bg-[#081426]/85 border border-[#4A74A7]/30 backdrop-blur-md">
                           {proj.year}
                         </span>
                       </div>
 
                       {/* Hover Overlay Hint */}
                       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                        <span className="px-4 py-2 rounded-full bg-red-600 text-white text-xs font-heading font-semibold flex items-center gap-2 shadow-xl scale-95 group-hover:scale-100 transition-transform">
+                        <span className="px-4 py-2 rounded-full bg-gradient-to-r from-[#142A44] to-[#4A74A7] text-white text-xs font-heading font-semibold flex items-center gap-2 shadow-xl scale-95 group-hover:scale-100 transition-transform border border-[#38bdf8]/50">
                           <Eye size={14} />
-                          <span>Eksplorasi Detail Projek</span>
+                          <span>Buka Detail Studi Kasus</span>
                         </span>
                       </div>
                     </div>
 
-                    {/* Content Body: Clean, Bold, No Text Clutter */}
-                    <div className="p-6 sm:p-7 space-y-3.5">
+                    {/* Content Body: Clean, Bold, Minimal Text */}
+                    <div className="p-6 space-y-3">
                       {proj.award && (
-                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-950/40 border border-amber-600/30 text-amber-300 text-xs font-heading font-medium">
-                          <Award size={13} className="text-amber-400 shrink-0" />
-                          <span className="truncate">{proj.award}</span>
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#142A44] border border-[#4A74A7]/60 text-[#DCEAF7] text-xs font-heading font-semibold shadow-sm">
+                          <Award size={13} className="text-[#38bdf8] shrink-0" />
+                          <span>{proj.id === 'fertiflow' ? 'Juara 3 AITEC Nasional' : 'Juara 1 UI/UX Point Project 3.0'}</span>
                         </div>
                       )}
 
-                      <h3 className="text-2xl font-extrabold text-white group-hover:text-red-400 transition-colors font-heading leading-snug">
+                      <h3 className="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#38bdf8] transition-colors font-heading leading-snug">
                         {proj.id === 'fertiflow' ? 'FertiFlow — Smart Irrigation System' : 'SangSmart — Agriculture Platform'}
                       </h3>
 
                       {/* Concise 1-Line Tagline */}
                       <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed font-sans line-clamp-2">
-                        {proj.summary}
+                        {proj.id === 'fertiflow'
+                          ? 'Sistem otomasi irigasi dan telemetri kelembapan tanah presisi berbasis IoT ESP32 & Flutter.'
+                          : 'Platform digital agrikultur transparansi harga komoditas dan rental alat mesin tani modern.'}
                       </p>
 
                       {/* Tools Used (Clean Logo Icons Only) */}
@@ -242,7 +247,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                               <div
                                 key={toolName}
                                 title={toolName}
-                                className="w-8 h-8 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center p-1.5 group-hover:border-red-500/40 group-hover:scale-110 transition-all shadow-sm"
+                                className="w-8 h-8 rounded-xl bg-white/[0.04] border border-[#4A74A7]/30 flex items-center justify-center p-1.5 group-hover:border-[#38bdf8] group-hover:scale-110 transition-all shadow-sm"
                               >
                                 {IconComponent ? (
                                   <IconComponent className="w-full h-full object-contain" />
@@ -258,21 +263,27 @@ export default function PortfolioShowcase({ onSelectProject }) {
                   </div>
 
                   {/* Card Action */}
-                  <div className="p-6 sm:p-7 pt-0 border-t border-white/5 flex items-center justify-between text-xs">
+                  <div className="p-6 pt-0 border-t border-white/5 flex items-center justify-between text-xs">
                     <span className="text-neutral-400 font-heading">
                       Peran: <strong className="text-white">{proj.role}</strong>
                     </span>
-                    <span className="inline-flex items-center gap-1.5 text-red-400 font-heading font-semibold group-hover:translate-x-1 transition-transform">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setModalProject(proj);
+                      }}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#081426] hover:bg-[#142A44] border border-[#4A74A7]/40 text-[#DCEAF7] font-heading font-semibold transition-all hover:scale-105"
+                    >
                       <span>Detail Lengkap</span>
-                      <ArrowRight size={14} />
-                    </span>
+                      <ArrowRight size={13} className="text-[#38bdf8]" />
+                    </button>
                   </div>
                 </motion.div>
               ))}
             </motion.div>
           )}
 
-          {/* ===================== GRAPHIC DESIGN TAB (POSTER, PAMFLET & VISUAL WORKS) ===================== */}
+          {/* ===================== GRAPHIC DESIGN TAB (INTERACTIVE MULTI-SLIDER & CREATIVE LOGOS) ===================== */}
           {activeTab === 'Designs' && (
             <motion.div
               key="designs"
@@ -280,109 +291,8 @@ export default function PortfolioShowcase({ onSelectProject }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.35 }}
-              className="space-y-8"
             >
-              {/* Category Filter Pills (Aligned with Heading Font - Poppins) */}
-              <div className="flex flex-wrap justify-center gap-2">
-                {designCategories.map((cat) => {
-                  const isSelected = activeDesignCategory === cat;
-                  return (
-                    <button
-                      key={cat}
-                      onClick={() => {
-                        playNavClickSound();
-                        setActiveDesignCategory(cat);
-                      }}
-                      className={`px-4 py-2 rounded-full text-xs font-heading font-medium transition-all duration-200 ${
-                        isSelected
-                          ? 'bg-red-600 text-white font-semibold shadow-md'
-                          : 'bg-white/[0.03] border border-white/10 text-neutral-300 hover:text-white hover:bg-white/[0.08]'
-                      }`}
-                    >
-                      {cat}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Designs Bento Grid */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredDesigns.map((des, idx) => (
-                  <motion.div
-                    key={des.id}
-                    initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    viewport={{ once: false, amount: 0.15 }}
-                    transition={{ type: 'spring', stiffness: 120, damping: 16, delay: (idx % 3) * 0.08 }}
-                    whileHover={{ y: -6, scale: 1.015 }}
-                    onClick={() => setSelectedDesign(des)}
-                    className="group rounded-2xl overflow-hidden border border-white/10 hover:border-red-500/50 bg-gradient-to-b from-[#140c13]/90 via-[#0d070c]/90 to-black backdrop-blur-xl flex flex-col justify-between cursor-pointer transition-all duration-300 shadow-xl select-none"
-                  >
-                    <div>
-                      {/* Image Preview Frame */}
-                      <div className="relative h-52 w-full bg-[#0a0509] overflow-hidden flex items-center justify-center p-3 border-b border-white/5">
-                        <img
-                          src={des.image}
-                          alt={des.title}
-                          className="max-h-full max-w-full object-contain rounded-lg transition-transform duration-500 group-hover:scale-105 filter drop-shadow-md"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                          <span className="px-4 py-1.5 rounded-full bg-red-600 text-white text-xs font-semibold flex items-center gap-1.5 shadow-lg scale-95 group-hover:scale-100 transition-transform font-heading">
-                            <Eye size={14} />
-                            <span>Buka Preview Karya</span>
-                          </span>
-                        </div>
-                        <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
-                          <span className="px-2.5 py-0.5 rounded text-[10px] font-heading font-semibold uppercase bg-black/85 text-red-300 border border-red-700/30 backdrop-blur-md">
-                            {des.category}
-                          </span>
-                          <span className="px-2 py-0.5 rounded text-[10px] font-heading font-medium text-neutral-400 bg-black/75 border border-white/10 backdrop-blur-md">
-                            {des.screensCount}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Content */}
-                      <div className="p-5 space-y-2.5">
-                        {des.award && (
-                          <p className="text-[11px] font-semibold text-amber-400/90 flex items-center gap-1.5 font-sans">
-                            <Sparkles size={12} className="text-amber-400 shrink-0" />
-                            <span className="truncate">{des.award}</span>
-                          </p>
-                        )}
-                        <h4 className="text-base font-bold text-white group-hover:text-red-400 transition-colors line-clamp-1 font-heading">
-                          {des.title}
-                        </h4>
-                        <p className="text-xs text-neutral-400 line-clamp-2 leading-relaxed font-sans">
-                          {des.summary}
-                        </p>
-
-                        <div className="flex flex-wrap gap-1.5 pt-1">
-                          {des.highlights.slice(0, 3).map((h, i) => (
-                            <span
-                              key={i}
-                              className="px-2 py-0.5 rounded text-[10px] font-heading font-medium bg-white/[0.03] border border-white/10 text-neutral-300"
-                            >
-                              {h}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="p-5 pt-3 border-t border-white/5 flex items-center justify-between text-xs">
-                      <span className="text-[11px] text-neutral-400 font-heading">
-                        Tool: <strong className="text-white">{des.tool}</strong>
-                      </span>
-                      <span className="text-red-400 font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-1 font-heading">
-                        <span>Lihat Detail</span>
-                        <ArrowRight size={13} />
-                      </span>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+              <GraphicDesignShowcase />
             </motion.div>
           )}
 
@@ -409,8 +319,8 @@ export default function PortfolioShowcase({ onSelectProject }) {
                       }}
                       className={`px-4 py-2 rounded-full text-xs font-heading font-medium transition-all duration-200 ${
                         isSelected
-                          ? 'bg-red-600 text-white font-semibold shadow-md'
-                          : 'bg-white/[0.03] border border-white/10 text-neutral-300 hover:text-white hover:bg-white/[0.08]'
+                          ? 'bg-gradient-to-r from-[#142A44] to-[#4A74A7] text-[#DCEAF7] font-semibold shadow-[0_0_15px_rgba(74,116,167,0.45)] border border-[#4A74A7]'
+                          : 'bg-[#142A44]/40 border border-[#DCEAF7]/10 text-neutral-300 hover:text-white hover:border-[#4A74A7]/50'
                       }`}
                     >
                       {cat}
@@ -434,29 +344,29 @@ export default function PortfolioShowcase({ onSelectProject }) {
                       onClick={() => setSelectedCert(cert)}
                       className={`group relative rounded-2xl overflow-hidden backdrop-blur-xl flex flex-col justify-between cursor-pointer transition-all duration-300 shadow-2xl select-none ${
                         isTopAward
-                          ? 'border-2 border-amber-500/40 hover:border-amber-400 bg-gradient-to-b from-[#1c1214] via-[#10080d] to-black shadow-[0_15px_40px_rgba(245,158,11,0.15)] hover:shadow-[0_20px_50px_rgba(245,158,11,0.3)]'
-                          : 'border border-white/10 hover:border-red-500/50 bg-gradient-to-b from-[#140c13]/90 via-[#0d070c]/90 to-black hover:shadow-[0_20px_45px_rgba(220,38,38,0.25)]'
+                          ? 'border-2 border-[#38bdf8]/40 hover:border-[#38bdf8] bg-gradient-to-b from-[#142A44]/90 via-[#0e1d32]/90 to-[#081426] shadow-[0_15px_40px_rgba(56,189,248,0.15)] hover:shadow-[0_20px_50px_rgba(56,189,248,0.3)]'
+                          : 'border border-[#4A74A7]/25 hover:border-[#4A74A7]/60 bg-gradient-to-b from-[#142A44]/80 via-[#0e1d32]/90 to-[#081426]/95 hover:shadow-[0_20px_45px_rgba(74,116,167,0.25)]'
                       }`}
                     >
                       {/* Top Edge Beam */}
                       <div
                         className={`absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20 ${
                           isTopAward
-                            ? 'bg-gradient-to-r from-transparent via-amber-400 to-transparent'
-                            : 'bg-gradient-to-r from-transparent via-red-500 to-transparent'
+                            ? 'bg-gradient-to-r from-transparent via-[#38bdf8] to-transparent'
+                            : 'bg-gradient-to-r from-transparent via-[#4A74A7] to-transparent'
                         }`}
                       />
 
-                      {/* Top Prestige Gold Watermark for Juara 1 & 3 */}
+                      {/* Top Prestige Watermark for Juara 1 & 3 */}
                       {isTopAward && (
-                        <div className="absolute top-2 right-2 text-7xl font-heading font-black text-amber-500/[0.05] pointer-events-none select-none">
+                        <div className="absolute top-2 right-2 text-7xl font-heading font-black text-[#38bdf8]/[0.05] pointer-events-none select-none">
                           {cert.year}
                         </div>
                       )}
 
                       <div>
                         {/* Certificate Thumbnail Frame */}
-                        <div className="relative h-56 w-full bg-[#0a0509] overflow-hidden flex items-center justify-center p-3 border-b border-white/5">
+                        <div className="relative h-56 w-full bg-[#050c18] overflow-hidden flex items-center justify-center p-3 border-b border-[#DCEAF7]/5">
                           <img
                             src={cert.thumbnail}
                             alt={cert.title}
@@ -464,7 +374,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                             loading="lazy"
                           />
                           <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                            <span className="px-4 py-1.5 rounded-full bg-red-600/90 text-white text-xs font-semibold flex items-center gap-1.5 shadow-lg scale-95 group-hover:scale-100 transition-transform font-heading">
+                            <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-[#142A44] to-[#4A74A7] text-white text-xs font-semibold flex items-center gap-1.5 shadow-lg scale-95 group-hover:scale-100 transition-transform font-heading border border-[#4A74A7]/50">
                               <Eye size={14} />
                               <span>Lihat Dokumen Asli</span>
                             </span>
@@ -475,13 +385,13 @@ export default function PortfolioShowcase({ onSelectProject }) {
                             <span
                               className={`px-2.5 py-1 rounded-md text-[10px] font-heading font-semibold tracking-wide uppercase border backdrop-blur-md shadow-sm ${
                                 isTopAward
-                                  ? 'bg-amber-950/80 text-amber-300 border-amber-500/40'
-                                  : 'bg-black/85 text-neutral-200 border-white/15'
+                                  ? 'bg-[#142A44] text-[#DCEAF7] border-[#38bdf8]/40'
+                                  : 'bg-[#081426]/90 text-neutral-200 border-[#4A74A7]/30'
                               }`}
                             >
                               {cert.badge}
                             </span>
-                            <span className="px-2 py-0.5 rounded text-[10px] font-heading font-medium text-neutral-400 bg-black/75 border border-white/10 backdrop-blur-md">
+                            <span className="px-2 py-0.5 rounded text-[10px] font-heading font-medium text-neutral-300 bg-[#081426]/80 border border-white/10 backdrop-blur-md">
                               {cert.year}
                             </span>
                           </div>
@@ -489,7 +399,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
 
                         {/* Information Body */}
                         <div className="p-5 space-y-2">
-                          <h4 className="text-base font-bold text-white group-hover:text-red-400 transition-colors line-clamp-1 leading-snug font-heading">
+                          <h4 className="text-base font-bold text-white group-hover:text-[#DCEAF7] transition-colors line-clamp-1 leading-snug font-heading">
                             {cert.title}
                           </h4>
                           <p className="text-xs text-neutral-400 line-clamp-1 font-medium font-sans">
@@ -507,7 +417,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                         <span className="text-[11px] text-neutral-500 font-heading">
                           {cert.category}
                         </span>
-                        <span className="text-red-400 font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0 font-heading">
+                        <span className="text-[#4A74A7] font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0 font-heading">
                           <span>Perbesar</span>
                           <span>&rarr;</span>
                         </span>
@@ -544,8 +454,8 @@ export default function PortfolioShowcase({ onSelectProject }) {
                     onClick={() => setSelectedCert(targetCert)}
                     className={`group relative rounded-3xl p-6 sm:p-7 overflow-hidden backdrop-blur-xl cursor-pointer select-none flex flex-col justify-between transition-all duration-300 shadow-2xl ${
                       isFirst
-                        ? 'border-2 border-amber-500/50 hover:border-amber-400 bg-gradient-to-b from-[#1e1310]/95 via-[#120a0b]/95 to-black shadow-[0_20px_50px_rgba(245,158,11,0.2)]'
-                        : 'border border-white/10 hover:border-red-500/50 bg-gradient-to-b from-[#160d15]/95 via-[#0e080e]/95 to-[#070507]'
+                        ? 'border-2 border-[#38bdf8]/40 hover:border-[#38bdf8] bg-gradient-to-b from-[#142A44]/90 via-[#0e1d32]/95 to-[#081426] shadow-[0_20px_50px_rgba(56,189,248,0.2)]'
+                        : 'border border-[#4A74A7]/25 hover:border-[#4A74A7]/60 bg-gradient-to-b from-[#142A44]/80 via-[#0e1d32]/90 to-[#081426]/95'
                     }`}
                   >
                     {/* Top Radiant Beam */}
@@ -579,14 +489,14 @@ export default function PortfolioShowcase({ onSelectProject }) {
                       </div>
 
                       {/* Embedded Visual Certificate Preview Box */}
-                      <div className="relative h-40 w-full rounded-2xl bg-black/60 border border-white/10 overflow-hidden flex items-center justify-center p-2 my-3 group-hover:border-white/20 transition-all">
+                      <div className="relative h-40 w-full rounded-2xl bg-[#050c18] border border-[#DCEAF7]/10 overflow-hidden flex items-center justify-center p-2 my-3 group-hover:border-[#4A74A7]/40 transition-all">
                         <img
                           src={targetCert.thumbnail}
                           alt={item.title}
                           className="max-h-full max-w-full object-contain rounded-lg filter drop-shadow-md group-hover:scale-105 transition-transform duration-300"
                         />
                         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                          <span className="px-3 py-1 rounded-full bg-red-600 text-white text-[11px] font-semibold flex items-center gap-1 font-heading">
+                          <span className="px-3 py-1 rounded-full bg-gradient-to-r from-[#142A44] to-[#4A74A7] text-white text-[11px] font-semibold flex items-center gap-1 font-heading border border-[#4A74A7]/50">
                             <Eye size={12} />
                             <span>Lihat Sertifikat</span>
                           </span>
@@ -608,7 +518,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
 
                       {/* Title & Organization */}
                       <div className="space-y-1 mt-2">
-                        <h4 className="text-base sm:text-lg font-bold text-white group-hover:text-red-300 transition-colors leading-snug font-heading">
+                        <h4 className="text-base sm:text-lg font-bold text-white group-hover:text-[#DCEAF7] transition-colors leading-snug font-heading">
                           {item.title}
                         </h4>
                         <p className="text-xs text-neutral-400 font-medium leading-relaxed font-sans">
@@ -622,7 +532,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                       <span className="text-[11px] font-semibold text-neutral-300 bg-white/[0.04] border border-white/10 px-2.5 py-1 rounded-lg font-heading">
                         {item.project}
                       </span>
-                      <span className="text-red-400 font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0 font-heading">
+                      <span className="text-[#4A74A7] font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0 font-heading">
                         <span>Dokumen Asli</span>
                         <span>&rarr;</span>
                       </span>
@@ -655,11 +565,11 @@ export default function PortfolioShowcase({ onSelectProject }) {
                       viewport={{ once: false }}
                       transition={{ delay: idx * 0.04 }}
                       whileHover={{ y: -6, scale: 1.04 }}
-                      className={`p-5 rounded-2xl bg-gradient-to-b from-[#140b15]/90 to-[#0a050a]/90 border border-white/10 ${tool.border} flex flex-col items-center justify-center gap-3 backdrop-blur-xl shadow-lg transition-all duration-300 group cursor-default select-none relative overflow-hidden`}
+                      className={`p-5 rounded-2xl bg-gradient-to-b from-[#142A44]/75 to-[#081426]/90 border border-[#4A74A7]/25 ${tool.border} flex flex-col items-center justify-center gap-3 backdrop-blur-xl shadow-lg transition-all duration-300 group cursor-default select-none relative overflow-hidden`}
                     >
                       {/* Ambient hover glow */}
                       <div
-                        className="absolute inset-0 opacity-0 group-hover:opacity-15 blur-xl transition-opacity duration-300 pointer-events-none"
+                        className="absolute inset-0 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300 pointer-events-none"
                         style={{ backgroundColor: tool.glow }}
                       />
 
@@ -674,13 +584,13 @@ export default function PortfolioShowcase({ onSelectProject }) {
                 })}
               </div>
 
-              {/* Dual Infinite Running Marquee Ticker at the Bottom (Preserved as Requested) */}
-              <div className="p-6 sm:p-7 rounded-3xl bg-black/40 border border-white/10 space-y-4">
+              {/* Dual Infinite Running Marquee Ticker at the Bottom */}
+              <div className="p-6 sm:p-7 rounded-3xl bg-[#081426]/60 border border-[#4A74A7]/25 space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-heading font-semibold tracking-wider text-neutral-400 uppercase">
                     Continuous Ecosystem &amp; Workflow
                   </span>
-                  <span className="text-[11px] font-heading font-medium text-neutral-500">
+                  <span className="text-[11px] font-heading font-medium text-[#4A74A7]">
                     Live Ticker
                   </span>
                 </div>
@@ -719,7 +629,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                       return (
                         <div
                           key={i}
-                          className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-white/[0.03] border border-white/10 hover:border-red-500/40 hover:bg-white/[0.08] transition-all cursor-default select-none group"
+                          className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-[#142A44]/40 border border-[#4A74A7]/20 hover:border-[#4A74A7] hover:bg-[#142A44]/70 transition-all cursor-default select-none group"
                         >
                           <IconComp className="w-4 h-4 object-contain group-hover:scale-110 transition-transform" />
                           <span className="text-xs font-heading font-medium text-neutral-300 group-hover:text-white transition-colors">
@@ -759,9 +669,9 @@ export default function PortfolioShowcase({ onSelectProject }) {
                     ].map((skill, i) => (
                       <div
                         key={i}
-                        className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-red-950/20 border border-red-800/30 text-neutral-300 text-xs font-heading font-medium select-none"
+                        className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#142A44]/50 border border-[#4A74A7]/30 text-[#DCEAF7] text-xs font-heading font-medium select-none"
                       >
-                        <Zap size={11} className="text-red-400" />
+                        <Zap size={11} className="text-[#38bdf8]" />
                         <span>{skill}</span>
                       </div>
                     ))}
@@ -789,12 +699,12 @@ export default function PortfolioShowcase({ onSelectProject }) {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.95, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
-                className="bg-[#12080c] border border-red-800/40 rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl flex flex-col"
+                className="bg-[#081426] border border-[#4A74A7]/50 rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl flex flex-col"
               >
                 {/* Modal Header */}
-                <div className="p-4 sm:px-6 sm:py-4 border-b border-white/10 flex items-center justify-between bg-black/40">
+                <div className="p-4 sm:px-6 sm:py-4 border-b border-[#DCEAF7]/10 flex items-center justify-between bg-[#081426]/90">
                   <div>
-                    <span className="px-2.5 py-1 rounded-md text-[10px] font-heading font-semibold bg-red-950 text-red-300 border border-red-800/40 uppercase tracking-wider">
+                    <span className="px-2.5 py-1 rounded-md text-[10px] font-heading font-semibold bg-[#142A44] text-[#DCEAF7] border border-[#4A74A7]/40 uppercase tracking-wider">
                       {selectedCert.badge} &bull; {selectedCert.category}
                     </span>
                     <h3 className="text-base sm:text-lg font-bold text-white mt-1.5 font-heading">
@@ -804,7 +714,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                   </div>
                   <button
                     onClick={() => setSelectedCert(null)}
-                    className="p-2 rounded-xl bg-white/5 hover:bg-red-600 text-neutral-400 hover:text-white transition-colors"
+                    className="p-2 rounded-xl bg-white/5 hover:bg-[#4A74A7] text-neutral-400 hover:text-white transition-colors"
                   >
                     <X size={18} />
                   </button>
@@ -815,12 +725,12 @@ export default function PortfolioShowcase({ onSelectProject }) {
                   <img
                     src={selectedCert.thumbnail}
                     alt={selectedCert.title}
-                    className="max-h-[62vh] w-auto object-contain rounded-xl border border-red-900/30 shadow-2xl"
+                    className="max-h-[62vh] w-auto object-contain rounded-xl border border-[#4A74A7]/30 shadow-2xl"
                   />
                 </div>
 
                 {/* Modal Footer with Actions */}
-                <div className="p-4 sm:px-6 sm:py-3.5 border-t border-white/10 bg-[#0d060a] flex flex-wrap items-center justify-between gap-3">
+                <div className="p-4 sm:px-6 sm:py-3.5 border-t border-[#DCEAF7]/10 bg-[#081426] flex flex-wrap items-center justify-between gap-3">
                   <div className="text-xs text-neutral-400 space-y-0.5 font-sans">
                     <p>No. Registrasi: <span className="font-heading font-semibold text-neutral-200">{selectedCert.regNumber || 'TERVERIFIKASI'}</span></p>
                     {selectedCert.theme && <p className="text-[11px] text-neutral-500 italic">Tema: "{selectedCert.theme}"</p>}
@@ -831,7 +741,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
                       download
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-semibold shadow-md transition-all hover:scale-105 font-heading"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-[#142A44] to-[#4A74A7] hover:from-[#1c395c] hover:to-[#5a86bc] text-white text-xs font-semibold shadow-md transition-all hover:scale-105 font-heading border border-[#4A74A7]/50"
                     >
                       <Download size={14} />
                       <span>Unduh Dokumen Asli</span>
@@ -853,6 +763,12 @@ export default function PortfolioShowcase({ onSelectProject }) {
         <DesignModal
           design={selectedDesign}
           onClose={() => setSelectedDesign(null)}
+        />
+
+        {/* Fullscreen Project Case Study Modal */}
+        <ProjectModal
+          project={modalProject}
+          onClose={() => setModalProject(null)}
         />
 
       </div>

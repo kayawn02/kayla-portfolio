@@ -53,8 +53,8 @@ export default function Navbar({ onNavigate }) {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className={`pointer-events-auto max-w-4xl w-full mx-auto px-5 py-2.5 rounded-full flex items-center justify-between transition-all duration-300 ${
             scrolled
-              ? 'bg-[#0e090c]/85 backdrop-blur-xl border border-red-900/30 shadow-[0_10px_30px_rgba(0,0,0,0.8),0_0_15px_rgba(220,38,38,0.12)]'
-              : 'bg-[#0e090c]/50 backdrop-blur-md border border-white/5'
+              ? 'bg-[#081426]/90 backdrop-blur-xl border border-[#4A74A7]/30 shadow-[0_10px_30px_rgba(0,0,0,0.8),0_0_15px_rgba(74,116,167,0.2)]'
+              : 'bg-[#081426]/60 backdrop-blur-md border border-[#DCEAF7]/10'
           }`}
         >
           {/* Logo with clean subtle status dot */}
@@ -63,19 +63,19 @@ export default function Navbar({ onNavigate }) {
             onClick={handleNavClick}
             className="flex items-center gap-2.5 group"
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center font-bold text-sm text-white shadow-[0_0_12px_rgba(220,38,38,0.4)] group-hover:scale-105 transition-transform">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#142A44] to-[#4A74A7] flex items-center justify-center font-bold text-sm text-white shadow-[0_0_12px_rgba(74,116,167,0.4)] group-hover:scale-105 transition-transform">
               K
             </div>
             <div className="flex items-center gap-1.5">
               <span className="font-bold text-sm tracking-tight text-white font-heading">
-                Kayla<span className="text-red-500">.dev</span>
+                Kayla<span className="text-[#4A74A7]">.dev</span>
               </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" title="Available for work" />
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_rgba(56,189,248,0.8)]" title="Available for work" />
             </div>
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 bg-[#160d13]/60 px-2 py-1 rounded-full border border-white/5">
+          <nav className="hidden md:flex items-center gap-1 bg-[#142A44]/50 px-2 py-1 rounded-full border border-[#DCEAF7]/10">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.replace('#', '');
               return (
@@ -84,13 +84,13 @@ export default function Navbar({ onNavigate }) {
                   href={link.href}
                   onClick={handleNavClick}
                   className={`relative px-4 py-1.5 text-xs font-medium rounded-full transition-colors duration-200 ${
-                    isActive ? 'text-white' : 'text-neutral-400 hover:text-white'
+                    isActive ? 'text-white font-semibold' : 'text-neutral-300 hover:text-white'
                   }`}
                 >
                   {isActive && (
                     <motion.span
                       layoutId="nav-pill"
-                      className="absolute inset-0 bg-red-600/20 border border-red-500/35 rounded-full shadow-[0_0_10px_rgba(220,38,38,0.25)]"
+                      className="absolute inset-0 bg-[#4A74A7]/35 border border-[#4A74A7]/50 rounded-full shadow-[0_0_12px_rgba(74,116,167,0.35)]"
                       transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                     />
                   )}
@@ -108,10 +108,10 @@ export default function Navbar({ onNavigate }) {
                 setHasSound(next);
               }}
               title={hasSound ? 'Mute Suara' : 'Aktifkan Suara'}
-              className="w-8 h-8 rounded-full bg-white/[0.04] border border-white/10 hover:border-red-500/50 flex items-center justify-center text-neutral-300 hover:text-white transition-all shadow-sm"
+              className="w-8 h-8 rounded-full bg-[#142A44]/50 border border-[#DCEAF7]/10 hover:border-[#4A74A7]/50 flex items-center justify-center text-neutral-300 hover:text-white transition-all shadow-sm"
               aria-label="Toggle Sound"
             >
-              {hasSound ? <Volume2 size={13} className="text-red-400" /> : <VolumeX size={13} className="text-neutral-500" />}
+              {hasSound ? <Volume2 size={13} className="text-[#4A74A7]" /> : <VolumeX size={13} className="text-neutral-500" />}
             </button>
 
             <a
@@ -119,7 +119,7 @@ export default function Navbar({ onNavigate }) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => playNavClickSound()}
-              className="flex items-center gap-1.5 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-[0_0_12px_rgba(220,38,38,0.3)] hover:shadow-[0_0_18px_rgba(220,38,38,0.5)] transition-all hover:scale-[1.02] active:scale-[0.98]"
+              className="flex items-center gap-1.5 bg-gradient-to-r from-[#142A44] via-[#4A74A7] to-[#142A44] hover:from-[#1c395c] hover:to-[#5a86bc] text-white text-xs font-semibold px-4 py-1.5 rounded-full border border-[#4A74A7]/40 shadow-[0_0_14px_rgba(74,116,167,0.35)] hover:shadow-[0_0_20px_rgba(74,116,167,0.55)] transition-all hover:scale-[1.02] active:scale-[0.98]"
             >
               <Download size={13} />
               <span>Download CV</span>
@@ -132,7 +132,7 @@ export default function Navbar({ onNavigate }) {
               playNavClickSound();
               setMobileOpen(!mobileOpen);
             }}
-            className="md:hidden w-8 h-8 rounded-full bg-red-950/60 border border-red-500/30 flex items-center justify-center text-white"
+            className="md:hidden w-8 h-8 rounded-full bg-[#142A44]/80 border border-[#4A74A7]/40 flex items-center justify-center text-white"
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X size={16} /> : <Menu size={16} />}
@@ -148,7 +148,7 @@ export default function Navbar({ onNavigate }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-40 bg-[#070507]/95 backdrop-blur-2xl flex flex-col justify-center px-8 pt-16"
+            className="fixed inset-0 z-40 bg-[#081426]/95 backdrop-blur-2xl flex flex-col justify-center px-8 pt-16"
           >
             <div className="flex flex-col gap-5 max-w-sm mx-auto w-full">
               {navLinks.map((link, i) => (
@@ -162,10 +162,10 @@ export default function Navbar({ onNavigate }) {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.04 }}
-                  className="text-2xl font-bold text-neutral-300 hover:text-red-400 flex items-center justify-between border-b border-red-950/50 pb-3 transition-colors"
+                  className="text-2xl font-bold text-neutral-300 hover:text-[#DCEAF7] flex items-center justify-between border-b border-[#142A44] pb-3 transition-colors"
                 >
                   <span>{link.label}</span>
-                  <ArrowUpRight size={18} className="text-red-500" />
+                  <ArrowUpRight size={18} className="text-[#4A74A7]" />
                 </motion.a>
               ))}
 
@@ -177,7 +177,7 @@ export default function Navbar({ onNavigate }) {
                   playNavClickSound();
                   setMobileOpen(false);
                 }}
-                className="mt-4 flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold py-3.5 rounded-full text-sm shadow-[0_0_20px_rgba(220,38,38,0.4)]"
+                className="mt-4 flex items-center justify-center gap-2 bg-gradient-to-r from-[#142A44] to-[#4A74A7] text-white font-semibold py-3.5 rounded-full text-sm border border-[#4A74A7]/50 shadow-[0_0_20px_rgba(74,116,167,0.4)]"
               >
                 <Download size={16} />
                 <span>Download CV (PDF)</span>

@@ -9,7 +9,7 @@
   }
 
   body {
-    background-color: #070507;
+    background-color: #081426;
     color: #f1f5f9;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     overflow-x: hidden;
@@ -19,19 +19,19 @@
     font-family: 'Poppins', 'Inter', sans-serif;
   }
 
-  /* Minimal Dark Red Scrollbar */
+  /* Minimal Galaxy Blue Scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #070507;
+    background: #081426;
   }
   ::-webkit-scrollbar-thumb {
-    background: #2b1117;
+    background: #142A44;
     border-radius: 999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #dc2626;
+    background: #4A74A7;
   }
 }
 
@@ -49,9 +49,9 @@
   width: 140px;
   height: 2px;
   transform: rotate(45deg);
-  background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.25) 35%, rgba(255, 255, 255, 0.95));
+  background: linear-gradient(90deg, transparent, rgba(74, 116, 167, 0.3) 35%, rgba(220, 234, 247, 0.95));
   border-radius: 999px;
-  box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+  box-shadow: 0 0 10px rgba(74, 116, 167, 0.6);
   opacity: 0;
   animation: meteor-fall linear infinite;
 }
@@ -75,9 +75,9 @@
 
 /* True Ultra-Modern Glassmorphism Cards */
 .card-glass {
-  background: rgba(18, 12, 17, 0.48);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), 
+  background: rgba(20, 42, 68, 0.45);
+  border: 1px solid rgba(220, 234, 247, 0.1);
+  box-shadow: inset 0 1px 1px rgba(220, 234, 247, 0.08), 
               0 12px 32px -8px rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
@@ -86,19 +86,19 @@
 }
 
 .card-glass:hover {
-  background: rgba(26, 16, 24, 0.62);
-  border-color: rgba(220, 38, 38, 0.45);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.12),
-              0 16px 36px -10px rgba(220, 38, 38, 0.28);
+  background: rgba(30, 58, 92, 0.6);
+  border-color: rgba(74, 116, 167, 0.55);
+  box-shadow: inset 0 1px 1px rgba(220, 234, 247, 0.15),
+              0 16px 36px -10px rgba(74, 116, 167, 0.32);
 }
 
-/* Minimalist Tech Stack Glassmorphism Tile (Identical to Alfari Reference) */
+/* Minimalist Tech Stack Glassmorphism Tile */
 .tech-glass-tile {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(20, 42, 68, 0.35);
+  border: 1px solid rgba(220, 234, 247, 0.08);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05),
+  box-shadow: inset 0 1px 0 rgba(220, 234, 247, 0.05),
               0 8px 24px -6px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.3s ease,
@@ -108,13 +108,13 @@
 
 .tech-glass-tile:hover {
   transform: translateY(-6px) scale(1.02);
-  background: rgba(255, 255, 255, 0.065);
-  border-color: rgba(220, 38, 38, 0.45);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1),
-              0 14px 28px -6px rgba(220, 38, 38, 0.25);
+  background: rgba(30, 58, 92, 0.5);
+  border-color: rgba(74, 116, 167, 0.55);
+  box-shadow: inset 0 1px 1px rgba(220, 234, 247, 0.12),
+              0 14px 28px -6px rgba(74, 116, 167, 0.3);
 }
 
-/* Interactive Cursor Animation on Every Card (Touch & Hover Physics) */
+/* Interactive Cursor Animation on Every Card */
 .card-interactive {
   position: relative;
   overflow: hidden;
@@ -136,9 +136,9 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.04) 40%,
-    rgba(220, 38, 38, 0.18) 50%,
-    rgba(255, 255, 255, 0.04) 60%,
+    rgba(220, 234, 247, 0.04) 40%,
+    rgba(74, 116, 167, 0.22) 50%,
+    rgba(220, 234, 247, 0.04) 60%,
     transparent 100%
   );
   transform: skewX(-25deg);
@@ -149,10 +149,10 @@
 
 .card-interactive:hover {
   transform: translateY(-7px) scale(1.015);
-  border-color: rgba(220, 38, 38, 0.6);
-  box-shadow: 0 16px 36px -10px rgba(220, 38, 38, 0.32), 
-              0 0 1px 1px rgba(220, 38, 38, 0.45), 
-              inset 0 1px 2px rgba(255, 255, 255, 0.12);
+  border-color: rgba(74, 116, 167, 0.65);
+  box-shadow: 0 16px 36px -10px rgba(74, 116, 167, 0.35), 
+              0 0 1px 1px rgba(74, 116, 167, 0.45), 
+              inset 0 1px 2px rgba(220, 234, 247, 0.15);
 }
 
 .card-interactive:hover::before {
@@ -160,18 +160,18 @@
 }
 
 .nav-glass {
-  background: rgba(10, 7, 10, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(8, 20, 38, 0.85);
+  border: 1px solid rgba(220, 234, 247, 0.1);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
 
-/* Ambient Background Radial Glows */
+/* Ambient Background Radial Glows (Galaxy Blue Palette) */
 .ambient-glow {
   background: 
-    radial-gradient(at 15% 15%, rgba(185, 28, 28, 0.09) 0px, transparent 40%),
-    radial-gradient(at 85% 45%, rgba(153, 27, 27, 0.07) 0px, transparent 35%),
-    radial-gradient(at 40% 85%, rgba(185, 28, 28, 0.08) 0px, transparent 40%);
+    radial-gradient(at 15% 15%, rgba(74, 116, 167, 0.15) 0px, transparent 45%),
+    radial-gradient(at 85% 45%, rgba(20, 42, 68, 0.25) 0px, transparent 40%),
+    radial-gradient(at 40% 85%, rgba(74, 116, 167, 0.12) 0px, transparent 45%);
 }
 
 /* Smooth Page Transitions */

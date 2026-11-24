@@ -4,26 +4,26 @@ export const experiences = [
     period: "2026",
     yearGhost: "2026",
     statusBadge: "ORGANISASI MAHASISWA",
-    pulseColor: "#ef4444",
+    pulseColor: "#4A74A7",
     role: "Wakil Departemen Media dan Informasi 1",
     organization: "Himpunan Mahasiswa Jurusan Teknologi Informasi",
     institution: "Politeknik Negeri Lampung",
     summary: "Memimpin perancangan identitas komunikasi visual, publikasi digital kreatif, dan dokumentasi resmi organisasi.",
     tags: ["Media & Informasi", "Desain Visual", "Branding Organisasi"],
-    accentColor: "rgba(220, 38, 38, 0.25)"
+    accentColor: "rgba(74, 116, 167, 0.3)"
   },
   {
     id: "uiux-bootcamp",
     period: "2025",
     yearGhost: "2025",
     statusBadge: "PELATIHAN & EDUKASI",
-    pulseColor: "#f59e0b",
+    pulseColor: "#38bdf8",
     role: "Pemateri / Instruktur UI/UX",
     organization: "Bootcamp UI/UX Design",
     institution: "Politeknik Negeri Lampung",
     summary: "Membimbing siswa dalam penyusunan user flow, information architecture, wireframing, dan prototipe interaktif di Figma.",
     tags: ["Mentoring", "UI/UX Design", "Figma Prototyping"],
-    accentColor: "rgba(245, 158, 11, 0.25)"
+    accentColor: "rgba(56, 189, 248, 0.3)"
   },
   {
     id: "polinela-study",

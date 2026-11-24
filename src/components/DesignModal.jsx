@@ -21,15 +21,15 @@ export default function DesignModal({ design, onClose }) {
           exit={{ scale: 0.94, opacity: 0, y: 20 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
           onClick={(e) => e.stopPropagation()}
-          className="bg-[#0e070d] border border-red-700/40 rounded-3xl max-w-4xl w-full overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.9)] my-8 max-h-[90vh] flex flex-col relative"
+          className="bg-[#081426] border border-[#4A74A7]/40 rounded-3xl max-w-4xl w-full overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.9)] my-8 max-h-[90vh] flex flex-col relative"
         >
           {/* Top Glow Header Bar */}
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-red-500 to-transparent z-10" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#4A74A7] to-transparent z-10" />
 
           {/* Modal Header */}
           <div className="p-5 sm:p-6 border-b border-white/10 flex items-center justify-between bg-black/50 backdrop-blur-sm shrink-0">
             <div className="flex items-center gap-3">
-              <span className="px-3 py-1 rounded-full text-[11px] font-mono font-bold tracking-wider uppercase bg-red-950/70 border border-red-600/40 text-red-300">
+              <span className="px-3 py-1 rounded-full text-[11px] font-mono font-bold tracking-wider uppercase bg-[#142A44]/80 border border-[#4A74A7]/40 text-[#DCEAF7]">
                 {design.category}
               </span>
               <span className="text-xs text-neutral-400 font-mono">
@@ -38,7 +38,7 @@ export default function DesignModal({ design, onClose }) {
             </div>
             <button
               onClick={onClose}
-              className="p-2 rounded-full bg-white/5 hover:bg-red-950/60 border border-white/10 hover:border-red-600/40 text-neutral-400 hover:text-white transition-all duration-200"
+              className="p-2 rounded-full bg-white/5 hover:bg-[#142A44] border border-white/10 hover:border-[#4A74A7] text-neutral-400 hover:text-white transition-all duration-200"
             >
               <X size={18} />
             </button>
@@ -68,12 +68,12 @@ export default function DesignModal({ design, onClose }) {
               <img
                 src={design.image}
                 alt={design.title}
-                className="w-full max-h-[380px] object-contain p-4 bg-[#0a0509]"
+                className="w-full max-h-[380px] object-contain p-4 bg-[#050c18]"
                 loading="lazy"
               />
               <div className="absolute top-4 right-4 flex items-center gap-2">
                 <span className="px-3 py-1 rounded-full bg-black/80 border border-white/15 text-[11px] font-mono text-white backdrop-blur-md flex items-center gap-1.5">
-                  <Layers size={13} className="text-red-400" />
+                  <Layers size={13} className="text-[#4A74A7]" />
                   <span>{design.screensCount}</span>
                 </span>
                 <span className="px-3 py-1 rounded-full bg-black/80 border border-white/15 text-[11px] font-mono text-white backdrop-blur-md flex items-center gap-1.5">
@@ -92,7 +92,7 @@ export default function DesignModal({ design, onClose }) {
                 {design.highlights.map((h, i) => (
                   <span
                     key={i}
-                    className="px-3 py-1 rounded-lg text-xs font-medium bg-red-950/30 border border-red-700/30 text-red-200"
+                    className="px-3 py-1 rounded-lg text-xs font-medium bg-[#142A44]/50 border border-[#4A74A7]/30 text-[#DCEAF7]"
                   >
                     {h}
                   </span>
@@ -103,7 +103,7 @@ export default function DesignModal({ design, onClose }) {
             {/* Detail Problem & Solution Grid */}
             <div className="grid sm:grid-cols-2 gap-4 pt-2">
               <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
-                <p className="text-xs font-mono font-bold text-red-400 uppercase tracking-wider">
+                <p className="text-xs font-mono font-bold text-[#4A74A7] uppercase tracking-wider">
                   Tantangan Desain
                 </p>
                 <p className="text-xs text-neutral-300 leading-relaxed">
@@ -128,7 +128,7 @@ export default function DesignModal({ design, onClose }) {
               <div className="grid sm:grid-cols-2 gap-2">
                 {design.details.deliverables.map((item, idx) => (
                   <div key={idx} className="flex items-center gap-2 text-xs text-neutral-300">
-                    <CheckCircle2 size={14} className="text-red-400 shrink-0" />
+                    <CheckCircle2 size={14} className="text-[#4A74A7] shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -148,7 +148,7 @@ export default function DesignModal({ design, onClose }) {
                   href={design.figmaUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-semibold flex items-center gap-2 shadow-lg shadow-red-900/40 transition-all hover:scale-105"
+                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#142A44] to-[#4A74A7] hover:from-[#1b385a] hover:to-[#5a86bc] text-white text-xs font-semibold flex items-center gap-2 shadow-[0_0_15px_rgba(74,116,167,0.4)] transition-all hover:scale-105"
                 >
                   <ExternalLink size={14} />
                   <span>Buka di Figma</span>

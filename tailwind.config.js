@@ -13,26 +13,24 @@ export default {
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       colors: {
-        dark: {
-          bg: '#070507',
-          surface: '#0d080c',
-          card: '#140d12',
-          cardHover: '#1c1219',
-          border: 'rgba(255, 255, 255, 0.08)',
-          borderRed: 'rgba(220, 38, 38, 0.25)',
+        galaxy: {
+          abyss: '#081426',     // Deepest space void background
+          void: '#050c18',      // Extreme dark void
+          navy: '#142A44',      // Deep cosmic navy (cards & surfaces)
+          surface: '#0f2038',   // Elevated card surface
+          blue: '#4A74A7',      // Celestial galaxy blue (brand accent)
+          bright: '#5a86bc',    // Bright hover galaxy blue
+          sky: '#38bdf8',       // Neon starlight cyan
+          starlight: '#DCEAF7', // Soft icy starlight highlight
+          glow: 'rgba(74, 116, 167, 0.45)',
         },
-        red: {
-          50: '#fff1f2',
-          100: '#ffe4e6',
-          200: '#fecdd3',
-          300: '#fda4af',
-          400: '#f87171',
-          500: '#ef4444',
-          600: '#dc2626',
-          700: '#b91c1c',
-          800: '#991b1b',
-          900: '#7f1d1d',
-          950: '#450a0a',
+        dark: {
+          bg: '#081426',
+          surface: '#0c1b33',
+          card: '#142A44',
+          cardHover: '#1c395c',
+          border: 'rgba(220, 234, 247, 0.1)',
+          borderBlue: 'rgba(74, 116, 167, 0.35)',
         },
       },
       animation: {

@@ -58,14 +58,14 @@ export default function ProjectPage({ project, onBack }) {
         <div className="flex items-center justify-between">
           <button
             onClick={handleBack}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.04] border border-white/10 hover:border-red-500/50 text-neutral-300 hover:text-white text-xs font-semibold backdrop-blur-md transition-all hover:scale-105"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#142A44]/40 border border-[#4A74A7]/30 hover:border-[#4A74A7] text-neutral-300 hover:text-white text-xs font-semibold backdrop-blur-md transition-all hover:scale-105"
           >
-            <ArrowLeft size={14} className="text-red-400" />
+            <ArrowLeft size={14} className="text-[#4A74A7]" />
             <span>Kembali ke Portofolio</span>
           </button>
 
           <div className="flex items-center gap-2 text-xs font-mono text-neutral-400">
-            <span className="px-3 py-1 rounded-full bg-red-950/40 border border-red-700/30 text-red-300">
+            <span className="px-3 py-1 rounded-full bg-[#142A44]/60 border border-[#4A74A7]/30 text-[#DCEAF7]">
               {project.category}
             </span>
             <span>&bull;</span>
@@ -76,8 +76,8 @@ export default function ProjectPage({ project, onBack }) {
         {/* Hero Header */}
         <div className="space-y-4 text-left">
           {project.award && (
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-950/30 border border-amber-600/40 text-amber-300 text-xs font-semibold">
-              <Award size={14} className="text-amber-400" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#142A44] border border-[#38bdf8]/40 text-[#DCEAF7] text-xs font-semibold shadow-sm">
+              <Award size={14} className="text-[#38bdf8]" />
               <span>{project.award}</span>
             </div>
           )}
@@ -116,7 +116,7 @@ export default function ProjectPage({ project, onBack }) {
         {/* Problem & Solution Grid */}
         <div className="grid md:grid-cols-2 gap-6">
           <div className="card-glass p-7 rounded-2xl space-y-3">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-red-400">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-[#4A74A7]">
               Latar Belakang &amp; Tantangan
             </h2>
             <p className="text-sm text-neutral-300 leading-relaxed">
@@ -125,7 +125,7 @@ export default function ProjectPage({ project, onBack }) {
           </div>
 
           <div className="card-glass p-7 rounded-2xl space-y-3">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-red-400">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-[#4A74A7]">
               Solusi &amp; Kontribusi Saya
             </h2>
             <p className="text-sm text-neutral-300 leading-relaxed">
@@ -143,7 +143,7 @@ export default function ProjectPage({ project, onBack }) {
             <div className="grid sm:grid-cols-3 gap-4">
               {project.details.fiturUtama.map((feat, i) => (
                 <div key={i} className="card-glass p-5 rounded-2xl space-y-2">
-                  <div className="w-7 h-7 rounded-lg bg-red-950/50 border border-red-700/30 flex items-center justify-center text-red-400 text-xs font-bold">
+                  <div className="w-7 h-7 rounded-lg bg-[#142A44]/60 border border-[#4A74A7]/30 flex items-center justify-center text-[#DCEAF7] text-xs font-bold">
                     0{i + 1}
                   </div>
                   <h3 className="text-sm font-bold text-white">{feat.judul}</h3>
@@ -156,7 +156,7 @@ export default function ProjectPage({ project, onBack }) {
 
         {/* Tools & Technologies Used */}
         <div className="card-glass p-7 rounded-2xl space-y-4">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-red-400">
+          <h2 className="text-sm font-bold uppercase tracking-wider text-[#4A74A7]">
             Alat &amp; Teknologi
           </h2>
           <div className="flex flex-wrap gap-3">
@@ -202,7 +202,7 @@ export default function ProjectPage({ project, onBack }) {
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white text-xs font-semibold shadow-md transition-all hover:scale-105"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#142A44] to-[#4A74A7] hover:from-[#1b385a] hover:to-[#5a86bc] text-white text-xs font-semibold shadow-md transition-all hover:scale-105"
               >
                 <ExternalLink size={14} />
                 <span>Buka Prototipe</span>

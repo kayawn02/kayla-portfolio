@@ -40,15 +40,15 @@ export default function App() {
         {loading && <Preloader onComplete={() => setLoading(false)} />}
       </AnimatePresence>
 
-      <div className="relative min-h-screen bg-[#070507] text-[#f1f5f9] font-sans antialiased selection:bg-red-700/30 selection:text-white overflow-x-hidden ambient-glow">
+      <div className="relative min-h-screen bg-[#081426] text-[#DCEAF7] font-sans antialiased selection:bg-[#4A74A7]/40 selection:text-white overflow-x-hidden ambient-glow">
         
         {/* Top Scroll Progress Bar */}
         <motion.div
-          className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-red-700 via-red-500 to-rose-400 z-[60] origin-left shadow-[0_0_8px_rgba(220,38,38,0.7)]"
+          className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#142A44] via-[#4A74A7] to-[#DCEAF7] z-[60] origin-left shadow-[0_0_10px_rgba(74,116,167,0.8)]"
           style={{ scaleX }}
         />
 
-        {/* Modern Cosmic Red Galaxy Background with Star Particles & Meteors */}
+        {/* Modern Cosmic Galaxy Blue Background with Star Particles & Meteors */}
         <GalaxyBackground />
 
         {/* Fixed Navigation */}
@@ -67,7 +67,7 @@ export default function App() {
               <Hero />
               <Marquee />
               <About />
-              <PortfolioShowcase onSelectProject={handleOpenProject} />
+              <PortfolioShowcase />
               <Experience />
               <CVSection />
               <Contact />

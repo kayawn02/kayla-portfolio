@@ -8,18 +8,18 @@ export default function Footer() {
   };
 
   return (
-    <footer className="border-t border-white/5 bg-[#050305] py-14 px-6 relative z-10">
+    <footer className="border-t border-[#4A74A7]/20 bg-[#050c18] py-14 px-6 relative z-10">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-12 gap-8 items-start mb-10">
           
           {/* Brand Info (6 cols) */}
           <div className="md:col-span-6 space-y-3">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center font-bold text-xs text-white shadow-[0_0_10px_rgba(220,38,38,0.4)]">
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#142A44] to-[#4A74A7] flex items-center justify-center font-bold text-xs text-white shadow-[0_0_10px_rgba(74,116,167,0.4)]">
                 K
               </div>
-              <span className="font-bold text-sm tracking-tight text-white">
-                Kayla<span className="text-red-500">.dev</span>
+              <span className="font-bold text-sm tracking-tight text-[#DCEAF7]">
+                Kayla<span className="text-[#4A74A7]">.dev</span>
               </span>
             </div>
             <p className="text-xs text-neutral-400 max-w-sm leading-relaxed">
@@ -69,7 +69,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href={`mailto:${personalInfo.email}`} className="hover:text-red-400 transition-colors flex items-center gap-2">
+                <a href={`mailto:${personalInfo.email}`} className="hover:text-[#4A74A7] transition-colors flex items-center gap-2">
                   <Mail size={13} />
                   <span>Email Resmi</span>
                 </a>
@@ -80,7 +80,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar with Back to Top */}
-        <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
+        <div className="pt-8 border-t border-[#4A74A7]/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
           <p>&copy; {new Date().getFullYear()} Kayla Alia Atarani. All rights reserved.</p>
           <button
             onClick={scrollToTop}
