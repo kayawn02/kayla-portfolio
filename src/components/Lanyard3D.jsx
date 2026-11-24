@@ -173,49 +173,27 @@ export default function Lanyard3D() {
     const neckLeft = new THREE.Vector3(-0.45, 3.8, -0.2);
     const neckRight = new THREE.Vector3(0.45, 3.8, -0.2);
 
-    let leftStrapMesh = null;
-    let rightStrapMesh = null;
+    // Create strap geometry once with anchor positions (Zero GC memory leak)
+    const initialHookPos = new THREE.Vector3(0, 1.45, 0);
+    const midLeft = new THREE.Vector3(
+      (neckLeft.x + initialHookPos.x) * 0.5 - 0.05,
+      (neckLeft.y + initialHookPos.y) * 0.5 - 0.12,
+      (neckLeft.z + initialHookPos.z) * 0.5 + 0.1
+    );
+    const curveLeft = new THREE.QuadraticBezierCurve3(neckLeft, midLeft, initialHookPos);
+    const geoLeft = new THREE.TubeGeometry(curveLeft, 20, 0.045, 8, false);
+    const leftStrapMesh = new THREE.Mesh(geoLeft, strapMat);
+    scene.add(leftStrapMesh);
 
-    function updateLanyardStraps() {
-      // 1. Force update world matrix to guarantee exact 3D position
-      cardGroup.updateMatrixWorld(true);
-      const hookWorldPos = new THREE.Vector3();
-      strapAnchor.getWorldPosition(hookWorldPos);
-
-      // Clean up previous meshes
-      if (leftStrapMesh) {
-        scene.remove(leftStrapMesh);
-        leftStrapMesh.geometry.dispose();
-      }
-      if (rightStrapMesh) {
-        scene.remove(rightStrapMesh);
-        rightStrapMesh.geometry.dispose();
-      }
-
-      // Natural catenary mid-point for Left Strap
-      const midLeft = new THREE.Vector3(
-        (neckLeft.x + hookWorldPos.x) * 0.5 - 0.05,
-        (neckLeft.y + hookWorldPos.y) * 0.5 - 0.12,
-        (neckLeft.z + hookWorldPos.z) * 0.5 + 0.1
-      );
-      const curveLeft = new THREE.QuadraticBezierCurve3(neckLeft, midLeft, hookWorldPos);
-      const geoLeft = new THREE.TubeGeometry(curveLeft, 20, 0.045, 8, false);
-      leftStrapMesh = new THREE.Mesh(geoLeft, strapMat);
-      scene.add(leftStrapMesh);
-
-      // Natural catenary mid-point for Right Strap
-      const midRight = new THREE.Vector3(
-        (neckRight.x + hookWorldPos.x) * 0.5 + 0.05,
-        (neckRight.y + hookWorldPos.y) * 0.5 - 0.12,
-        (neckRight.z + hookWorldPos.z) * 0.5 + 0.1
-      );
-      const curveRight = new THREE.QuadraticBezierCurve3(neckRight, midRight, hookWorldPos);
-      const geoRight = new THREE.TubeGeometry(curveRight, 20, 0.045, 8, false);
-      rightStrapMesh = new THREE.Mesh(geoRight, strapMat);
-      scene.add(rightStrapMesh);
-    }
-
-    updateLanyardStraps();
+    const midRight = new THREE.Vector3(
+      (neckRight.x + initialHookPos.x) * 0.5 + 0.05,
+      (neckRight.y + initialHookPos.y) * 0.5 - 0.12,
+      (neckRight.z + initialHookPos.z) * 0.5 + 0.1
+    );
+    const curveRight = new THREE.QuadraticBezierCurve3(neckRight, midRight, initialHookPos);
+    const geoRight = new THREE.TubeGeometry(curveRight, 20, 0.045, 8, false);
+    const rightStrapMesh = new THREE.Mesh(geoRight, strapMat);
+    scene.add(rightStrapMesh);
 
     // ==========================================
     // 4. INTERACTION & PENDULUM DAMPING PHYSICS
@@ -234,6 +212,16 @@ export default function Lanyard3D() {
     let targetRotX = 0;
     let targetRotY = 0;
     let targetRotZ = 0;
+
+    // Subtle strap flex according to card sway without buffer reallocation
+    function updateLanyardStraps() {
+      leftStrapMesh.rotation.z = currentX * 0.07;
+      leftStrapMesh.rotation.y = currentX * 0.04;
+      rightStrapMesh.rotation.z = currentX * 0.07;
+      rightStrapMesh.rotation.y = currentX * 0.04;
+    }
+
+    updateLanyardStraps();
 
     const onPointerDown = (e) => {
       isDragging = true;
@@ -269,13 +257,25 @@ export default function Lanyard3D() {
     window.addEventListener('pointerup', onPointerUp);
 
     // ==========================================
-    // 5. ANIMATION LOOP WITH OSCILLATING PENDULUM
+    // 5. ANIMATION LOOP WITH INTERSECTION OBSERVER & ZERO GC
     // ==========================================
     let reqId;
     let clock = new THREE.Clock();
+    let isVisible = true;
+
+    // Pause 3D render loop when Hero is scrolled out of viewport (Saves 100% GPU/CPU)
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(container);
 
     const animate = () => {
       reqId = requestAnimationFrame(animate);
+      if (!isVisible) return; // Do zero work when not in view!
+
       const time = clock.getElapsedTime();
 
       if (!isDragging) {
@@ -323,6 +323,13 @@ export default function Lanyard3D() {
 
     animate();
 
+    // Prevent WebGL context crash
+    const handleContextLost = (e) => {
+      e.preventDefault();
+      cancelAnimationFrame(reqId);
+    };
+    renderer.domElement.addEventListener('webglcontextlost', handleContextLost, false);
+
     // Responsive Resize
     const handleResize = () => {
       if (!container) return;
@@ -335,11 +342,20 @@ export default function Lanyard3D() {
     window.addEventListener('resize', handleResize);
 
     return () => {
+      observer.disconnect();
       cancelAnimationFrame(reqId);
       container.removeEventListener('pointerdown', onPointerDown);
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('pointerup', onPointerUp);
       window.removeEventListener('resize', handleResize);
+      renderer.domElement.removeEventListener('webglcontextlost', handleContextLost);
+      scene.traverse((obj) => {
+        if (obj.geometry) obj.geometry.dispose();
+        if (obj.material) {
+          if (Array.isArray(obj.material)) obj.material.forEach((m) => m.dispose());
+          else obj.material.dispose();
+        }
+      });
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }

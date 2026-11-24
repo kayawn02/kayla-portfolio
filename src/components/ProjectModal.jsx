@@ -212,10 +212,10 @@ export default function ProjectModal({ project, isOpen = true, onClose }) {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-[#142A44]/60 hover:bg-[#142A44] border border-[#4A74A7]/40 text-white text-xs font-semibold px-5 py-2.5 rounded-full transition-colors"
+                    className="inline-flex items-center gap-2 bg-[#142A44]/60 hover:bg-[#142A44] border border-[#4A74A7]/40 text-white text-xs font-semibold px-5 py-2.5 rounded-full transition-colors font-heading"
                   >
                     <Github size={14} />
-                    <span>Lihat di GitHub</span>
+                    <span>Lihat Repository GitHub</span>
                   </a>
                 )}
                 {project.demo && (
@@ -223,10 +223,10 @@ export default function ProjectModal({ project, isOpen = true, onClose }) {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-gradient-to-r from-[#142A44] to-[#4A74A7] hover:from-[#1b385a] hover:to-[#5a86bc] text-white text-xs font-semibold px-5 py-2.5 rounded-full shadow-[0_0_15px_rgba(74,116,167,0.4)] transition-all hover:scale-[1.02]"
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-[#142A44] to-[#4A74A7] hover:from-[#1b385a] hover:to-[#5a86bc] text-white text-xs font-semibold px-5 py-2.5 rounded-full shadow-[0_0_15px_rgba(74,116,167,0.4)] transition-all hover:scale-[1.02] font-heading"
                   >
                     <ExternalLink size={14} />
-                    <span>Buka Tautan Eksternal</span>
+                    <span>{project.demo.includes('figma.com') ? 'Buka Prototype Figma' : 'Buka Demo Projek'}</span>
                   </a>
                 )}
               </div>

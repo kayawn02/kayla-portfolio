@@ -93,6 +93,156 @@ const certCategories = [
   'Kepanitiaan & Organisasi'
 ];
 
+// Interactive 3D Holographic Certificate Card (Antimainstream, Parallax Depth, Minimalist Text)
+function CertificateCard3D({ cert, idx, onSelect }) {
+  const cardRef = useRef(null);
+  const [rotate, setRotate] = useState({ x: 0, y: 0 });
+  const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 });
+  const isTopAward = cert.badge.includes('Juara 1') || cert.badge.includes('Juara 3');
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((centerY - y) / centerY) * 11;
+    const rotateY = ((x - centerX) / centerX) * 11;
+
+    setRotate({ x: rotateX, y: rotateY });
+    setGlare({
+      x: (x / rect.width) * 100,
+      y: (y / rect.height) * 100,
+      opacity: 0.35,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setRotate({ x: 0, y: 0 });
+    setGlare((prev) => ({ ...prev, opacity: 0 }));
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35, delay: (idx % 3) * 0.06 }}
+      style={{ perspective: 1000 }}
+    >
+      <motion.div
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        onClick={() => onSelect(cert)}
+        animate={{
+          rotateX: rotate.x,
+          rotateY: rotate.y,
+        }}
+        transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+        style={{
+          transformStyle: 'preserve-3d',
+        }}
+        className={`group relative rounded-2xl overflow-hidden backdrop-blur-xl flex flex-col justify-between cursor-pointer transition-all duration-300 shadow-xl select-none ${
+          isTopAward
+            ? 'border-2 border-[#38bdf8]/40 hover:border-[#38bdf8] bg-gradient-to-b from-[#142A44]/90 via-[#0e1d32]/90 to-[#081426] shadow-[0_15px_40px_rgba(56,189,248,0.18)] hover:shadow-[0_20px_50px_rgba(56,189,248,0.35)]'
+            : 'border border-[#4A74A7]/30 hover:border-[#4A74A7]/70 bg-gradient-to-b from-[#142A44]/75 via-[#0e1d32]/85 to-[#081426]/95 hover:shadow-[0_20px_45px_rgba(74,116,167,0.25)]'
+        }`}
+      >
+        {/* Dynamic Holographic Glare Sheen Sweep */}
+        <div
+          className="absolute inset-0 pointer-events-none z-30 transition-opacity duration-300"
+          style={{
+            opacity: glare.opacity,
+            background: `radial-gradient(circle at ${glare.x}% ${glare.y}%, rgba(220, 234, 247, 0.35) 0%, rgba(56, 189, 248, 0.15) 30%, transparent 70%)`,
+          }}
+        />
+
+        {/* Top Edge Animated Shimmer Beam */}
+        <div
+          className={`absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20 ${
+            isTopAward
+              ? 'bg-gradient-to-r from-transparent via-[#38bdf8] to-transparent'
+              : 'bg-gradient-to-r from-transparent via-[#4A74A7] to-transparent'
+          }`}
+        />
+
+        {/* 3D Certificate Visual Frame with Floating translateZ */}
+        <div
+          className="relative h-52 sm:h-56 w-full bg-[#050c18] overflow-hidden flex items-center justify-center p-3.5 border-b border-[#DCEAF7]/5"
+          style={{ transform: 'translateZ(20px)' }}
+        >
+          <img
+            src={cert.thumbnail}
+            alt={cert.title}
+            className="max-h-full max-w-full object-contain rounded-lg filter drop-shadow-md group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+
+          {/* Hover View Fullscreen Icon */}
+          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+            <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-[#142A44] to-[#4A74A7] text-white text-xs font-semibold flex items-center gap-1.5 shadow-lg font-heading border border-[#38bdf8]/50">
+              <Eye size={14} />
+              <span>Lihat Dokumen Asli</span>
+            </span>
+          </div>
+
+          {/* Floating Badges */}
+          <div
+            className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none"
+            style={{ transform: 'translateZ(30px)' }}
+          >
+            <span
+              className={`px-2.5 py-1 rounded-md text-[10px] font-heading font-semibold tracking-wide uppercase border backdrop-blur-md shadow-sm ${
+                isTopAward
+                  ? 'bg-[#142A44] text-[#DCEAF7] border-[#38bdf8]/50'
+                  : 'bg-[#081426]/90 text-neutral-200 border-[#4A74A7]/30'
+              }`}
+            >
+              {cert.badge}
+            </span>
+            <span className="px-2 py-0.5 rounded text-[10px] font-heading font-medium text-neutral-300 bg-[#081426]/80 border border-white/10 backdrop-blur-md">
+              {cert.year}
+            </span>
+          </div>
+        </div>
+
+        {/* Minimal Information Body */}
+        <div
+          className="p-5 space-y-1.5"
+          style={{ transform: 'translateZ(15px)' }}
+        >
+          <h4 className="text-base font-bold text-white group-hover:text-[#38bdf8] transition-colors line-clamp-1 leading-snug font-heading">
+            {cert.title}
+          </h4>
+          <p className="text-xs text-neutral-400 line-clamp-1 font-medium font-sans">
+            {cert.event || cert.organizer}
+          </p>
+          <div className="flex items-center gap-1.5 text-[11px] text-neutral-400 font-heading pt-0.5">
+            <ShieldCheck size={13} className="text-[#38bdf8] shrink-0" />
+            <span className="truncate">{cert.level}</span>
+          </div>
+        </div>
+
+        {/* Card Footer Action */}
+        <div
+          className="p-5 pt-3 border-t border-white/5 flex items-center justify-between text-xs"
+          style={{ transform: 'translateZ(10px)' }}
+        >
+          <span className="text-[11px] text-neutral-500 font-heading">
+            {cert.category}
+          </span>
+          <span className="text-[#38bdf8] font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0 font-heading">
+            <span>Perbesar</span>
+            <span>&rarr;</span>
+          </span>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 export default function PortfolioShowcase({ onSelectProject }) {
   const [activeTab, setActiveTab] = useState('Projects');
   const [modalProject, setModalProject] = useState(null);
@@ -161,27 +311,27 @@ export default function PortfolioShowcase({ onSelectProject }) {
         </div>
 
         {/* Tab Content Display */}
-        <AnimatePresence mode="wait">
-          
-          {/* ===================== PROJECTS TAB (DYNAMIC 3D TILT & EYE-CATCHING MINIMALIST) ===================== */}
-          {activeTab === 'Projects' && (
-            <motion.div
-              key="projects"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.35 }}
-              className="grid md:grid-cols-2 gap-8"
-            >
-              {projects.map((proj, idx) => (
-                <motion.div
-                  key={proj.id}
-                  initial={{ opacity: 0, y: 30, scale: 0.96 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: false, amount: 0.15 }}
-                  transition={{ type: 'spring', stiffness: 120, damping: 16, delay: idx * 0.1 }}
-                  whileHover={{ y: -8, scale: 1.015 }}
-                  onClick={() => setModalProject(proj)}
+        <div className="relative min-h-[480px]">
+          <AnimatePresence>
+            
+            {/* ===================== PROJECTS TAB (DYNAMIC 3D TILT & EYE-CATCHING MINIMALIST) ===================== */}
+            {activeTab === 'Projects' && (
+              <motion.div
+                key="projects"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.25 }}
+                className="grid md:grid-cols-2 gap-8"
+              >
+                {projects.map((proj, idx) => (
+                  <motion.div
+                    key={proj.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ type: 'spring', stiffness: 140, damping: 18, delay: idx * 0.08 }}
+                    whileHover={{ y: -8, scale: 1.015 }}
+                    onClick={() => setModalProject(proj)}
                   className="rounded-3xl border border-[#4A74A7]/30 hover:border-[#38bdf8] bg-gradient-to-b from-[#142A44]/80 via-[#0e1d32]/90 to-[#081426]/95 backdrop-blur-xl overflow-hidden flex flex-col justify-between transition-all duration-300 shadow-2xl group cursor-pointer select-none relative"
                 >
                   {/* Top Edge Animated Shimmer Beam */}
@@ -329,102 +479,16 @@ export default function PortfolioShowcase({ onSelectProject }) {
                 })}
               </div>
 
-              {/* Cards Grid: Staggered with Holographic Sheen on Top Prestasi */}
+              {/* Cards Grid: 3D Parallax Tilt with Dynamic Holographic Glare */}
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredCerts.map((cert, idx) => {
-                  const isTopAward = cert.badge.includes('Juara 1') || cert.badge.includes('Juara 3');
-                  return (
-                    <motion.div
-                      key={cert.id}
-                      initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                      viewport={{ once: false, amount: 0.15 }}
-                      transition={{ type: 'spring', stiffness: 120, damping: 16, delay: (idx % 3) * 0.08 }}
-                      whileHover={{ y: -8, scale: 1.02 }}
-                      onClick={() => setSelectedCert(cert)}
-                      className={`group relative rounded-2xl overflow-hidden backdrop-blur-xl flex flex-col justify-between cursor-pointer transition-all duration-300 shadow-2xl select-none ${
-                        isTopAward
-                          ? 'border-2 border-[#38bdf8]/40 hover:border-[#38bdf8] bg-gradient-to-b from-[#142A44]/90 via-[#0e1d32]/90 to-[#081426] shadow-[0_15px_40px_rgba(56,189,248,0.15)] hover:shadow-[0_20px_50px_rgba(56,189,248,0.3)]'
-                          : 'border border-[#4A74A7]/25 hover:border-[#4A74A7]/60 bg-gradient-to-b from-[#142A44]/80 via-[#0e1d32]/90 to-[#081426]/95 hover:shadow-[0_20px_45px_rgba(74,116,167,0.25)]'
-                      }`}
-                    >
-                      {/* Top Edge Beam */}
-                      <div
-                        className={`absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20 ${
-                          isTopAward
-                            ? 'bg-gradient-to-r from-transparent via-[#38bdf8] to-transparent'
-                            : 'bg-gradient-to-r from-transparent via-[#4A74A7] to-transparent'
-                        }`}
-                      />
-
-                      {/* Top Prestige Watermark for Juara 1 & 3 */}
-                      {isTopAward && (
-                        <div className="absolute top-2 right-2 text-7xl font-heading font-black text-[#38bdf8]/[0.05] pointer-events-none select-none">
-                          {cert.year}
-                        </div>
-                      )}
-
-                      <div>
-                        {/* Certificate Thumbnail Frame */}
-                        <div className="relative h-56 w-full bg-[#050c18] overflow-hidden flex items-center justify-center p-3 border-b border-[#DCEAF7]/5">
-                          <img
-                            src={cert.thumbnail}
-                            alt={cert.title}
-                            className="max-h-full max-w-full object-contain rounded-lg transition-transform duration-500 group-hover:scale-105 filter drop-shadow-md"
-                            loading="lazy"
-                          />
-                          <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                            <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-[#142A44] to-[#4A74A7] text-white text-xs font-semibold flex items-center gap-1.5 shadow-lg scale-95 group-hover:scale-100 transition-transform font-heading border border-[#4A74A7]/50">
-                              <Eye size={14} />
-                              <span>Lihat Dokumen Asli</span>
-                            </span>
-                          </div>
-
-                          {/* Minimalist Clean Badges */}
-                          <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
-                            <span
-                              className={`px-2.5 py-1 rounded-md text-[10px] font-heading font-semibold tracking-wide uppercase border backdrop-blur-md shadow-sm ${
-                                isTopAward
-                                  ? 'bg-[#142A44] text-[#DCEAF7] border-[#38bdf8]/40'
-                                  : 'bg-[#081426]/90 text-neutral-200 border-[#4A74A7]/30'
-                              }`}
-                            >
-                              {cert.badge}
-                            </span>
-                            <span className="px-2 py-0.5 rounded text-[10px] font-heading font-medium text-neutral-300 bg-[#081426]/80 border border-white/10 backdrop-blur-md">
-                              {cert.year}
-                            </span>
-                          </div>
-                        </div>
-
-                        {/* Information Body */}
-                        <div className="p-5 space-y-2">
-                          <h4 className="text-base font-bold text-white group-hover:text-[#DCEAF7] transition-colors line-clamp-1 leading-snug font-heading">
-                            {cert.title}
-                          </h4>
-                          <p className="text-xs text-neutral-400 line-clamp-1 font-medium font-sans">
-                            {cert.event || cert.organizer}
-                          </p>
-                          <div className="flex items-center gap-1.5 text-[11px] text-neutral-400 font-heading pt-1">
-                            <ShieldCheck size={13} className="text-emerald-400 shrink-0" />
-                            <span className="truncate">{cert.level}</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Card Footer Action */}
-                      <div className="p-5 pt-3 border-t border-white/5 flex items-center justify-between text-xs">
-                        <span className="text-[11px] text-neutral-500 font-heading">
-                          {cert.category}
-                        </span>
-                        <span className="text-[#4A74A7] font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0 font-heading">
-                          <span>Perbesar</span>
-                          <span>&rarr;</span>
-                        </span>
-                      </div>
-                    </motion.div>
-                  );
-                })}
+                {filteredCerts.map((cert, idx) => (
+                  <CertificateCard3D
+                    key={cert.id}
+                    cert={cert}
+                    idx={idx}
+                    onSelect={setSelectedCert}
+                  />
+                ))}
               </div>
             </motion.div>
           )}
@@ -433,10 +497,10 @@ export default function PortfolioShowcase({ onSelectProject }) {
           {activeTab === 'Achievements' && (
             <motion.div
               key="achievements"
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.35 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.25 }}
               className="grid md:grid-cols-3 gap-6"
             >
               {achievements.map((item, idx) => {
@@ -446,10 +510,9 @@ export default function PortfolioShowcase({ onSelectProject }) {
                 return (
                   <motion.div
                     key={item.id}
-                    initial={{ opacity: 0, y: 35, scale: 0.94 }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    viewport={{ once: false, amount: 0.15 }}
-                    transition={{ type: 'spring', stiffness: 120, damping: 16, delay: idx * 0.1 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ type: 'spring', stiffness: 140, damping: 18, delay: idx * 0.08 }}
                     whileHover={{ y: -8, scale: 1.02 }}
                     onClick={() => setSelectedCert(targetCert)}
                     className={`group relative rounded-3xl p-6 sm:p-7 overflow-hidden backdrop-blur-xl cursor-pointer select-none flex flex-col justify-between transition-all duration-300 shadow-2xl ${
@@ -547,10 +610,10 @@ export default function PortfolioShowcase({ onSelectProject }) {
           {activeTab === 'Tech Stack' && (
             <motion.div
               key="techarsenal"
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.35 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.25 }}
               className="space-y-10"
             >
               {/* Clean Minimalist Grid of Used Tools (No Text Clutter, Sleek Glassmorphism) */}
@@ -560,10 +623,9 @@ export default function PortfolioShowcase({ onSelectProject }) {
                   return (
                     <motion.div
                       key={tool.name}
-                      initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                      viewport={{ once: false }}
-                      transition={{ delay: idx * 0.04 }}
+                      initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ delay: idx * 0.03 }}
                       whileHover={{ y: -6, scale: 1.04 }}
                       className={`p-5 rounded-2xl bg-gradient-to-b from-[#142A44]/75 to-[#081426]/90 border border-[#4A74A7]/25 ${tool.border} flex flex-col items-center justify-center gap-3 backdrop-blur-xl shadow-lg transition-all duration-300 group cursor-default select-none relative overflow-hidden`}
                     >
@@ -683,6 +745,7 @@ export default function PortfolioShowcase({ onSelectProject }) {
           )}
 
         </AnimatePresence>
+        </div>
 
         {/* Fullscreen Certificate Preview Modal */}
         <AnimatePresence>

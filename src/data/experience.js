@@ -14,8 +14,8 @@ export const experiences = [
   },
   {
     id: "polinela-creative",
-    period: "2024 — Sekarang",
-    yearGhost: "2024",
+    period: "2025 — Sekarang",
+    yearGhost: "2025",
     navLabel: "Polinela Creative",
     pulseColor: "#38bdf8",
     role: "Anggota Polinela Creative — Divisi Flyer",

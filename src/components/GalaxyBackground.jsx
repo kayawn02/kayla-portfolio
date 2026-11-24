@@ -12,6 +12,7 @@ export default function GalaxyBackground() {
     let animationFrameId;
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
+    let isTabVisible = !document.hidden;
 
     const handleResize = () => {
       if (!canvas) return;
@@ -19,6 +20,11 @@ export default function GalaxyBackground() {
       height = canvas.height = window.innerHeight;
     };
     window.addEventListener('resize', handleResize);
+
+    const handleVisibilityChange = () => {
+      isTabVisible = !document.hidden;
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     // 95 Cosmic Galaxy Star Particles (Deep Celestial Galaxy Palette)
     const starCount = 95;
@@ -38,6 +44,10 @@ export default function GalaxyBackground() {
 
     let time = 0;
     const render = () => {
+      if (!isTabVisible) {
+        animationFrameId = requestAnimationFrame(render);
+        return;
+      }
       time += 0.02;
       ctx.clearRect(0, 0, width, height);
 
@@ -80,6 +90,7 @@ export default function GalaxyBackground() {
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

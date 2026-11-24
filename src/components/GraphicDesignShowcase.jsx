@@ -202,24 +202,28 @@ export default function GraphicDesignShowcase() {
               style={{ perspective: 1200 }}
             >
               {/* Left 3D Angled Neighbor Card (Previous) */}
-              <motion.div
-                onClick={handlePrevSlide}
-                whileHover={{ scale: 0.86, opacity: 0.75 }}
-                className="hidden md:flex absolute left-4 lg:left-10 top-1/2 -translate-y-1/2 w-[260px] lg:w-[320px] aspect-[4/5] sm:aspect-square rounded-2xl bg-[#060e1c]/90 border border-[#4A74A7]/30 shadow-2xl overflow-hidden items-center justify-center p-3 cursor-pointer z-10 select-none"
-                style={{
-                  transformOrigin: 'right center',
-                  transform: 'translateY(-50%) rotateY(28deg) translateZ(-100px)',
-                  opacity: 0.45,
-                }}
-                title="Klik untuk ke karya sebelumnya"
-              >
-                <img
-                  src={prevPost.image}
-                  alt=""
-                  className="max-w-full max-h-full object-contain filter drop-shadow-md pointer-events-none"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#081426]/60 pointer-events-none" />
-              </motion.div>
+              <div className="hidden md:block absolute left-4 lg:left-10 top-1/2 -translate-y-1/2 z-10">
+                <motion.div
+                  onClick={handlePrevSlide}
+                  initial={{ rotateY: 28, z: -80, scale: 0.82, opacity: 0.45 }}
+                  animate={{ rotateY: 28, z: -80, scale: 0.82, opacity: 0.45 }}
+                  whileHover={{ rotateY: 16, z: -30, scale: 0.88, opacity: 0.8 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                  style={{
+                    transformOrigin: 'right center',
+                    transformStyle: 'preserve-3d',
+                  }}
+                  className="w-[260px] lg:w-[320px] aspect-[4/5] sm:aspect-square rounded-2xl bg-[#060e1c]/95 border border-[#4A74A7]/40 shadow-2xl overflow-hidden flex items-center justify-center p-3 cursor-pointer select-none"
+                  title="Klik untuk ke karya sebelumnya"
+                >
+                  <img
+                    src={prevPost.image}
+                    alt=""
+                    className="max-w-full max-h-full object-contain filter drop-shadow-md pointer-events-none"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#081426]/60 pointer-events-none" />
+                </motion.div>
+              </div>
 
               {/* Center Active 3D Card with Cursor Parallax Tilt */}
               <div className="relative z-30 flex items-center justify-center w-full max-w-[460px]">
@@ -241,24 +245,28 @@ export default function GraphicDesignShowcase() {
               </div>
 
               {/* Right 3D Angled Neighbor Card (Next) */}
-              <motion.div
-                onClick={handleNextSlide}
-                whileHover={{ scale: 0.86, opacity: 0.75 }}
-                className="hidden md:flex absolute right-4 lg:right-10 top-1/2 -translate-y-1/2 w-[260px] lg:w-[320px] aspect-[4/5] sm:aspect-square rounded-2xl bg-[#060e1c]/90 border border-[#4A74A7]/30 shadow-2xl overflow-hidden items-center justify-center p-3 cursor-pointer z-10 select-none"
-                style={{
-                  transformOrigin: 'left center',
-                  transform: 'translateY(-50%) rotateY(-28deg) translateZ(-100px)',
-                  opacity: 0.45,
-                }}
-                title="Klik untuk ke karya berikutnya"
-              >
-                <img
-                  src={nextPost.image}
-                  alt=""
-                  className="max-w-full max-h-full object-contain filter drop-shadow-md pointer-events-none"
-                />
-                <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#081426]/60 pointer-events-none" />
-              </motion.div>
+              <div className="hidden md:block absolute right-4 lg:right-10 top-1/2 -translate-y-1/2 z-10">
+                <motion.div
+                  onClick={handleNextSlide}
+                  initial={{ rotateY: -28, z: -80, scale: 0.82, opacity: 0.45 }}
+                  animate={{ rotateY: -28, z: -80, scale: 0.82, opacity: 0.45 }}
+                  whileHover={{ rotateY: -16, z: -30, scale: 0.88, opacity: 0.8 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                  style={{
+                    transformOrigin: 'left center',
+                    transformStyle: 'preserve-3d',
+                  }}
+                  className="w-[260px] lg:w-[320px] aspect-[4/5] sm:aspect-square rounded-2xl bg-[#060e1c]/95 border border-[#4A74A7]/40 shadow-2xl overflow-hidden flex items-center justify-center p-3 cursor-pointer select-none"
+                  title="Klik untuk ke karya berikutnya"
+                >
+                  <img
+                    src={nextPost.image}
+                    alt=""
+                    className="max-w-full max-h-full object-contain filter drop-shadow-md pointer-events-none"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#081426]/60 pointer-events-none" />
+                </motion.div>
+              </div>
 
               {/* Floating Prev Button */}
               <button

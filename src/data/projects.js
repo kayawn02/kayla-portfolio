@@ -8,88 +8,98 @@ export const projectCategories = [
 export const projects = [
   {
     id: "fertiflow",
-    title: "FertiFlow — Intelligent Irrigation & Fertigation System",
+    title: "FertiFlow — Intelligent Precision Irrigation & Fertigation System",
     category: "Mobile App & IoT",
     year: "2026",
     role: "Project Development & Mobile Dev",
-    award: "Juara 3 AITEC (Agricultural Innovation Technology Competition) Tingkat Nasional",
-    summary: "Sistem otomasi fertigasi dan irigasi cerdas berbasis IoT yang memadukan mikrokontroler ESP32, sensor tanah, dan aplikasi mobile Flutter.",
-    tools: ["Flutter", "Dart", "ESP32", "Arduino"],
-    tags: ["Flutter", "Dart", "ESP32", "IoT", "Arduino", "Firebase RTDB", "Smart Agriculture"],
+    award: "Juara 3 AITEC (Agricultural Innovation Technology Competition) VIII Tingkat Nasional",
+    summary: "Sistem otomasi fertigasi dan irigasi cerdas berbasis IoT yang memadukan mikrokontroler ESP32, sensor kelembapan tanah, Edge AI deteksi penyakit tanaman (YOLO & TFLite), dan aplikasi mobile Flutter terintegrasi Firebase Realtime Database.",
+    tools: ["Flutter", "Dart", "ESP32", "Arduino", "Firebase", "VS Code"],
+    tags: ["Flutter", "Dart", "ESP32", "IoT", "Arduino", "Firebase RTDB", "TFLite YOLO", "Google Gemini AI", "Smart Agriculture"],
     thumbnail: "/images/projects/fertiflow-thumb.svg",
-    github: "https://github.com/kayawn02",
+    github: "https://github.com/kayawn02/FertiFlow",
     demo: null,
     points: [
-      "Mengembangkan aplikasi mobile Flutter untuk monitoring dan kontrol penyiraman real-time.",
-      "Mengintegrasikan mikrokontroler ESP32 dan sensor tanah untuk otomasi 4 relay aktuator.",
-      "Merancang antarmuka aplikasi yang intuitif untuk kemudahan pemantauan di lapangan."
+      "Mengembangkan aplikasi mobile Flutter terintegrasi telemetri sensor tanah dan kontrol aktuasi katup secara real-time.",
+      "Mengintegrasikan mikrokontroler ESP32 untuk otomasi 4 relay aktuator (pompa irigasi dan injeksi nutrisi fertigasi).",
+      "Menerapkan Edge AI berbasis YOLO dan TFLite untuk diagnosa penyakit tanaman secara langsung dari kamera, serta konsultasi cerdas berbasis LLM Google Generative AI."
     ],
     details: {
-      latarBelakang: "Pengairan dan pemupukan manual seringkali tidak terukur sehingga memboroskan air dan nutrisi tanaman. FertiFlow hadir untuk mengotomatiskan proses fertigasi secara presisi berdasarkan data sensor.",
+      latarBelakang: "Pengairan dan pemupukan konvensional seringkali dilakukan secara manual dan tidak terukur, memicu pemborosan air, ketidakseimbangan nutrisi tanah, serta keterlambatan deteksi penyakit tanaman. FertiFlow dibangun sebagai solusi terintegrasi untuk mengotomatisasi siklus fertigasi presisi dan memberikan rekomendasi perawatan tanaman berbasis data sensor nyata.",
       tujuan: [
-        "Membangun aplikasi mobile Flutter yang responsif dan mudah dipahami.",
-        "Mengotomatisasi 4 aktuator relay (pompa air dan katup solenoid pupuk).",
-        "Menyediakan data telemetri real-time sensor tanah via Firebase."
+        "Membangun aplikasi mobile Flutter responsif dengan dashboard telemetri real-time dan kontrol aktuator nirkabel.",
+        "Mengotomatisasi 4 saluran aktuator relay (pompa utama dan katup solenoid pupuk) berdasarkan ambang batas pembacaan sensor ESP32.",
+        "Menyediakan sistem diagnosa penyakit tanaman cerdas menggunakan model Edge AI YOLO/TFLite dan konsultasi agrikultur generatif.",
+        "Menyimpan log riwayat aktivitas penyiraman, penjadwalan multi-zona, dan parameter kelembapan tanah pada Firebase Realtime Database."
       ],
-      peranSaya: "Bertanggung jawab atas pengembangan aplikasi mobile Flutter, integrasi firmware ESP32, dan perancangan antarmuka pengguna.",
+      peranSaya: "Project Development & Mobile Developer — Mengembangkan seluruh arsitektur dan antarmuka aplikasi mobile Flutter, integrasi firmware komunikasi ESP32 via Firebase RTDB, serta implementasi inferensi model deteksi penyakit tanaman.",
       fiturUtama: [
         {
-          judul: "Monitoring Real-Time",
-          deskripsi: "Pantau kelembapan tanah, suhu lingkungan, dan status pompa secara langsung dari smartphone."
+          judul: "Telemetri & Kontrol Aktuator Real-Time",
+          deskripsi: "Pemantauan kelembapan tanah, suhu lingkungan, dan aktuasi manual/otomatis 4 katup solenoid & pompa secara langsung dari smartphone via Firebase."
         },
         {
-          judul: "Otomasi ESP32 & Multi-Sensor",
-          deskripsi: "Sistem membaca sensor kelembapan tanah dan mengontrol buka-tutup katup serta pompa secara mandiri."
+          judul: "Deteksi Penyakit Tanaman Cerdas (YOLO & TFLite)",
+          deskripsi: "Identifikasi dini gejala penyakit dan hama tanaman secara instan melalui pemrosesan gambar kamera langsung di perangkat mobile secara offline."
         },
         {
-          judul: "Rekomendasi Cerdas",
-          deskripsi: "Perhitungan takaran nutrisi yang optimal berdasarkan pembacaan kondisi sensor tanah."
+          judul: "Asisten Konsultasi AI (Google Generative AI)",
+          deskripsi: "Rekomendasi takaran nutrisi pupuk NPK, kebutuhan air spesifik, dan instruksi penanganan tanaman berbasis kecerdasan buatan generatif."
+        },
+        {
+          judul: "Penjadwalan Otomatis & Manajemen Multi-Zona",
+          deskripsi: "Konfigurasi jadwal penyiraman presisi berdasarkan zona lahan perkebunan, kondisi cuaca, dan profil fase tumbuh tanaman."
         }
       ],
-      hasilPencapaian: "Meraih Juara 3 – Agricultural Innovation Technology Competition (AITEC) tingkat nasional."
+      hasilPencapaian: "Meraih Juara 3 Tingkat Nasional – Agricultural Innovation Technology Competition (AITEC) VIII pada kategori Competent."
     }
   },
   {
     id: "sangsmart",
-    title: "SangSmart — UI/UX Design Project",
+    title: "SangSmart — Smart Agriculture Application",
     category: "UI/UX Design",
     year: "2026",
     role: "UI/UX Designer",
     award: "Juara 1 UI/UX Design Competition Point Project 3.0 ITERA",
-    summary: "Desain UI/UX platform digital pertanian untuk transparansi harga pasar komoditas dan penyewaan alat mesin pertanian bersama.",
+    summary: "Aplikasi mobile pertanian cerdas yang dirancang untuk mendukung petani pisang (Making Banana Farming Smarter) melalui edukasi digital terstruktur, monitoring lahan perkebunan, konsultasi pakar, dan asisten interaktif berbasis AI.",
     tools: ["Figma", "Canva"],
-    tags: ["Figma", "UI/UX Design", "Wireframing", "User Flow", "Information Architecture", "Prototyping"],
+    tags: ["Figma", "UI/UX Design", "Wireframing", "User Flow", "Interactive Prototyping", "Design System", "AgriTech", "Banana Farming"],
     thumbnail: "/images/projects/sangsmart-thumb.svg",
-    github: "https://github.com/kayawn02",
-    demo: "https://figma.com",
+    github: "https://github.com/kayawn02/SangSmart-UIUX",
+    demo: "https://www.figma.com/design/y2duhjtVbZN8uUf2heTY1z/Untitled",
     points: [
-      "Merancang UI/UX aplikasi SangSmart di Figma berdasarkan riset kebutuhan petani.",
-      "Menyusun wireframe, user flow, dan arsitektur informasi yang terstruktur.",
-      "Membuat prototipe interaktif dengan design system yang konsisten."
+      "Merancang antarmuka UI/UX mobile aplikasi SangSmart di Figma berdasarkan riset kebutuhan nyata petani pisang.",
+      "Menyusun sistem desain holistik yang mencakup onboarding, dashboard pemantauan kondisi kebun pisang, dan pusat edukasi budidaya.",
+      "Mengembangkan alur interaksi konsultasi ahli pertanian serta rancangan asisten virtual cerdas berbasis AI chatbot pertanian."
     ],
     details: {
-      latarBelakang: "Rantai pasok yang panjang dan sulitnya akses sewa alat panen menjadi kendala utama petani. SangSmart dirancang untuk menyederhanakan alur transaksi dan transparansi harga.",
+      latarBelakang: "Petani pisang seringkali menghadapi kendala akses ilmu budidaya terpercaya, lambatnya penanganan hama tanaman, serta sulitnya memantau parameter kebun secara berkala. SangSmart (dari kata 'Sang' yang berarti Pisang dan 'Smart' yang berarti Cerdas) dirancang untuk menghadirkan teknologi digital yang mudah digunakan petani pisang.",
       tujuan: [
-        "Menciptakan antarmuka yang ramah bagi pengguna dari berbagai latar belakang.",
-        "Menyusun alur informasi untuk marketplace hasil tani dan sewa alat bersama.",
-        "Menghasilkan prototipe interaktif berbasis design system yang rapi."
+        "Merancang antarmuka mobile yang intuitif, kontras tinggi, dan ramah bagi pengguna di lingkungan perkebunan luar ruangan.",
+        "Menyediakan modul edukasi pertanian digital yang memuat artikel terkurasi, video teknik budidaya, dan panduan perawatan pisang.",
+        "Menghadirkan antarmuka monitoring lahan digital untuk memantau status kelembapan tanah dan kondisi tanaman pisang.",
+        "Membangun jalur konsultasi langsung dengan pakar agrikultur serta asisten AI chatbot pertanian untuk tanya jawab instan 24/7."
       ],
-      peranSaya: "UI/UX Designer — Riset persona pengguna, pembuatan wireframe, penyusunan design system, dan perancangan prototipe interaktif di Figma.",
+      peranSaya: "UI/UX Designer — Bertanggung jawab penuh atas riset persona petani, penyusunan arsitektur informasi, wireframing, pembuatan design system lengkap, dan perancangan prototipe interaktif di Figma.",
       fiturUtama: [
         {
-          judul: "Transparansi Harga Pasar",
-          deskripsi: "Informasi harga komoditas harian yang jelas dan mudah diakses petani."
+          judul: "Edukasi Pertanian (Agricultural Education)",
+          deskripsi: "Pusat materi budidaya pisang komprehensif yang memuat artikel edukasi, panduan perawatan berkala, dan video tutorial teknis budidaya pisang."
         },
         {
-          judul: "Sewa Alat Pertanian",
-          deskripsi: "Katalog pemesanan mesin panen dan traktor bersama dalam beberapa ketukan."
+          judul: "Monitoring Lahan (Land Monitoring)",
+          deskripsi: "Antarmuka visual dashboard untuk memantau kelembapan tanah, indeks kesuburan, dan status kesehatan tanaman pisang secara berkala."
         },
         {
-          judul: "Desain Ergonomis Luar Ruangan",
-          deskripsi: "Pilihan kontras warna yang nyaman digunakan di lingkungan luar ruangan."
+          judul: "Konsultasi Pakar (Expert Consultation)",
+          deskripsi: "Fitur penghubung petani pisang dengan tenaga ahli agrikultur untuk berdiskusi dan mendapatkan solusi kuratif terhadap penyakit tanaman."
+        },
+        {
+          judul: "Asisten Chatbot AI (AI Chatbot Assistant)",
+          deskripsi: "Chatbot interaktif cerdas yang mampu menjawab pertanyaan teknis pertanian dan panduan budidaya pisang secara instan 24/7."
         }
       ],
-      hasilPencapaian: "Meraih Juara 1 – Point Project 3.0 oleh Himpunan Mahasiswa Informatika ITERA tingkat Provinsi Lampung."
+      hasilPencapaian: "Meraih Juara 1 UI/UX Design Competition – Point Project 3.0 oleh Himpunan Mahasiswa Informatika ITERA tingkat Provinsi Lampung."
     }
   }
 ];
