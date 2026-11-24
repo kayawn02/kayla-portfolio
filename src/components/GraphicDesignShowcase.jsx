@@ -5,13 +5,10 @@ import {
   ChevronRight,
   Maximize2,
   X,
-  Palette,
-  Sparkles,
-  Layers,
-  Image as ImageIcon,
   Compass,
-  Eye,
-  Check
+  Image as ImageIcon,
+  Sparkles,
+  Eye
 } from 'lucide-react';
 import { designCategories, logos, socialMediaPosts } from '../data/designs';
 import { playNavClickSound, playCardHoverSound } from '../utils/sound';
@@ -53,7 +50,7 @@ export default function GraphicDesignShowcase() {
   }, [activeCategory, totalSlides]);
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-8">
       
       {/* 2-Category Pill Switcher: Sosial Media & Logo */}
       <div className="flex justify-center">
@@ -91,8 +88,8 @@ export default function GraphicDesignShowcase() {
       </div>
 
       {/* ========================================================
-          MODE 1: UNIFIED SOSIAL MEDIA & PUBLICATION SLIDER
-          (All 15 works in ONE slideable showcase like user reference)
+          MODE 1: PURE VISUAL EDIT SLIDER (ZERO TEXT / ZERO KETERANGAN)
+          100% Focused on Kayla's Artwork as requested by user
          ======================================================== */}
       {activeCategory === 'Sosial Media' && (
         <motion.div
@@ -100,180 +97,95 @@ export default function GraphicDesignShowcase() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.4 }}
-          className="space-y-6"
+          transition={{ duration: 0.35 }}
+          className="space-y-5"
         >
-          {/* Main Featured Showcase Stage */}
-          <div className="rounded-3xl border border-[#4A74A7]/30 bg-gradient-to-b from-[#142A44]/80 via-[#0e1d32]/90 to-[#081426]/95 backdrop-blur-2xl p-5 sm:p-8 shadow-2xl relative overflow-hidden">
+          {/* Main Visual Slide Stage (Centered & Expansive) */}
+          <div className="relative w-full max-w-4xl mx-auto rounded-3xl border border-[#4A74A7]/30 bg-gradient-to-b from-[#142A44]/60 via-[#0e1d32]/80 to-[#081426]/95 backdrop-blur-2xl p-4 sm:p-6 shadow-2xl overflow-hidden flex flex-col items-center">
             
-            {/* Ambient Background Nebulae */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-[#4A74A7]/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#142A44]/20 rounded-full blur-3xl pointer-events-none" />
+            {/* Ambient Background Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-[#4A74A7]/15 rounded-full blur-[100px] pointer-events-none" />
 
-            <div className="grid lg:grid-cols-12 gap-8 items-center relative z-10">
+            {/* Slide Frame */}
+            <div className="relative w-full aspect-square sm:aspect-[16/11] max-h-[580px] rounded-2xl overflow-hidden bg-[#050c18] border border-[#4A74A7]/30 shadow-2xl flex items-center justify-center p-3 sm:p-6 group select-none">
               
-              {/* Left Column: Slide Visual Frame with Prev/Next Controls (7 cols) */}
-              <div className="lg:col-span-7 flex flex-col items-center">
-                <div className="relative w-full max-w-xl aspect-square sm:aspect-[4/3] rounded-2xl overflow-hidden bg-[#050c18] border border-[#4A74A7]/30 shadow-2xl flex items-center justify-center p-3 sm:p-5 group select-none">
-                  
-                  {/* Active Slide Image */}
-                  <AnimatePresence mode="wait">
-                    <motion.img
-                      key={currentPost.id}
-                      src={currentPost.image}
-                      alt={currentPost.title}
-                      initial={{ opacity: 0, scale: 0.94, filter: 'blur(4px)' }}
-                      animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                      exit={{ opacity: 0, scale: 0.94, filter: 'blur(4px)' }}
-                      transition={{ duration: 0.35, ease: 'easeOut' }}
-                      className="max-w-full max-h-full object-contain filter drop-shadow-2xl cursor-zoom-in"
-                      onClick={() => setLightboxImage(currentPost.image)}
-                    />
-                  </AnimatePresence>
+              {/* Active Image with Smooth Dissolve & Scale Transition */}
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={currentPost.id}
+                  src={currentPost.image}
+                  alt="Hasil karya desain grafis"
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.3, ease: 'easeOut' }}
+                  className="max-w-full max-h-full object-contain filter drop-shadow-2xl cursor-zoom-in"
+                  onClick={() => setLightboxImage(currentPost.image)}
+                />
+              </AnimatePresence>
 
-                  {/* Top Floating Badges */}
-                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
-                    <span className="px-3 py-1 rounded-full text-[11px] font-heading font-semibold bg-[#081426]/90 border border-[#4A74A7]/40 text-[#DCEAF7] backdrop-blur-md shadow-lg">
-                      {currentPost.category}
-                    </span>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setLightboxImage(currentPost.image);
-                      }}
-                      className="p-2 rounded-full bg-[#081426]/85 border border-[#4A74A7]/30 text-neutral-300 hover:text-white hover:border-[#38bdf8] backdrop-blur-md pointer-events-auto transition-colors"
-                      title="Perbesar gambar"
-                    >
-                      <Maximize2 size={14} />
-                    </button>
-                  </div>
-
-                  {/* Embedded Prev / Next Buttons */}
-                  <button
-                    onClick={handlePrevSlide}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-[#081426]/90 hover:bg-[#142A44] border border-[#4A74A7]/40 hover:border-[#38bdf8] text-white flex items-center justify-center shadow-xl backdrop-blur-md transition-all hover:scale-110 active:scale-95"
-                    title="Slide sebelumnya"
-                    aria-label="Previous Slide"
-                  >
-                    <ChevronLeft size={20} />
-                  </button>
-                  <button
-                    onClick={handleNextSlide}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-[#081426]/90 hover:bg-[#142A44] border border-[#4A74A7]/40 hover:border-[#38bdf8] text-white flex items-center justify-center shadow-xl backdrop-blur-md transition-all hover:scale-110 active:scale-95"
-                    title="Slide berikutnya"
-                    aria-label="Next Slide"
-                  >
-                    <ChevronRight size={20} />
-                  </button>
-                </div>
-
-                {/* Counter & Action Hint */}
-                <div className="mt-3 flex items-center justify-between w-full max-w-xl px-2 text-xs font-heading text-neutral-400">
-                  <span className="flex items-center gap-1.5">
-                    <span className="text-[#38bdf8] font-bold">
-                      {String(currentSlideIndex + 1).padStart(2, '0')}
-                    </span>
-                    <span>/</span>
-                    <span>{String(totalSlides).padStart(2, '0')} Karya</span>
-                  </span>
-                  <span className="text-[11px] text-neutral-400">
-                    Gunakan tombol panah atau thumbnail di bawah
-                  </span>
-                </div>
+              {/* Minimal Top Counter & Fullscreen Controls */}
+              <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none z-20">
+                <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#081426]/85 border border-[#4A74A7]/40 text-[#DCEAF7] backdrop-blur-md shadow-md">
+                  {String(currentSlideIndex + 1).padStart(2, '0')} / {String(totalSlides).padStart(2, '0')}
+                </span>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLightboxImage(currentPost.image);
+                  }}
+                  className="p-2.5 rounded-full bg-[#081426]/85 border border-[#4A74A7]/40 text-neutral-300 hover:text-white hover:border-[#38bdf8] backdrop-blur-md pointer-events-auto transition-all hover:scale-110 active:scale-95 shadow-md"
+                  title="Perbesar gambar"
+                  aria-label="Maximize View"
+                >
+                  <Maximize2 size={15} />
+                </button>
               </div>
 
-              {/* Right Column: Slide Context & Details (5 cols) */}
-              <div className="lg:col-span-5 space-y-5">
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="px-3 py-1 rounded-full text-[11px] font-heading font-semibold bg-[#142A44]/80 border border-[#4A74A7]/30 text-[#DCEAF7]">
-                      {currentPost.type}
-                    </span>
-                    <span className="px-2.5 py-1 rounded-full text-[11px] font-mono text-neutral-400 bg-[#081426]/80 border border-white/5">
-                      {currentPost.year}
-                    </span>
-                  </div>
+              {/* Prev Button */}
+              <button
+                onClick={handlePrevSlide}
+                className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-[#081426]/90 hover:bg-[#142A44] border border-[#4A74A7]/40 hover:border-[#38bdf8] text-white flex items-center justify-center shadow-2xl backdrop-blur-md transition-all hover:scale-110 active:scale-95 z-20"
+                title="Slide sebelumnya"
+                aria-label="Previous Slide"
+              >
+                <ChevronLeft size={22} />
+              </button>
 
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-heading tracking-tight leading-snug">
-                    {currentPost.title}
-                  </h3>
-
-                  <p className="text-sm text-neutral-300 font-sans mt-3 leading-relaxed">
-                    {currentPost.summary}
-                  </p>
-                </div>
-
-                {/* Metadata Pod */}
-                <div className="p-4 rounded-2xl bg-[#081426]/70 border border-[#4A74A7]/20 space-y-2.5">
-                  <div className="flex items-center justify-between text-xs font-heading">
-                    <span className="text-neutral-400">Software Desain:</span>
-                    <span className="text-[#DCEAF7] font-semibold">{currentPost.tool}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-xs font-heading">
-                    <span className="text-neutral-400">Format Publikasi:</span>
-                    <span className="text-[#38bdf8] font-semibold">{currentPost.category}</span>
-                  </div>
-                </div>
-
-                {/* Direct Action Buttons */}
-                <div className="flex items-center gap-3 pt-2">
-                  <button
-                    onClick={() => setLightboxImage(currentPost.image)}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#142A44] to-[#4A74A7] hover:from-[#1b385a] hover:to-[#5a86bc] text-white text-xs font-heading font-semibold shadow-[0_0_15px_rgba(74,116,167,0.35)] transition-all hover:scale-105"
-                  >
-                    <Maximize2 size={13} />
-                    <span>Lihat Ukuran Penuh</span>
-                  </button>
-
-                  <div className="flex items-center gap-1.5 ml-auto">
-                    <button
-                      onClick={handlePrevSlide}
-                      className="p-2.5 rounded-xl bg-[#081426] border border-[#4A74A7]/30 hover:border-[#38bdf8] text-white transition-all hover:scale-105"
-                      title="Sebelumnya"
-                    >
-                      <ChevronLeft size={16} />
-                    </button>
-                    <button
-                      onClick={handleNextSlide}
-                      className="p-2.5 rounded-xl bg-[#081426] border border-[#4A74A7]/30 hover:border-[#38bdf8] text-white transition-all hover:scale-105"
-                      title="Berikutnya"
-                    >
-                      <ChevronRight size={16} />
-                    </button>
-                  </div>
-                </div>
-              </div>
-
+              {/* Next Button */}
+              <button
+                onClick={handleNextSlide}
+                className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-[#081426]/90 hover:bg-[#142A44] border border-[#4A74A7]/40 hover:border-[#38bdf8] text-white flex items-center justify-center shadow-2xl backdrop-blur-md transition-all hover:scale-110 active:scale-95 z-20"
+                title="Slide berikutnya"
+                aria-label="Next Slide"
+              >
+                <ChevronRight size={22} />
+              </button>
             </div>
 
-            {/* Bottom Horizontal Thumbnails Rail (Like user reference Image 1) */}
-            <div className="mt-8 pt-6 border-t border-[#4A74A7]/15 space-y-3">
-              <div className="flex items-center justify-between text-xs font-heading text-neutral-400">
-                <span className="font-semibold text-[#DCEAF7]">Koleksi Feed &amp; Publikasi Digital</span>
-                <span>Klik thumbnail untuk beralih</span>
-              </div>
-
-              {/* Scrollable Thumbnails Strip */}
-              <div className="flex gap-3 overflow-x-auto pb-3 pt-1 scrollbar-thin scrollbar-thumb-[#4A74A7]/40">
+            {/* Bottom Horizontal Thumbnails Rail (Quick Jump to any of the 15 edits) */}
+            <div className="w-full mt-4 pt-4 border-t border-[#4A74A7]/15">
+              <div className="flex gap-2.5 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-[#4A74A7]/40 px-1">
                 {socialMediaPosts.map((post, idx) => {
                   const isSelected = idx === currentSlideIndex;
                   return (
                     <button
                       key={post.id}
                       onClick={() => handleSelectSlide(idx)}
-                      className={`relative flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden border transition-all duration-300 p-1.5 bg-[#050c18] ${
+                      className={`relative flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border transition-all duration-300 p-1 bg-[#050c18] ${
                         isSelected
-                          ? 'border-[#38bdf8] ring-2 ring-[#38bdf8]/40 scale-105 shadow-[0_0_15px_rgba(56,189,248,0.35)]'
-                          : 'border-[#4A74A7]/25 hover:border-[#4A74A7]/70 opacity-70 hover:opacity-100'
+                          ? 'border-[#38bdf8] ring-2 ring-[#38bdf8]/50 scale-105 shadow-[0_0_15px_rgba(56,189,248,0.4)]'
+                          : 'border-[#4A74A7]/25 hover:border-[#4A74A7]/70 opacity-60 hover:opacity-100'
                       }`}
+                      title={`Karya ${idx + 1}`}
                     >
                       <img
                         src={post.image}
-                        alt={post.title}
+                        alt=""
                         className="w-full h-full object-contain filter drop-shadow-sm"
                         loading="lazy"
                       />
-                      <div className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-[#081426]/90 text-[9px] font-mono font-bold text-white">
+                      <div className="absolute bottom-1 right-1 px-1 py-0.2 rounded bg-[#081426]/90 text-[8px] font-mono font-bold text-white">
                         {idx + 1}
                       </div>
                     </button>
@@ -296,7 +208,7 @@ export default function GraphicDesignShowcase() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.35 }}
           className="space-y-6"
         >
           {/* Top Mood Ambient Switcher */}
@@ -337,7 +249,6 @@ export default function GraphicDesignShowcase() {
           {/* 4 Round Logo Grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {logos.map((logo, idx) => {
-              // Dynamic background style per selected mode
               const cardBgClass =
                 logoBgMode === 'light'
                   ? 'bg-neutral-100 text-neutral-900 border-neutral-300 shadow-xl'
@@ -438,7 +349,7 @@ export default function GraphicDesignShowcase() {
             >
               <img
                 src={lightboxImage}
-                alt="Enlarged design view"
+                alt="Enlarged view"
                 className="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl border border-[#4A74A7]/30 bg-[#050c18]"
               />
               <button

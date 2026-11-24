@@ -165,137 +165,166 @@ export default function About() {
 
         </div>
 
-        {/* ===================== COSMIC ORBITAL TELEMETRY PODS (ANTIMAINTREAM, JANGAN KOTAK DOANG) ===================== */}
-        <div className="grid sm:grid-cols-3 gap-5 pt-4">
+        {/* ===================== COSMIC REACTOR TELEMETRY PRISMS (ANTIMAINTREAM & ULTRA MODERN) ===================== */}
+        <div className="grid sm:grid-cols-3 gap-6 pt-6">
           
           {/* Stat 1: 2 Projek */}
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.96 }}
+            initial={{ opacity: 0, y: 25, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.05 }}
-            transition={{ type: 'spring', stiffness: 120, damping: 18 }}
-            whileHover={{ y: -6, scale: 1.025 }}
-            className="relative rounded-full p-4 sm:p-5 bg-gradient-to-r from-[#142A44]/80 via-[#0e1d32]/90 to-[#081426]/95 border border-[#4A74A7]/30 hover:border-[#38bdf8] transition-all duration-300 backdrop-blur-2xl flex items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.7)] group select-none overflow-hidden"
+            transition={{ type: 'spring', stiffness: 140, damping: 18 }}
+            whileHover={{ y: -8, scale: 1.03 }}
+            className="relative rounded-3xl p-6 sm:p-7 bg-gradient-to-b from-[#142A44]/85 via-[#0e1d32]/95 to-[#081426] border border-[#4A74A7]/35 hover:border-[#38bdf8] transition-all duration-500 backdrop-blur-2xl shadow-[0_15px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(74,116,167,0.15)] hover:shadow-[0_20px_50px_rgba(56,189,248,0.25)] group select-none overflow-hidden flex flex-col justify-between"
           >
-            {/* Top edge cosmic starlight streak */}
-            <div className="absolute top-0 left-1/4 right-1/4 h-[1.5px] bg-gradient-to-r from-transparent via-[#38bdf8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            
-            <div className="flex items-center gap-4 relative z-10">
-              {/* Spinning Orbital Core Icon */}
-              <div className="relative w-14 h-14 shrink-0 flex items-center justify-center">
-                {/* Rotating Dashed Satellite Orbit Ring */}
-                <div className="absolute inset-0 rounded-full border border-dashed border-[#4A74A7]/40 group-hover:border-[#38bdf8] animate-[spin_10s_linear_infinite]" />
-                <div className="absolute -inset-1 rounded-full border border-dotted border-[#DCEAF7]/20 group-hover:border-[#DCEAF7]/40 animate-[spin_16s_linear_infinite_reverse]" />
+            {/* Animated Laser Border Beam */}
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#38bdf8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute -top-12 -right-12 w-28 h-28 bg-[#38bdf8]/10 rounded-full blur-2xl group-hover:bg-[#38bdf8]/20 transition-colors pointer-events-none" />
+
+            {/* Top Row: Sonar Radar Gyroscope + Micro Tag */}
+            <div className="flex items-center justify-between mb-6">
+              <div className="relative w-14 h-14 flex items-center justify-center">
+                {/* Expanding Radar Sonar Waves */}
+                <div className="absolute inset-0 rounded-full border border-[#38bdf8]/30 animate-ping opacity-30" style={{ animationDuration: '3s' }} />
+                {/* Rotating Dashed Satellite Orbit */}
+                <div className="absolute -inset-1 rounded-full border border-dashed border-[#4A74A7]/50 group-hover:border-[#38bdf8] animate-[spin_8s_linear_infinite]" />
                 
-                {/* Glowing Core Orb */}
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#142A44] to-[#4A74A7] flex items-center justify-center text-white shadow-[0_0_15px_rgba(74,116,167,0.5)] group-hover:scale-110 transition-transform">
-                  <Code2 size={18} />
+                {/* Core Glowing Orb */}
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#142A44] to-[#4A74A7] flex items-center justify-center text-[#DCEAF7] shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
+                  <Code2 size={18} className="text-[#38bdf8]" />
                 </div>
               </div>
 
-              {/* Digits & Minimal Info */}
-              <div>
-                <div className="flex items-baseline gap-1.5">
-                  <span className="text-3xl sm:text-4xl font-black font-heading text-white tracking-tight">
-                    2
-                  </span>
-                  <span className="text-xs font-heading text-[#38bdf8] font-bold uppercase tracking-wider">
-                    Projek
-                  </span>
-                </div>
-                <p className="text-[11px] text-neutral-300 font-sans tracking-tight">
-                  Mobile App &amp; IoT
-                </p>
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#081426]/90 border border-[#4A74A7]/30 text-[10px] font-heading font-semibold text-[#38bdf8] shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8] animate-pulse" />
+                <span>AKTIF</span>
               </div>
             </div>
 
-            {/* Micro Live Telemetry Capsule */}
-            <div className="hidden xs:flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#142A44]/60 border border-[#DCEAF7]/10 text-[10px] font-heading font-semibold text-[#DCEAF7] shrink-0 mr-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8] animate-pulse" />
-              <span>Aktif</span>
+            {/* Center: Hero Counter with Starlight Gradient */}
+            <div className="space-y-1">
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl sm:text-5xl font-black font-heading text-transparent bg-clip-text bg-gradient-to-br from-white via-[#DCEAF7] to-[#38bdf8] tracking-tight">
+                  2
+                </span>
+                <span className="text-sm font-heading font-bold text-[#38bdf8] uppercase tracking-wider">
+                  Projek
+                </span>
+              </div>
+              <h4 className="text-base font-bold font-heading text-[#DCEAF7] pt-1">
+                Projek Unggulan
+              </h4>
+              <p className="text-xs text-neutral-300 font-sans">
+                Mobile Flutter &amp; Sistem IoT ESP32
+              </p>
+            </div>
+
+            {/* Bottom Cyber Progress Line */}
+            <div className="mt-5 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-neutral-400">
+              <span>TRPL · Polinela</span>
+              <span className="text-[#38bdf8] font-bold">100% Selesai</span>
             </div>
           </motion.div>
 
           {/* Stat 2: 7 Sertifikat */}
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.96 }}
+            initial={{ opacity: 0, y: 25, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.05 }}
-            transition={{ type: 'spring', stiffness: 120, damping: 18, delay: 0.1 }}
-            whileHover={{ y: -6, scale: 1.025 }}
-            className="relative rounded-full p-4 sm:p-5 bg-gradient-to-r from-[#142A44]/80 via-[#0e1d32]/90 to-[#081426]/95 border border-[#4A74A7]/30 hover:border-[#4A74A7] transition-all duration-300 backdrop-blur-2xl flex items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.7)] group select-none overflow-hidden"
+            transition={{ type: 'spring', stiffness: 140, damping: 18, delay: 0.1 }}
+            whileHover={{ y: -8, scale: 1.03 }}
+            className="relative rounded-3xl p-6 sm:p-7 bg-gradient-to-b from-[#142A44]/85 via-[#0e1d32]/95 to-[#081426] border border-[#4A74A7]/35 hover:border-[#4A74A7] transition-all duration-500 backdrop-blur-2xl shadow-[0_15px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(74,116,167,0.15)] hover:shadow-[0_20px_50px_rgba(74,116,167,0.3)] group select-none overflow-hidden flex flex-col justify-between"
           >
-            <div className="absolute top-0 left-1/4 right-1/4 h-[1.5px] bg-gradient-to-r from-transparent via-[#4A74A7] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            
-            <div className="flex items-center gap-4 relative z-10">
-              <div className="relative w-14 h-14 shrink-0 flex items-center justify-center">
-                <div className="absolute inset-0 rounded-full border border-dashed border-[#4A74A7]/40 group-hover:border-[#38bdf8] animate-[spin_10s_linear_infinite]" />
-                <div className="absolute -inset-1 rounded-full border border-dotted border-[#DCEAF7]/20 group-hover:border-[#DCEAF7]/40 animate-[spin_16s_linear_infinite_reverse]" />
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#4A74A7] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute -top-12 -right-12 w-28 h-28 bg-[#4A74A7]/10 rounded-full blur-2xl group-hover:bg-[#4A74A7]/20 transition-colors pointer-events-none" />
+
+            <div className="flex items-center justify-between mb-6">
+              <div className="relative w-14 h-14 flex items-center justify-center">
+                <div className="absolute inset-0 rounded-full border border-[#4A74A7]/30 animate-ping opacity-30" style={{ animationDuration: '3.2s' }} />
+                <div className="absolute -inset-1 rounded-full border border-dashed border-[#4A74A7]/50 group-hover:border-[#38bdf8] animate-[spin_8s_linear_infinite]" />
                 
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#142A44] to-[#4A74A7] flex items-center justify-center text-white shadow-[0_0_15px_rgba(74,116,167,0.5)] group-hover:scale-110 transition-transform">
-                  <Award size={18} />
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#142A44] to-[#4A74A7] flex items-center justify-center text-[#DCEAF7] shadow-[0_0_15px_rgba(74,116,167,0.5)] group-hover:scale-110 transition-transform">
+                  <Award size={18} className="text-[#DCEAF7]" />
                 </div>
               </div>
 
-              <div>
-                <div className="flex items-baseline gap-1.5">
-                  <span className="text-3xl sm:text-4xl font-black font-heading text-white tracking-tight">
-                    7
-                  </span>
-                  <span className="text-xs font-heading text-[#4A74A7] font-bold uppercase tracking-wider">
-                    Sertifikat
-                  </span>
-                </div>
-                <p className="text-[11px] text-neutral-300 font-sans tracking-tight">
-                  Prestasi &amp; Pelatihan
-                </p>
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#081426]/90 border border-[#4A74A7]/30 text-[10px] font-heading font-semibold text-[#DCEAF7] shadow-sm">
+                <Sparkles size={11} className="text-[#38bdf8]" />
+                <span>TERVALIDASI</span>
               </div>
             </div>
 
-            <div className="hidden xs:flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#142A44]/60 border border-[#DCEAF7]/10 text-[10px] font-heading font-semibold text-[#DCEAF7] shrink-0 mr-1">
-              <Sparkles size={10} className="text-[#38bdf8]" />
-              <span>Resmi</span>
+            <div className="space-y-1">
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl sm:text-5xl font-black font-heading text-transparent bg-clip-text bg-gradient-to-br from-white via-[#DCEAF7] to-[#4A74A7] tracking-tight">
+                  7
+                </span>
+                <span className="text-sm font-heading font-bold text-[#4A74A7] uppercase tracking-wider">
+                  Sertifikat
+                </span>
+              </div>
+              <h4 className="text-base font-bold font-heading text-[#DCEAF7] pt-1">
+                Sertifikat Resmi
+              </h4>
+              <p className="text-xs text-neutral-300 font-sans">
+                Prestasi Lomba &amp; Pelatihan Vokasi
+              </p>
+            </div>
+
+            <div className="mt-5 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-neutral-400">
+              <span>Tingkat Nasional &amp; Daerah</span>
+              <span className="text-[#38bdf8] font-bold">Terverifikasi</span>
             </div>
           </motion.div>
 
           {/* Stat 3: 2024 TRPL */}
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.96 }}
+            initial={{ opacity: 0, y: 25, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.05 }}
-            transition={{ type: 'spring', stiffness: 120, damping: 18, delay: 0.2 }}
-            whileHover={{ y: -6, scale: 1.025 }}
-            className="relative rounded-full p-4 sm:p-5 bg-gradient-to-r from-[#142A44]/80 via-[#0e1d32]/90 to-[#081426]/95 border border-[#4A74A7]/30 hover:border-sky-400/60 transition-all duration-300 backdrop-blur-2xl flex items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.7)] group select-none overflow-hidden"
+            transition={{ type: 'spring', stiffness: 140, damping: 18, delay: 0.2 }}
+            whileHover={{ y: -8, scale: 1.03 }}
+            className="relative rounded-3xl p-6 sm:p-7 bg-gradient-to-b from-[#142A44]/85 via-[#0e1d32]/95 to-[#081426] border border-[#4A74A7]/35 hover:border-sky-400 transition-all duration-500 backdrop-blur-2xl shadow-[0_15px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(74,116,167,0.15)] hover:shadow-[0_20px_50px_rgba(56,189,248,0.25)] group select-none overflow-hidden flex flex-col justify-between"
           >
-            <div className="absolute top-0 left-1/4 right-1/4 h-[1.5px] bg-gradient-to-r from-transparent via-sky-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            
-            <div className="flex items-center gap-4 relative z-10">
-              <div className="relative w-14 h-14 shrink-0 flex items-center justify-center">
-                <div className="absolute inset-0 rounded-full border border-dashed border-sky-400/40 group-hover:border-sky-300 animate-[spin_10s_linear_infinite]" />
-                <div className="absolute -inset-1 rounded-full border border-dotted border-[#DCEAF7]/20 group-hover:border-[#DCEAF7]/40 animate-[spin_16s_linear_infinite_reverse]" />
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-sky-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute -top-12 -right-12 w-28 h-28 bg-sky-400/10 rounded-full blur-2xl group-hover:bg-sky-400/20 transition-colors pointer-events-none" />
+
+            <div className="flex items-center justify-between mb-6">
+              <div className="relative w-14 h-14 flex items-center justify-center">
+                <div className="absolute inset-0 rounded-full border border-sky-400/30 animate-ping opacity-30" style={{ animationDuration: '3.4s' }} />
+                <div className="absolute -inset-1 rounded-full border border-dashed border-[#4A74A7]/50 group-hover:border-sky-400 animate-[spin_8s_linear_infinite]" />
                 
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#142A44] to-sky-600/80 flex items-center justify-center text-white shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
-                  <GraduationCap size={18} />
+                  <GraduationCap size={18} className="text-sky-300" />
                 </div>
               </div>
 
-              <div>
-                <div className="flex items-baseline gap-1.5">
-                  <span className="text-3xl sm:text-4xl font-black font-heading text-white tracking-tight">
-                    2024
-                  </span>
-                  <span className="text-xs font-heading text-sky-400 font-bold uppercase tracking-wider">
-                    TRPL
-                  </span>
-                </div>
-                <p className="text-[11px] text-neutral-300 font-sans tracking-tight">
-                  Politeknik Negeri Lampung
-                </p>
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#081426]/90 border border-[#4A74A7]/30 text-[10px] font-heading font-semibold text-sky-300 shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
+                <span>D4 VOKASI</span>
               </div>
             </div>
 
-            <div className="hidden xs:flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#142A44]/60 border border-[#DCEAF7]/10 text-[10px] font-heading font-semibold text-sky-300 shrink-0 mr-1">
-              <span>D4 Vokasi</span>
+            <div className="space-y-1">
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl sm:text-5xl font-black font-heading text-transparent bg-clip-text bg-gradient-to-br from-white via-[#DCEAF7] to-sky-400 tracking-tight">
+                  2024
+                </span>
+                <span className="text-sm font-heading font-bold text-sky-400 uppercase tracking-wider">
+                  TRPL
+                </span>
+              </div>
+              <h4 className="text-base font-bold font-heading text-[#DCEAF7] pt-1">
+                Polinela Lampung
+              </h4>
+              <p className="text-xs text-neutral-300 font-sans">
+                D4 Rekayasa Perangkat Lunak
+              </p>
+            </div>
+
+            <div className="mt-5 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-neutral-400">
+              <span>Angkatan 2024</span>
+              <span className="text-sky-300 font-bold">Mahasiswa Aktif</span>
             </div>
           </motion.div>
 
